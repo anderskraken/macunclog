@@ -90,9 +90,6 @@ extension MemorySnapshot {
     }
 }
 
-extension CPUSnapshot {
-    var severity: Severity { usage >= 0.85 ? .warning : usage >= 0.6 ? .notice : .good }
-}
 
 extension DiskSnapshot {
     func severity(threshold: Int64) -> Severity {
@@ -110,4 +107,12 @@ struct SystemSnapshot: Sendable {
     var processes: [ProcessSample]
     var uptime: TimeInterval
     var agents: AgentLoad = .empty
+    /// What earlier measurements saw, so a short spike isn't mistaken for a lasting load.
+    var cpuStreaks: CPUStreaks = .empty
+
+    /// The CPU gauge's colour. A full CPU only turns it orange once it has lasted.
+    var cpuSeverity: Severity {
+        guard cpu.usage >= CPUStreaks.saturatedUsage else { return cpu.usage >= 0.6 ? .notice : .good }
+        return cpuStreaks.saturatedFor == nil ? .notice : .warning
+    }
 }

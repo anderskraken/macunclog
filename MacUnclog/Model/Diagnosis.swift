@@ -48,8 +48,18 @@ struct Finding: Identifiable, Sendable, Hashable {
     let detail: String
     let symbol: String
     var remedies: [Remedy] = []
+    /// For CPU findings: how long the load has lasted, or nil for a spike.
+    var sustainedSeconds: TimeInterval?
 
     var id: Kind { kind }
+
+    /// A busy CPU or process seen in one measurement only.
+    var isCPUSpike: Bool {
+        switch kind {
+        case .cpuHog, .cpuSaturated: sustainedSeconds == nil
+        default: false
+        }
+    }
 }
 
 struct Verdict: Sendable, Equatable {

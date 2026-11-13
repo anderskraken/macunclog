@@ -34,6 +34,11 @@ enum Format {
         return String(localized: "\(number) cores")
     }
 
+    /// "40 seconds", "3 minutes", "2 hours": the largest unit only.
+    static func duration(_ seconds: TimeInterval) -> String {
+        Duration.seconds(seconds.rounded()).formatted(.units(allowed: [.hours, .minutes, .seconds], width: .wide, maximumUnitCount: 1))
+    }
+
     static func relative(_ date: Date, now: Date = .now) -> String {
         date.formatted(.relative(presentation: .named))
     }

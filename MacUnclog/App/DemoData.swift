@@ -150,6 +150,19 @@ enum DemoData {
         return result
     }
 
+    static func personalFiles() -> [PersonalFile] {
+        let day: TimeInterval = 86_400
+        return [
+            PersonalFile(path: "/Users/demo/Downloads/Xcode_26.xip", kind: .installer, bytes: 3_120_000_000, modified: .now - 40 * day),
+            PersonalFile(path: "/Users/demo/Downloads/Docker.dmg", kind: .installer, bytes: 512_000_000, modified: .now - 95 * day),
+            PersonalFile(path: "/Users/demo/Desktop/Figma.dmg", kind: .installer, bytes: 214_000_000, modified: .now - 12 * day),
+            PersonalFile(path: "/Users/demo/Movies/Screen Recording 2026-03-02.mov", kind: .large, bytes: 6_400_000_000, modified: .now - 250 * day),
+            PersonalFile(path: "/Users/demo/Documents/Archive/photos-2019.zip", kind: .large, bytes: 2_900_000_000, modified: .now - 600 * day),
+            PersonalFile(path: "/Users/demo/Movies/Holiday.mp4", kind: .large, bytes: 1_800_000_000, modified: .now - 30 * day,
+                         blocked: .openFile(ProcessRef(pid: 812, name: "QuickTime Player"))),
+        ]
+    }
+
     static func history() -> [CleanupRun] {
         func run(daysAgo: Double, hours: Double, _ trigger: CleanupRun.Trigger, before: Double, _ outcomes: [CleanupOutcome]) -> CleanupRun {
             let start = now.addingTimeInterval(-(daysAgo * 86_400 + hours * 3600))

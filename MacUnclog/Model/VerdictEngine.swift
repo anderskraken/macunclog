@@ -31,6 +31,10 @@ enum VerdictEngine {
                 return Verdict(severity: .good, headline: String(localized: "Your Mac is fine"),
                                summary: String(localized: "Memory, CPU, disk and temperature look normal. Nothing here is slowing your Mac down right now."))
             }
+            if findings.allSatisfy(\.isCPUSpike) {
+                return Verdict(severity: .notice, headline: String(localized: "Your Mac is mostly fine"),
+                               summary: String(localized: "The CPU is busy right now. If it stays busy, MacUnclog will say what’s slowing your Mac down."))
+            }
             return Verdict(severity: .notice, headline: String(localized: "Your Mac is mostly fine"),
                            summary: findings.count == 1
                                ? String(localized: "Nothing is slowing your Mac down right now. One thing is worth a look.")
@@ -164,30 +168,58 @@ enum VerdictEngine {
         }
     }
 
+    /// A process or a full CPU only counts against the Mac once the load has lasted (see
+    /// `CPUStreaks`). A spike is a notice that says "right now" and stays out of the headline.
     static let cpu: Rule = { snapshot, thresholds in
         let ownPID = getpid()
+        let streaks = snapshot.cpuStreaks
         let hogs = snapshot.processes
             .filter { $0.cpuPercent >= thresholds.cpuHogPercent && $0.pid != ownPID }
             .sorted { $0.cpuPercent > $1.cpuPercent }
-        let saturated = snapshot.cpu.usage >= 0.85
+        let saturated = snapshot.cpu.usage >= CPUStreaks.saturatedUsage
 
         var findings = hogs.prefix(3).map { process in
             let percent = Format.percent(process.cpuPercent)
-            let severity: Severity = saturated || process.cpuPercent >= 150 ? .warning : .notice
+            let cores = Format.cores(process.cpuPercent)
+            guard let lasted = streaks.sustained(process) else {
+                return Finding(
+                    kind: .cpuHog(process.pid), severity: .notice,
+                    title: String(localized: "\(process.name) is using \(percent) CPU right now"),
+                    reason: String(localized: "\(process.name) is keeping \(cores) busy"),
+                    detail: String(localized: "\(process.name) is keeping \(cores) busy right now.\(explanation(process))"),
+                    symbol: "cpu", remedies: quitRemedies(process), sustainedSeconds: nil
+                )
+            }
+            let duration = Format.duration(lasted)
+            let severity: Severity = streaks.saturatedFor != nil || process.cpuPercent >= 150 ? .warning : .notice
             return Finding(
                 kind: .cpuHog(process.pid), severity: severity,
-                title: String(localized: "\(process.name) is using \(percent) CPU"),
-                reason: String(localized: "\(process.name) is keeping \(Format.cores(process.cpuPercent)) busy"),
-                detail: String(localized: "\(process.name) is keeping \(Format.cores(process.cpuPercent)) busy.\(explanation(process))"),
-                symbol: "cpu", remedies: quitRemedies(process)
+                title: String(localized: "\(process.name) has used \(percent) CPU for \(duration)"),
+                reason: String(localized: "\(process.name) has kept \(cores) busy for \(duration)"),
+                detail: String(localized: "\(process.name) has kept \(cores) busy for \(duration).\(explanation(process))"),
+                symbol: "cpu", remedies: quitRemedies(process), sustainedSeconds: lasted
             )
         }
-        if saturated && hogs.isEmpty {
-            findings.append(Finding(
-                kind: .cpuSaturated, severity: .warning, title: String(localized: "The CPU is fully loaded"),
-                reason: String(localized: "the CPU is fully loaded"),
-                detail: String(localized: "\(Format.percent(snapshot.cpu.usage * 100)) of the CPU is in use, spread across many processes."),
-                symbol: "cpu.fill"))
+        // A long build saturates the CPU with compilers that each live a few seconds, so no
+        // single process lasts. A full CPU that lasts counts even then.
+        let lastingHog = findings.contains { $0.severity >= .warning }
+        if saturated && !lastingHog {
+            let usage = Format.percent(snapshot.cpu.usage * 100)
+            if let lasted = streaks.saturatedFor {
+                let duration = Format.duration(lasted)
+                findings.append(Finding(
+                    kind: .cpuSaturated, severity: .warning,
+                    title: String(localized: "The CPU has been fully loaded for \(duration)"),
+                    reason: String(localized: "the CPU has been fully loaded for \(duration)"),
+                    detail: String(localized: "\(usage) of the CPU is in use, spread across many processes."),
+                    symbol: "cpu.fill", sustainedSeconds: lasted))
+            } else if hogs.isEmpty {
+                findings.append(Finding(
+                    kind: .cpuSaturated, severity: .notice, title: String(localized: "The CPU is fully loaded right now"),
+                    reason: String(localized: "the CPU is fully loaded"),
+                    detail: String(localized: "\(usage) of the CPU is in use right now, spread across many processes."),
+                    symbol: "cpu.fill"))
+            }
         }
         return findings
     }

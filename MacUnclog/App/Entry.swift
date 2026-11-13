@@ -23,7 +23,7 @@ enum Entry {
 }
 
 enum CommandLineTool {
-    static let modes: Set<String> = ["--agent", "--diagnose", "--scan", "--act", "--automation", "--protect", "--benchmark", "--help"]
+    static let modes: Set<String> = ["--agent", "--diagnose", "--scan", "--files", "--skill", "--act", "--automation", "--protect", "--benchmark", "--help"]
 
     static func run(mode: String, arguments: [String]) async -> Int32 {
         switch mode {
@@ -97,7 +97,20 @@ enum CommandLineTool {
             print("Automatic clean-up: low disk \(settings.lowDiskEnabled ? "on" : "off"), schedule \(settings.scheduleEnabled ? "on" : "off"). Agent: \(status == .enabled ? "registered" : "not registered") (\(status.rawValue))")
             return 0
         case "--diagnose":
-            let diagnosis = VerdictEngine.diagnose(await SystemProbe.capture())
+            let json = arguments.contains("--json")
+            var seconds = 0
+            if let index = arguments.firstIndex(of: "--for") {
+                guard index + 1 < arguments.count, let value = Int(arguments[index + 1]), value >= 0 else {
+                    print("Usage: --diagnose [--for SECONDS] [--json]")
+                    return 64
+                }
+                seconds = value
+            }
+            let (diagnosis, measured) = await measure(for: seconds)
+            if json {
+                print(Report.json(Report.DiagnosisReport(diagnosis, measuredSeconds: measured)))
+                return 0
+            }
             print(diagnosis.verdict.headline)
             print(diagnosis.verdict.summary)
             for finding in diagnosis.findings {
@@ -123,10 +136,62 @@ enum CommandLineTool {
                 print("  \(tool.pid)\t\(tool.label)\t\(tool.owner)\t\(tool.place?.title ?? "?")\t\(tool.ports)\t\(tool.isStoppable ? "STOPPABLE" : "")")
             }
             return 0
+        case "--skill":
+            let action = arguments.first { ["install", "remove"].contains($0) }
+            let named = arguments.compactMap(AgentSkill.Agent.init(rawValue:))
+            guard arguments.allSatisfy({ ["install", "remove"].contains($0) || AgentSkill.Agent(rawValue: $0) != nil }),
+                  arguments.filter({ ["install", "remove"].contains($0) }).count <= 1
+            else {
+                print("Usage: --skill [install|remove] [claude|codex]")
+                return 64
+            }
+            let agents = named.isEmpty ? AgentSkill.Agent.allCases.filter { AgentSkill.status(of: $0) != .agentMissing } : named
+            do {
+                for agent in agents {
+                    if action == "install" { try AgentSkill.install(for: agent) }
+                    if action == "remove" { try AgentSkill.remove(for: agent) }
+                }
+            } catch {
+                print(error.description)
+                return 1
+            }
+            for agent in AgentSkill.Agent.allCases {
+                let status = switch AgentSkill.status(of: agent) {
+                case .agentMissing: "not set up on this Mac"
+                case .notInstalled: "not installed"
+                case .installed: "installed"
+                case .different: "a different version is installed"
+                }
+                print("\(agent.title): \(status) (\(agent.skillFile.path))")
+            }
+            return 0
+        case "--files":
+            let files = await PersonalFiles.find(inUse: await InUseSnapshot.capture())
+            if arguments.contains("--json") {
+                print(Report.json(Report.FilesReport(files)))
+                return 0
+            }
+            for kind in PersonalFile.Kind.allCases {
+                let group = files.filter { $0.kind == kind }
+                print("== \(kind.rawValue): \(group.count) files, \(Format.bytes(group.reduce(Int64(0)) { $0 + $1.bytes }))")
+                for file in group {
+                    let status = file.blocked.map { "  [IN USE: \($0.description)]" } ?? ""
+                    print("  \(Format.bytes(file.bytes).padding(toLength: 10, withPad: " ", startingAt: 0)) \(file.path)\(status)")
+                }
+            }
+            return 0
         case "--scan":
             let settings = AutomationSettings.load()
             let categories = arguments.compactMap(CleanupCategory.init(rawValue:))
             let context = await ScanContext.capture(activityWindow: settings.activityWindow, projectRoots: settings.projectRoots)
+            if arguments.contains("--json") {
+                var reports: [Report.CategoryReport] = []
+                for category in categories.isEmpty ? CleanupCategory.allCases : categories {
+                    reports.append(Report.CategoryReport(category, items: await CleanupScanner.discover(category, in: context)))
+                }
+                print(Report.json(Report.ScanReport(categories: reports)))
+                return 0
+            }
             print("Project roots: \(settings.projectRoots.map(\.path).joined(separator: ", "))")
             print("lsof complete: \(context.inUse.isComplete), simulators read: \(context.simulators.devicesKnown)")
             let inRoots = context.external.references.filter { ref in settings.projectRoots.contains { ref.path.hasPrefix($0.path + "/") } }
@@ -174,8 +239,14 @@ enum CommandLineTool {
         default:
             print("""
             Run MacUnclog without arguments to open the app.
-              --diagnose            print the verdict and findings
-              --scan [category …]   show what can be cleaned up, without deleting anything
+              --diagnose [--for SECONDS] [--json]
+                                    print the verdict and findings; with --for, measure for that long
+                                    so a lasting CPU load counts (it needs 15 seconds)
+              --scan [category …] [--json]
+                                    show what can be cleaned up, without deleting anything
+              --files [--json]      list installers and large files in your folders, without moving anything
+              --skill [install|remove] [claude|codex]
+                                    show, install or remove the skill for Claude Code and Codex
               --agent [--dry-run]   run the background agent once (--now forces a clean-up)
               --act ACTION PID      quit, forceQuit, pause or resume, with the same rules as the app
               --act stop-tool PID   stop a tool that no session owns any more
@@ -185,6 +256,28 @@ enum CommandLineTool {
             Categories: \(CleanupCategory.allCases.map(\.rawValue).joined(separator: " "))
             """)
             return 0
+        }
+    }
+
+    /// Measures every five seconds until the first and last measurement are `seconds`
+    /// apart, so a CPU load that lasts can be told apart from a spike. Returns the diagnosis
+    /// and the seconds actually covered.
+    static func measure(for seconds: Int) async -> (Diagnosis, Int) {
+        var thresholds = DiagnosisThresholds()
+        thresholds.lowDiskBytes = max(AutomationSettings.load().lowDiskThreshold, thresholds.criticalDiskBytes)
+        var streaks = CPUStreaks.empty
+        var first: Date?
+        while true {
+            var snapshot = await SystemProbe.capture()
+            streaks.record(snapshot, threshold: thresholds.cpuHogPercent)
+            let start = first ?? snapshot.takenAt
+            first = start
+            let covered = snapshot.takenAt.timeIntervalSince(start)
+            guard covered < Double(seconds) else {
+                snapshot.cpuStreaks = streaks
+                return (VerdictEngine.diagnose(snapshot, thresholds: thresholds), Int(covered.rounded()))
+            }
+            try? await Task.sleep(for: .seconds(min(5, Double(seconds) - covered)))
         }
     }
 }

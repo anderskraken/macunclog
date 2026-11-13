@@ -100,7 +100,7 @@ private struct MetricsGrid: View {
                 value: Format.percent(snapshot.cpu.usage * 100),
                 detail: String(localized: "of \(snapshot.cpu.cores) cores"),
                 fraction: snapshot.cpu.usage,
-                severity: snapshot.cpu.severity
+                severity: snapshot.cpuSeverity
             )
             .help("Load average, last minute: \(snapshot.cpu.load1.formatted(.number.precision(.fractionLength(1))))")
             MetricTile(

@@ -16,6 +16,7 @@ struct DiskView: View {
                     ScanPrompt()
                 } else {
                     CategoryList()
+                    PersonalFilesSection()
                 }
                 AutomationFooter()
             }
@@ -28,7 +29,7 @@ struct DiskView: View {
         .toolbar {
             ToolbarItem {
                 Button("Scan again", systemImage: "arrow.clockwise") { Task { await model.scan() } }
-                    .disabled(model.isScanning || model.isCleaning)
+                    .disabled(model.isScanning || model.isCleaning || model.isMovingFiles)
                     .help("Look for things to clean up (⇧⌘R)")
             }
         }

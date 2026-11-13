@@ -53,7 +53,7 @@ struct MenuBarView: View {
             MiniMeter(title: "Memory", value: Format.percent(snapshot.memory.usedFraction * 100),
                       fraction: snapshot.memory.usedFraction, tint: snapshot.memory.severity.tint)
             MiniMeter(title: "CPU", value: Format.percent(snapshot.cpu.usage * 100), fraction: snapshot.cpu.usage,
-                      tint: snapshot.cpu.severity.tint)
+                      tint: snapshot.cpuSeverity.tint)
             MiniMeter(title: "Disk", value: String(localized: "\(Format.bytes(snapshot.disk.available)) free"), fraction: snapshot.disk.usedFraction,
                       tint: snapshot.disk.severity(threshold: model.settings.lowDiskThreshold).tint)
         }

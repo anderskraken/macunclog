@@ -54,6 +54,12 @@ final class AppModel {
     private(set) var lastRun: CleanupRun?
     private(set) var history: [CleanupRun] = []
 
+    private(set) var personalFiles: [PersonalFile] = []
+    var selectedFiles: Set<String> = []
+    private(set) var isFindingFiles = false
+    private(set) var isMovingFiles = false
+    private(set) var lastBinMove: BinMove?
+
     var message: String?
 
     var settings = AutomationSettings.load() {
@@ -73,8 +79,13 @@ final class AppModel {
             NSApplication.shared.appearance = NSAppearance(named: look == "dark" ? .darkAqua : .aqua)
         }
         if DemoData.isEnabled {
+            // As if the app had been open for a few minutes, so the busy demo processes count as lasting.
+            var earlier = DemoData.snapshot()
+            earlier.takenAt -= 60
+            _ = SharedCPUStreaks.record(earlier)
             history = DemoData.history()
             categories = DemoData.cleanup()
+            personalFiles = DemoData.personalFiles()
             lastScan = .now
             selectedItems = Set(categories.values.flatMap(\.cleanable).map(\.id))
             return
@@ -170,7 +181,7 @@ final class AppModel {
         #else
         let snapshot = await SystemProbe.capture()
         #endif
-        diagnosis = VerdictEngine.diagnose(snapshot, thresholds: thresholds)
+        diagnosis = VerdictEngine.diagnose(SharedCPUStreaks.record(snapshot, threshold: thresholds.cpuHogPercent), thresholds: thresholds)
         disk = snapshot.disk
     }
 
@@ -179,7 +190,7 @@ final class AppModel {
     }
 
     /// Demo data has made-up pids that may belong to real processes, so nothing acts on it.
-    private var actionsDisabled: Bool {
+    var actionsDisabled: Bool {
         #if DEBUG
         DemoData.isEnabled
         #else
@@ -187,8 +198,15 @@ final class AppModel {
         #endif
     }
 
+    /// False in demo mode, and then says so: a button that silently does nothing looks broken.
+    private func actionAllowed() -> Bool {
+        guard actionsDisabled else { return true }
+        message = String(localized: "This window shows made-up demo data, so MacUnclog doesn’t change anything.")
+        return false
+    }
+
     func perform(_ action: ProcessAction, on process: ProcessSample) {
-        guard !actionsDisabled else { return }
+        guard actionAllowed() else { return }
         do {
             try ProcessController.perform(action, on: process)
             Task {
@@ -224,18 +242,18 @@ final class AppModel {
 
     /// Shuts a simulator down only if a fresh look still finds it idle.
     func shutDown(_ simulator: BootedSimulator) async {
-        guard !actionsDisabled else { return }
+        guard actionAllowed() else { return }
         await runAgentAction(String(localized: "Shutting down \(simulator.name)…")) { await AgentActions.shutDown(simulator) }
     }
 
     func shutDownIdleSimulators() async {
-        guard !actionsDisabled else { return }
+        guard actionAllowed() else { return }
         for simulator in diagnosis?.snapshot.agents.idleSimulators ?? [] { await shutDown(simulator) }
     }
 
     /// Stops a tool and its children if it is still the same orphaned process.
     func stop(_ tool: ToolProcess) async {
-        guard !actionsDisabled else { return }
+        guard actionAllowed() else { return }
         await runAgentAction(String(localized: "Stopping \(tool.label)…")) { await AgentActions.stop(tool) }
     }
 
@@ -251,7 +269,7 @@ final class AppModel {
     }
 
     func confirmStop(_ tools: [ToolProcess]) async {
-        guard !actionsDisabled else { return }
+        guard actionAllowed() else { return }
         pendingToolStop = nil
         for tool in tools { await stop(tool) }
     }
@@ -265,7 +283,7 @@ final class AppModel {
 
     // MARK: Cleanup
 
-    var isScanning: Bool { categories.values.contains(where: \.isScanning) }
+    var isScanning: Bool { isFindingFiles || categories.values.contains(where: \.isScanning) }
     var isCleaning: Bool { cleaningProgress != nil }
 
     var reclaimableBytes: Int64 {
@@ -281,14 +299,16 @@ final class AppModel {
     }
 
     func scan() async {
-        guard !isScanning, !isCleaning else { return }
+        guard !isScanning, !isCleaning, !isMovingFiles else { return }
         #if DEBUG
         if DemoData.isEnabled { return }
         #endif
         for category in CleanupCategory.allCases {
             categories[category, default: CategoryState()].isScanning = true
         }
+        isFindingFiles = true
         let context = await ScanContext.capture(activityWindow: settings.activityWindow, projectRoots: settings.projectRoots)
+        async let files = PersonalFiles.find(inUse: context.inUse)
         await withTaskGroup(of: (CleanupCategory, [CleanupItem]).self) { group in
             for category in CleanupCategory.allCases {
                 group.addTask { (category, await CleanupScanner.discover(category, in: context)) }
@@ -301,12 +321,37 @@ final class AppModel {
                 }
             }
         }
+        let found = await files
+        personalFiles = found
+        selectedFiles.formIntersection(found.filter(\.canMove).map(\.id))
+        isFindingFiles = false
         lastScan = .now
         disk = SystemProbe.disk()
     }
 
+    /// Moves the selected files to the Bin. Never deletes them and never empties the Bin.
+    func moveSelectedFilesToBin() async {
+        guard !isMovingFiles, !isScanning, actionAllowed() else { return }
+        let files = personalFiles.filter { selectedFiles.contains($0.id) && $0.canMove }
+        guard !files.isEmpty else { return }
+        isMovingFiles = true
+        defer { isMovingFiles = false }
+        var move = BinMove()
+        for (file, problem) in await PersonalFiles.moveToBin(files) {
+            if let problem {
+                move.failed.append(BinMove.Failure(file: file, reason: problem.description))
+            } else {
+                move.moved.append(file)
+            }
+        }
+        let moved = Set(move.moved.map(\.id))
+        personalFiles.removeAll { moved.contains($0.id) }
+        selectedFiles.subtract(moved)
+        lastBinMove = move
+    }
+
     func clean() async {
-        guard !actionsDisabled else { return }
+        guard actionAllowed() else { return }
         let items = categories.values.flatMap(\.cleanable).filter { selectedItems.contains($0.id) }
         guard !items.isEmpty, !isCleaning else { return }
         cleaningProgress = CleanupExecutor.Progress(done: 0, total: items.count, current: String(localized: "Starting…"))
@@ -357,4 +402,16 @@ final class AppModel {
     func refreshAgentStatus() {
         agentStatus = AgentRegistration.status
     }
+}
+
+struct BinMove: Sendable {
+    struct Failure: Sendable, Hashable {
+        let file: PersonalFile
+        let reason: String
+    }
+
+    var moved: [PersonalFile] = []
+    var failed: [Failure] = []
+
+    var bytes: Int64 { moved.reduce(0) { $0 + $1.bytes } }
 }

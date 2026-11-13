@@ -177,6 +177,38 @@
         }
       }
     },
+    "%@ has kept %@ busy for %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ has kept %2$@ busy for %3$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ har holdt %2$@ opptatt i %3$@"
+          }
+        }
+      }
+    },
+    "%@ has kept %@ busy for %@.%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ has kept %2$@ busy for %3$@.%4$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ har holdt %2$@ opptatt i %3$@.%4$@"
+          }
+        }
+      }
+    },
     "%@ has stopped responding" : {
       "localizations" : {
         "nb" : {
@@ -193,6 +225,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ har sluttet å svare. Tvungen avslutning lukker appen uten å lagre."
+          }
+        }
+      }
+    },
+    "%@ has used %@ CPU for %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ has used %2$@ CPU for %3$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ har brukt %2$@ CPU i %3$@"
           }
         }
       }
@@ -243,18 +291,18 @@
         }
       }
     },
-    "%@ is keeping %@ busy.%@" : {
+    "%@ is keeping %@ busy right now.%@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@ is keeping %2$@ busy.%3$@"
+            "value" : "%1$@ is keeping %2$@ busy right now.%3$@"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ holder %2$@ opptatt.%3$@"
+            "value" : "%1$@ holder %2$@ opptatt akkurat nå.%3$@"
           }
         }
       }
@@ -289,18 +337,18 @@
         }
       }
     },
-    "%@ is using %@ CPU" : {
+    "%@ is using %@ CPU right now" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@ is using %2$@ CPU"
+            "value" : "%1$@ is using %2$@ CPU right now"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ bruker %2$@ CPU"
+            "value" : "%1$@ bruker %2$@ CPU akkurat nå"
           }
         }
       }
@@ -337,6 +385,16 @@
         }
       }
     },
+    "%@ isn’t set up on this Mac." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ er ikke satt opp på denne Macen."
+          }
+        }
+      }
+    },
     "%@ not found" : {
       "localizations" : {
         "nb" : {
@@ -369,6 +427,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ av %2$@"
+          }
+        }
+      }
+    },
+    "%@ of the CPU is in use right now, spread across many processes." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ av CPU-en er i bruk akkurat nå, fordelt på mange prosesser."
           }
         }
       }
@@ -651,6 +719,26 @@
         }
       }
     },
+    "%lld files" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld filer"
+          }
+        }
+      }
+    },
+    "%lld in use" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld i bruk"
+          }
+        }
+      }
+    },
     "%lld in use or protected" : {
       "localizations" : {
         "nb" : {
@@ -781,6 +869,16 @@
         }
       }
     },
+    "1 file" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 fil"
+          }
+        }
+      }
+    },
     "1 process" : {
       "localizations" : {
         "nb" : {
@@ -837,6 +935,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Et Node.js-program, ofte en dev-server, Metro eller et byggeverktøy."
+          }
+        }
+      }
+    },
+    "A different version is in %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En annen versjon ligger i %@"
           }
         }
       }
@@ -1131,6 +1239,16 @@
         }
       }
     },
+    "Cancel" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avbryt"
+          }
+        }
+      }
+    },
     "Cargo downloads" : {
       "localizations" : {
         "nb" : {
@@ -1277,6 +1395,16 @@
         }
       }
     },
+    "Coding agents" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kodeagenter"
+          }
+        }
+      }
+    },
     "Copy UDID" : {
       "localizations" : {
         "nb" : {
@@ -1303,6 +1431,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kunne ikke sjekke hvilke filer som er åpne"
+          }
+        }
+      }
+    },
+    "Couldn’t move %@: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Couldn’t move %1$@: %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke flytte %1$@: %2$@"
           }
         }
       }
@@ -1841,12 +1985,72 @@
         }
       }
     },
+    "Install" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer"
+          }
+        }
+      }
+    },
+    "Installed in %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installert i %@"
+          }
+        }
+      }
+    },
+    "Installers" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installasjonsfiler"
+          }
+        }
+      }
+    },
+    "It moved or changed since the list was made" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den er flyttet eller endret siden listen ble laget"
+          }
+        }
+      }
+    },
+    "It takes up %@. You can put it back from the Bin until you empty it." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den tar opp %@. Du kan legge den tilbake fra papirkurven til du tømmer den."
+          }
+        }
+      }
+    },
     "Kotlin daemon" : {
       "localizations" : {
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kotlin-daemon"
+          }
+        }
+      }
+    },
+    "Large files" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Store filer"
           }
         }
       }
@@ -1907,6 +2111,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ser etter agenter, simulatorer og dev-servere …"
+          }
+        }
+      }
+    },
+    "Looking…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leter …"
           }
         }
       }
@@ -2037,6 +2251,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "MacUnclog sletter aldri noe i disse mappene. Det samme gjelder Dokumenter, Skrivebord, Nedlastinger, Bilder, Filmer, Musikk og iCloud Drive."
+          }
+        }
+      }
+    },
+    "MacUnclog skill" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog-skill"
           }
         }
       }
@@ -2211,6 +2435,82 @@
         }
       }
     },
+    "Move %lld files to the Bin?" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flytte %lld filer til papirkurven?"
+          }
+        }
+      }
+    },
+    "Move the selected files to the Bin" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flytt de valgte filene til papirkurven"
+          }
+        }
+      }
+    },
+    "Move to Bin" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flytt til papirkurven"
+          }
+        }
+      }
+    },
+    "Move to Bin…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flytt til papirkurven …"
+          }
+        }
+      }
+    },
+    "Move “%@” to the Bin?" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flytte «%@» til papirkurven?"
+          }
+        }
+      }
+    },
+    "Moved %lld files to the Bin. Empty the Bin to free up to %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Moved %1$lld files to the Bin. Empty the Bin to free up to %2$@."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flyttet %1$lld filer til papirkurven. Tøm papirkurven for å frigjøre opptil %2$@."
+          }
+        }
+      }
+    },
+    "Moved 1 file to the Bin. Empty the Bin to free up to %@." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flyttet 1 fil til papirkurven. Tøm papirkurven for å frigjøre opptil %@."
+          }
+        }
+      }
+    },
     "Name" : {
       "localizations" : {
         "nb" : {
@@ -2237,6 +2537,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aldri"
+          }
+        }
+      }
+    },
+    "No %@ folder on this Mac" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen %@-mappe på denne Macen"
           }
         }
       }
@@ -2347,6 +2657,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ikke i et git-repo, så MacUnclog kan ikke se om mappa er en byggmappe"
+          }
+        }
+      }
+    },
+    "Not installed in %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke installert i %@"
           }
         }
       }
@@ -2547,6 +2867,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bare %@ er ledig. Når disken er nesten full, får macOS ikke plass til swap og cacher, og alt går tregere."
+          }
+        }
+      }
+    },
+    "Open Bin" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne papirkurven"
           }
         }
       }
@@ -2807,6 +3137,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fjern"
+          }
+        }
+      }
+    },
+    "Remove the changed skill?" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fjerne den endrede skillen?"
+          }
+        }
+      }
+    },
+    "Replace" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstatt"
+          }
+        }
+      }
+    },
+    "Replace the changed skill?" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstatte den endrede skillen?"
           }
         }
       }
@@ -3427,12 +3787,32 @@
         }
       }
     },
-    "The CPU is fully loaded" : {
+    "The CPU has been fully loaded for %@" : {
       "localizations" : {
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prosessoren er fullt belastet"
+            "value" : "CPU-en har vært fullt belastet i %@"
+          }
+        }
+      }
+    },
+    "The CPU is busy right now. If it stays busy, MacUnclog will say what’s slowing your Mac down." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CPU-en er opptatt akkurat nå. Hvis den forblir opptatt, sier MacUnclog hva som gjør Macen treg."
+          }
+        }
+      }
+    },
+    "The CPU is fully loaded right now" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CPU-en er fullt belastet akkurat nå"
           }
         }
       }
@@ -3535,6 +3915,16 @@
         }
       }
     },
+    "The skill in %@ isn’t the one this copy of MacUnclog installs. Any changes made to it will be lost." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skillen i %@ er ikke den denne kopien av MacUnclog installerer. Endringer i den går tapt."
+          }
+        }
+      }
+    },
     "The temperature is critical and performance is heavily throttled. Quit heavy processes and let your Mac cool down." : {
       "localizations" : {
         "nb" : {
@@ -3565,12 +3955,42 @@
         }
       }
     },
+    "They take up %@. You can put them back from the Bin until you empty it." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De tar opp %@. Du kan legge dem tilbake fra papirkurven til du tømmer den."
+          }
+        }
+      }
+    },
+    "This copy of MacUnclog doesn’t include the skill." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne kopien av MacUnclog har ikke med skillen."
+          }
+        }
+      }
+    },
     "This is where you’ll see what MacUnclog has deleted, whether you cleaned up yourself or it happened automatically." : {
       "localizations" : {
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Her ser du hva MacUnclog har slettet, både når du ryddet selv og når det skjedde automatisk."
+          }
+        }
+      }
+    },
+    "This window shows made-up demo data, so MacUnclog doesn’t change anything." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vinduet viser oppdiktede demodata, så MacUnclog endrer ingenting."
           }
         }
       }
@@ -3685,6 +4105,16 @@
         }
       }
     },
+    "Update" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oppdater"
+          }
+        }
+      }
+    },
     "Used" : {
       "localizations" : {
         "nb" : {
@@ -3761,6 +4191,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hvorfor er Macen treg?"
+          }
+        }
+      }
+    },
+    "With the skill, an agent checks your Mac before it boots a simulator or starts a big build, shuts down idle simulators and stops tools that ended sessions left running. It asks you before it quits an app or cleans up." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Med skillen sjekker en agent Macen før den starter en simulator eller et stort bygg, slår av simulatorer som ikke brukes og stopper verktøy som avsluttede økter lot kjøre. Den spør deg før den avslutter en app eller rydder opp."
           }
         }
       }
@@ -3909,6 +4349,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Macen er varmere enn vanlig. Viftene går mer, men ytelsen er ikke strupet ennå."
+          }
+        }
+      }
+    },
+    "Your files" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dine filer"
           }
         }
       }
@@ -4119,6 +4569,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "pnpm-lager"
+          }
+        }
+      }
+    },
+    "the CPU has been fully loaded for %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CPU-en har vært fullt belastet i %@"
           }
         }
       }

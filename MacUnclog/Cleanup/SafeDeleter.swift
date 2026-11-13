@@ -39,10 +39,16 @@ enum PathGuard {
     }
 
     static func isProtected(_ path: String, userFolders: [String] = userProtected) -> Bool {
-        let path = normalized(path)
-        let roots = protectedRelativeToHome.map { home + "/" + $0 } + userFolders
+        overlaps(normalized(path), protectedRelativeToHome.map { home + "/" + $0 } + userFolders)
+    }
+
+    /// True if `path` is one of `roots`, inside one or contains one. The startup disk ignores
+    /// case, so a folder typed as ~/projects protects ~/Projects too.
+    static func overlaps(_ path: String, _ roots: [String]) -> Bool {
+        let path = path.lowercased()
         return roots.contains { root in
-            path == root || path.hasPrefix(root + "/") || root.hasPrefix(path + "/")
+            let root = root.lowercased()
+            return path == root || path.hasPrefix(root + "/") || root.hasPrefix(path + "/")
         }
     }
 
