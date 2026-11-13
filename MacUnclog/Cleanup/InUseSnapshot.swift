@@ -15,7 +15,7 @@ struct InUseSnapshot: Sendable {
     let isComplete: Bool
 
     init(entries: [Entry], isComplete: Bool = true) {
-        self.entries = entries.sorted { $0.path < $1.path }
+        self.entries = entries.sorted { Self.precedes($0.path, $1.path) }
         self.isComplete = isComplete
     }
 
@@ -24,10 +24,12 @@ struct InUseSnapshot: Sendable {
     static func capture() async -> InUseSnapshot {
         let output = await Shell.run("/usr/sbin/lsof", ["-n", "-P", "-w", "-F", "pcfnR"], timeout: .seconds(60))
         guard !output.timedOut, output.stdout.contains("\nfcwd") else { return .unknown }
-        return parse(output.stdout, excluding: [getpid()])
+        // Only paths under the home folder are ever looked up (PathGuard refuses the rest);
+        // dropping system libraries keeps the table small and its sort fast.
+        return parse(output.stdout, excluding: [getpid()], under: PathGuard.home + "/")
     }
 
-    static func parse(_ text: String, excluding excluded: Set<pid_t> = []) -> InUseSnapshot {
+    static func parse(_ text: String, excluding excluded: Set<pid_t> = [], under prefix: String? = nil) -> InUseSnapshot {
         var entries: [Entry] = []
         var pid: pid_t = 0
         var command = ""
@@ -44,6 +46,7 @@ struct InUseSnapshot: Sendable {
             case "f": fd = String(value)
             case "n":
                 guard value.hasPrefix("/"), !excluded.contains(pid), !excludedChildren.contains(pid), command != "lsof" else { continue }
+                if let prefix, !value.hasPrefix(prefix) { continue }
                 entries.append(Entry(
                     path: PathGuard.normalized(decodeEscapes(String(value))),
                     process: ProcessRef(pid: pid, name: command),
@@ -53,6 +56,12 @@ struct InUseSnapshot: Sendable {
             }
         }
         return InUseSnapshot(entries: entries)
+    }
+
+    /// Byte order, which is all the prefix search needs and much faster than String's
+    /// Unicode-aware comparison on a hundred thousand paths.
+    static func precedes(_ a: String, _ b: String) -> Bool {
+        a.utf8.lexicographicallyPrecedes(b.utf8)
     }
 
     /// lsof writes bytes it can't print as `\\xNN`. Turning them back into bytes keeps a
@@ -86,14 +95,14 @@ struct InUseSnapshot: Sendable {
         var low = 0, high = entries.count
         while low < high {
             let mid = (low + high) / 2
-            if entries[mid].path < root { low = mid + 1 } else { high = mid }
+            if Self.precedes(entries[mid].path, root) { low = mid + 1 } else { high = mid }
         }
         var found: Entry?
         var index = low
         while index < entries.count {
             let entry = entries[index]
             guard entry.path == root || entry.path.hasPrefix(prefix) else {
-                if entry.path > prefix { break }
+                if Self.precedes(prefix, entry.path) { break }
                 index += 1
                 continue
             }

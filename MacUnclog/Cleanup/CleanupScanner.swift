@@ -6,24 +6,28 @@ struct ScanContext: Sendable {
     var activityWindow: TimeInterval
     var projectRoots: [URL]
     var external: ExternalReferences = .empty
+    /// The shared walk of the project folders; computed on demand when nil.
+    var index: ProjectIndex? = nil
     var now: Date = .now
     /// Off for the safety re-check right before deleting, where only the verdict matters.
     var measureSizes: Bool = true
 
-    private static func loadReferences(override: ExternalReferences?, projectRoots: [URL]) async -> ExternalReferences {
+    private static func loadReferences(override: ExternalReferences?, projectConfigs: [String]?) async -> ExternalReferences {
         if let override { return override }
-        return await ExternalReferences.capture(projectRoots: projectRoots)
+        return ExternalReferences.capture(projectConfigs: projectConfigs)
     }
 
     /// `references` replaces the scan of agent configs and links, for tests.
     static func capture(activityWindow: TimeInterval, projectRoots: [URL], measureSizes: Bool = true,
                         references: ExternalReferences? = nil) async -> ScanContext {
         async let inUse = InUseSnapshot.capture()
-        async let simulators = SimulatorInventory.load(projectRoots: projectRoots)
-        async let captured = loadReferences(override: references, projectRoots: projectRoots)
-        let external = await captured
+        async let defaultSet = SimulatorInventory.loadDefaultSet()
+        let index = await ProjectIndex.scan(roots: projectRoots)
+        var simulators = await defaultSet
+        simulators.attachOtherSets(index.complete && index.errorFree ? index.deviceSets : nil)
+        let external = await loadReferences(override: references, projectConfigs: index.complete ? index.mcpConfigs : nil)
         return await ScanContext(inUse: inUse, simulators: simulators, activityWindow: activityWindow,
-                                 projectRoots: projectRoots, external: external, measureSizes: measureSizes)
+                                 projectRoots: projectRoots, external: external, index: index, measureSizes: measureSizes)
     }
 }
 
@@ -91,26 +95,7 @@ enum CleanupScanner {
             }
     }
 
-    /// Build folders and symlinks named like build folders, on the same volume as the root.
-    private static func findBuildFolders(under root: URL) async -> (folders: [URL], links: [URL]) {
-        var names: [String] = []
-        for (index, name) in (buildFolderNames.sorted() + ["DerivedData"]).enumerated() {
-            if index > 0 { names.append("-o") }
-            names += ["-name", name]
-        }
-        names += ["-o", "-name", "dd-*"]
-        let expression = [root.path, "-xdev", "-maxdepth", "9",
-                          "(", "-name", ".git"] + protectedPrunes + [")", "-prune", "-o",
-                          "(", "-type", "d", "("] + names + [")", "-print", "-prune", ")", "-o",
-                          "(", "-type", "l", "("] + names + [")", "-print", ")"]
-        let output = await Shell.run("/usr/bin/find", expression, timeout: .seconds(120))
-        var folders: [URL] = [], links: [URL] = []
-        for line in output.stdout.split(separator: "\n") {
-            let url = URL(fileURLWithPath: String(line))
-            if (try? url.resourceValues(forKeys: [.isSymbolicLinkKey]).isSymbolicLink) == true { links.append(url) } else { folders.append(url) }
-        }
-        return (folders, links)
-    }
+
 
     /// `-o -path <folder>` for each protected folder, so find never even walks into them.
     static var protectedPrunes: [String] {
@@ -129,46 +114,48 @@ enum CleanupScanner {
 
     private static func projectBuilds(_ context: ScanContext) async -> [CleanupItem] {
         guard Shell.developerToolsInstalled else { return [] }
+        var index = context.index
+        if index == nil { index = await ProjectIndex.scan(roots: context.projectRoots) }
+        guard let index, index.complete else { return [] }
         var candidates: [URL] = []
-        var links: [URL] = []
         var seen = Set<String>()
-        // Walk the real path: find, git and the symlink targets must all spell a folder the
-        // same way, or a worktree's link into a symlinked ~/dev would never match.
-        for root in distinctRoots(context.projectRoots) {
-            let found = await findBuildFolders(under: URL(fileURLWithPath: PathGuard.normalized(root.resolvingSymlinksInPath().path)))
-            links += found.links
-            for folder in found.folders where !folder.path.contains("/node_modules/") && buildFolderRules.contains(where: { $0.matches(folder) }) {
-                if seen.insert(folder.path).inserted { candidates.append(folder) }
-            }
+        for folder in index.buildFolders where !folder.path.contains("/node_modules/") && buildFolderRules.contains(where: { $0.matches(folder) }) {
+            if seen.insert(folder.path).inserted { candidates.append(folder) }
         }
+        let links = index.buildLinks
 
+        // Every step below runs per project in parallel; ProcessGate keeps it to eight tools.
+        let relevantLinks = links.filter { seen.contains(PathGuard.normalized($0.resolvingSymlinksInPath().path)) }
+        let parents = Set(candidates.map { $0.deletingLastPathComponent().path } + relevantLinks.map { $0.deletingLastPathComponent().path })
+        let rootsByParent = await concurrentMap(Array(parents)) { await gitRoot(of: URL(fileURLWithPath: $0)) }
         var projects: [String: String] = [:]
         for folder in candidates {
-            if let project = await gitRoot(of: folder.deletingLastPathComponent()) { projects[folder.path] = project }
+            if let project = rootsByParent[folder.deletingLastPathComponent().path] ?? nil { projects[folder.path] = project }
         }
-        var buildFoldersByProject: [String: [String]] = [:]
-        for (folder, project) in projects { buildFoldersByProject[project, default: []].append(folder) }
+        let buildFoldersByProject = Dictionary(grouping: projects, by: \.value).mapValues { $0.map(\.key) }
 
-        var verdicts: [String: ProjectVerdict] = [:]
-        func verdict(_ project: String) async -> ProjectVerdict {
-            if let known = verdicts[project] { return known }
-            let result = await projectVerdict(project, buildFolders: buildFoldersByProject[project] ?? [], context: context)
-            verdicts[project] = result
-            return result
+        var allProjects = Set(projects.values)
+        for link in relevantLinks {
+            if let project = rootsByParent[link.deletingLastPathComponent().path] ?? nil { allProjects.insert(project) }
+        }
+        let verdicts = await concurrentMap(Array(allProjects)) { project in
+            await projectVerdict(project, buildFolders: buildFoldersByProject[project] ?? [], context: context)
+        }
+        let ignored = await concurrentMap(Array(buildFoldersByProject.keys)) { project in
+            await gitIgnored(buildFoldersByProject[project] ?? [], in: project)
         }
 
         // A worktree's node_modules can be a symlink into the main checkout. The target is
         // then only as idle as every project that links to it.
         var linkedBlocks: [String: BlockReason] = [:]
-        for link in links {
+        for link in relevantLinks {
             let target = PathGuard.normalized(link.resolvingSymlinksInPath().path)
-            guard seen.contains(target) else { continue }
             // A link from outside any git repository can't be judged, so it keeps the target.
-            guard let project = await gitRoot(of: link.deletingLastPathComponent()) else {
+            guard let project = rootsByParent[link.deletingLastPathComponent().path] ?? nil else {
                 linkedBlocks[target] = .linkedFrom(link.deletingLastPathComponent().lastPathComponent)
                 continue
             }
-            if await verdict(project).blocked != nil {
+            if verdicts[project]?.blocked != nil {
                 linkedBlocks[target] = .linkedFrom(ProjectPlace(path: project).title)
             }
         }
@@ -179,11 +166,11 @@ enum CleanupScanner {
                 pending.append((folder, folder.deletingLastPathComponent().path, .notInGitRepository))
                 continue
             }
-            var reason = await verdict(project).blocked ?? linkedBlocks[folder.path]
+            var reason = verdicts[project]?.blocked ?? linkedBlocks[folder.path]
             if reason == nil, let recent = recentModification(of: folder, window: context.activityWindow, now: context.now) {
                 reason = .recentlyModified(recent)
             }
-            if reason == nil, await !isGitIgnored(folder, in: project) {
+            if reason == nil, !(ignored[project]?.contains(folder.path) ?? false) {
                 reason = .notGitIgnored
             }
             pending.append((folder, project, reason))
@@ -257,10 +244,27 @@ enum CleanupScanner {
         return output.succeeded && !root.isEmpty ? root : nil
     }
 
-    private static func isGitIgnored(_ folder: URL, in project: String) async -> Bool {
-        let output = await Shell.run("/usr/bin/git", ["-C", project, "check-ignore", "-q", folder.path], timeout: .seconds(20))
-        return output.status == 0
+    /// Runs `transform` for every key at once and collects the results by key.
+    static func concurrentMap<Value: Sendable>(_ keys: [String], _ transform: @escaping @Sendable (String) async -> Value) async -> [String: Value] {
+        await withTaskGroup(of: (String, Value).self) { group in
+            for key in keys { group.addTask { (key, await transform(key)) } }
+            var result: [String: Value] = [:]
+            for await (key, value) in group { result[key] = value }
+            return result
+        }
     }
+
+    /// The build folders git ignores in one project, asked in a single call.
+    private static func gitIgnored(_ folders: [String], in project: String) async -> Set<String> {
+        guard !folders.isEmpty else { return [] }
+        let output = await Shell.run("/usr/bin/git", ["-C", project, "check-ignore", "--"] + folders, timeout: .seconds(30))
+        // Exit 1 means none are ignored; anything above that is an error, and then none count.
+        guard output.status == 0 || output.status == 1, !output.timedOut else { return [] }
+        let listed = Set(output.stdout.split(separator: "\n").map { PathGuard.normalized(String($0)) })
+        return Set(folders.filter { listed.contains(PathGuard.normalized($0)) })
+    }
+
+
 
     private static func lastCommitDate(_ project: String) async -> Date? {
         let output = await Shell.run("/usr/bin/git", ["-C", project, "log", "-1", "--format=%ct"], timeout: .seconds(20))

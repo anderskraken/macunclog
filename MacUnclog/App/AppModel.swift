@@ -1,4 +1,5 @@
 import AppKit
+import OSLog
 import Observation
 import ServiceManagement
 
@@ -85,8 +86,20 @@ final class AppModel {
 
     // MARK: Diagnosis
 
+    private static let log = Logger(subsystem: "io.github.anderskraken.macunclog", category: "refresh")
+
     /// How many windows or panels are showing live numbers right now.
     private var viewers = 0
+    /// Shown windows that other windows cover completely; nobody is looking at those.
+    private var coveredWindows = 0
+
+    func setCovered(_ covered: Bool) {
+        coveredWindows = max(0, coveredWindows + (covered ? 1 : -1))
+        if !covered, let wakeUp {
+            self.wakeUp = nil
+            wakeUp.resume()
+        }
+    }
     private var wakeUp: CheckedContinuation<Void, Never>?
 
     /// Call from onAppear/onDisappear of anything that shows live numbers.
@@ -126,7 +139,8 @@ final class AppModel {
                 // every 10 s while someone looks, every 30 s for the menu bar icon, and never
                 // more often than twice the time a measurement took.
                 let took = ContinuousClock.now - start
-                let pause = max(self.viewers > 0 ? .seconds(10) : .seconds(30), took * 2)
+                let pause = max(self.viewers - self.coveredWindows > 0 ? .seconds(10) : .seconds(30), took * 2)
+                Self.log.debug("Measured in \(took.seconds, format: .fixed(precision: 2)) s; next in \(pause.seconds, format: .fixed(precision: 0)) s (viewers \(self.viewers), covered \(self.coveredWindows))")
                 await self.sleep(for: pause)
             }
         }

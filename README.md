@@ -19,7 +19,7 @@ MacUnclog tells you why your Mac is slow and fixes it in one click. It is built 
 - **Frees disk space safely.** Removes caches and build output, but only from projects that are idle and only after checking that nothing has the files open.
 - **Cleans up on its own, if you want.** A background agent can clean up when free space drops below a limit you set or on a schedule, and tells you what it did. It's off until you turn it on in Settings.
 
-It lives in a window and in the menu bar, and adds a "Why is my Mac slow?" action to Shortcuts.
+It lives in a window and in the menu bar, and adds a "Why is my Mac slow?" action to Shortcuts. It stays light itself: a measurement takes about 0.2 CPU seconds, every 10 seconds while you look at it and every 30 seconds when its window is closed or covered.
 
 ![Agents](docs/screenshots/agents.png)
 
@@ -91,6 +91,7 @@ MacUnclog.app/Contents/MacOS/MacUnclog --help
 - `--scan [category …]` shows what would be cleaned. It deletes nothing.
 - `--agent --dry-run` shows what the background agent would clean now.
 - `--automation on|off` turns automatic cleanup and the background agent on or off.
+- `--benchmark [N]` measures N diagnoses and prints wall time, CPU time and memory.
 - `--act quit|forceQuit|pause|resume PID`, `--act stop-tool PID` and `--act shutdown-simulator UDID` do what the buttons do, with the same checks.
 
 ## How it's built
@@ -99,7 +100,7 @@ MacUnclog.app/Contents/MacOS/MacUnclog --help
 |---|---|
 | `MacUnclog/Probes` | Measurements: memory, CPU, disk, temperature, battery and processes (`SystemProbe`), agents and simulators (`AgentProbe`), process and agent actions |
 | `MacUnclog/Model` | The verdict rules (`VerdictEngine`), who owns which tool (`AgentLoadBuilder`), what may be quit (`ProcessPolicy`) |
-| `MacUnclog/Cleanup` | Categories, scanners, `PathGuard`, the `lsof` snapshot, the simulator inventory and the executor |
+| `MacUnclog/Cleanup` | Categories, scanners, `PathGuard`, the `lsof` snapshot, one shared walk of the project folders (`ProjectIndex`), the simulator inventory and the executor |
 | `MacUnclog/Automation` | The launchd agent, settings, history and notifications |
 | `MacUnclog/Views` | SwiftUI views for the window, the menu bar and Settings |
 

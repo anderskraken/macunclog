@@ -70,7 +70,8 @@ private struct VerdictCard: View {
         }
         .padding(20)
         .background(.background.secondary, in: .rect(cornerRadius: 16, style: .continuous))
-        .animation(.smooth, value: verdict)
+        // The summary carries live figures; only a new headline is worth animating.
+        .animation(.smooth, value: verdict.headline)
         .accessibilityElement(children: .contain)
         .accessibilityLabel("\(verdict.headline). \(verdict.summary)")
     }
@@ -172,7 +173,6 @@ private struct MetricTile: View {
                 Text(title).font(.subheadline).foregroundStyle(.secondary).lineLimit(1)
                 Text(value)
                     .font(.headline)
-                    .contentTransition(.numericText())
                     .lineLimit(2)
                 Text(detail)
                     .font(.caption)
@@ -183,7 +183,6 @@ private struct MetricTile: View {
         .frame(maxWidth: .infinity, alignment: .topLeading)
         .padding(16)
         .background(.background.secondary, in: .rect(cornerRadius: 12, style: .continuous))
-        .animation(.smooth, value: value)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(title)
         .accessibilityValue("\(value). \(detail). \(severity.label)")

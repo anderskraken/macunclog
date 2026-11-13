@@ -23,13 +23,47 @@ enum Entry {
 }
 
 enum CommandLineTool {
-    static let modes: Set<String> = ["--agent", "--diagnose", "--scan", "--act", "--automation", "--protect", "--help"]
+    static let modes: Set<String> = ["--agent", "--diagnose", "--scan", "--act", "--automation", "--protect", "--benchmark", "--help"]
 
     static func run(mode: String, arguments: [String]) async -> Int32 {
         switch mode {
         case "--agent":
             let force = arguments.contains("--now") ? CleanupRun.Trigger.manual : nil
             _ = await BackgroundAgent.runOnce(force: force, dryRun: arguments.contains("--dry-run"))
+            return 0
+        case "--benchmark":
+            // Median and spread of N full measurements: wall time, MacUnclog's own CPU time,
+            // the CPU time of the tools it starts (ps, lsof), and memory afterwards.
+            let runs = arguments.first.flatMap(Int.init) ?? 10
+            func cpu(_ who: Int32) -> Double {
+                var usage = rusage()
+                getrusage(who, &usage)
+                return Double(usage.ru_utime.tv_sec + usage.ru_stime.tv_sec) + Double(usage.ru_utime.tv_usec + usage.ru_stime.tv_usec) / 1e6
+            }
+            var wall: [Double] = [], own: [Double] = [], children: [Double] = []
+            _ = await SystemProbe.capture()
+            for _ in 0..<runs {
+                let (start, ownStart, childStart) = (ContinuousClock.now, cpu(RUSAGE_SELF), cpu(RUSAGE_CHILDREN))
+                _ = VerdictEngine.diagnose(await SystemProbe.capture())
+                wall.append((ContinuousClock.now - start).seconds)
+                own.append(cpu(RUSAGE_SELF) - ownStart)
+                children.append(cpu(RUSAGE_CHILDREN) - childStart)
+            }
+            func line(_ name: String, _ values: [Double]) {
+                let sorted = values.sorted()
+                let median = sorted[sorted.count / 2]
+                print(name.padding(toLength: 14, withPad: " ", startingAt: 0),
+                      String(format: "median %.3f s   min %.3f   max %.3f", median, sorted.first!, sorted.last!))
+            }
+            print("\(runs) measurements, \(ProcessInfo.processInfo.activeProcessorCount) cores")
+            line("wall", wall)
+            line("own CPU", own)
+            line("child CPU", children)
+            var usage = rusage_info_v4()
+            _ = withUnsafeMutablePointer(to: &usage) {
+                $0.withMemoryRebound(to: rusage_info_t?.self, capacity: 1) { proc_pid_rusage(getpid(), RUSAGE_INFO_V4, $0) }
+            }
+            print("footprint     \(Format.memory(usage.ri_phys_footprint))")
             return 0
         case "--protect":
             var settings = AutomationSettings.load()

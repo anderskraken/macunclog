@@ -61,41 +61,34 @@ struct SimulatorInventory: Sendable {
 
     static let empty = SimulatorInventory(devices: [], runtimes: [], devicesKnown: false)
 
-    static func load(projectRoots: [URL] = []) async -> SimulatorInventory {
+    /// simctl's view of the default device set. Call `attachOtherSets` before using it to
+    /// decide anything about runtimes.
+    static func loadDefaultSet() async -> SimulatorInventory {
         guard Shell.developerToolsInstalled else { return .empty }
-        async let others = otherDeviceSets(projectRoots: projectRoots)
         async let deviceOutput = Shell.run("/usr/bin/xcrun", ["simctl", "list", "devices", "-j"], timeout: .seconds(60))
         async let runtimeOutput = Shell.run("/usr/bin/xcrun", ["simctl", "runtime", "list", "-j"], timeout: .seconds(60))
         let devicesJSON = await deviceOutput
         let runtimesJSON = await runtimeOutput
-        var inventory = parse(devicesJSON: Data(devicesJSON.stdout.utf8), runtimesJSON: Data(runtimesJSON.stdout.utf8))
-        guard let otherSets = await others else { return .empty }
-        inventory.otherSetUsers = runtimeUsers(inSets: otherSets)
-        return inventory
+        return parse(devicesJSON: Data(devicesJSON.stdout.utf8), runtimesJSON: Data(runtimesJSON.stdout.utf8))
     }
 
-    /// Every device set outside the default one. Nil when the search failed, which makes
-    /// the caller offer no runtimes at all.
-    static func otherDeviceSets(projectRoots: [URL]) async -> [URL]? {
+    /// Adds the devices in every other set: test clones, Xcode previews, Playgrounds and the
+    /// project sets found by the shared walk. Nil means that walk failed, and then nothing
+    /// may count as unused.
+    mutating func attachOtherSets(_ projectSets: [URL]?) {
+        guard let projectSets else {
+            self = .empty
+            return
+        }
         let home = URL(fileURLWithPath: NSHomeDirectory())
-        var sets = [
+        let standard = [
             "Library/Developer/XCTestDevices",
             "Library/Developer/Xcode/UserData/Previews/Simulator Devices",
             "Library/Developer/XCPGDevices",
         ].map { home.appendingPathComponent($0) }.filter { FileManager.default.fileExists(atPath: $0.path) }
-        for root in CleanupScanner.distinctRoots(projectRoots).map({ $0.resolvingSymlinksInPath() }) {
-            // No protected-folder prunes here: this search only reads, and a device set inside a
-            // protected folder still needs its runtime.
-            let output = await Shell.run("/usr/bin/find", [
-                root.path, "-xdev", "-maxdepth", "10",
-                "(", "-name", "node_modules", "-o", "-name", ".git", ")", "-prune",
-                "-o", "-name", "device_set.plist", "-print",
-            ], timeout: .seconds(180))
-            guard output.succeeded else { return nil }
-            sets += output.stdout.split(separator: "\n").map { URL(fileURLWithPath: String($0)).deletingLastPathComponent() }
-        }
-        return sets
+        otherSetUsers = Self.runtimeUsers(inSets: standard + projectSets)
     }
+
 
     static func runtimeUsers(inSets sets: [URL]) -> [String: Int] {
         var users: [String: Int] = [:]

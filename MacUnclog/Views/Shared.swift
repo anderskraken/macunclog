@@ -56,15 +56,20 @@ struct RingMeter: View {
     let tint: Color
     var lineWidth: CGFloat = 7
 
+    /// Whole percents, so a refresh that changes nothing visible doesn't redraw the ring.
+    private var shown: Double { (max(0.001, min(1, fraction)) * 100).rounded() / 100 }
+
     var body: some View {
         ZStack {
             Circle().stroke(.quaternary, lineWidth: lineWidth)
             Circle()
-                .trim(from: 0, to: max(0.001, min(1, fraction)))
+                .trim(from: 0, to: shown)
                 .stroke(tint.gradient, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
                 .rotationEffect(.degrees(-90))
         }
-        .animation(.smooth(duration: 0.6), value: fraction)
+        // Animating every small change redraws the gradient frame by frame on the CPU;
+        // only steps of five points are worth the motion.
+        .animation(.smooth(duration: 0.6), value: Int(shown * 20))
         .accessibilityHidden(true)
     }
 }

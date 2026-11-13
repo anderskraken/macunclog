@@ -38,6 +38,7 @@
 		B0F0CE1AA8F25C00E927B02C /* ExternalReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A095BF690C1CC70869C1966 /* ExternalReferences.swift */; };
 		B1302301AACDC350BDCC6B38 /* ProjectBuildTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428E61274BE9691673DD1573 /* ProjectBuildTests.swift */; };
 		B18AA6C37D9A8FFA0238E001 /* AgentProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15341EC3EFF215E84D9035E /* AgentProbe.swift */; };
+		B51C7CD12FFBE356E50A06D9 /* ProjectIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66E22A5ADE6FC358524796 /* ProjectIndex.swift */; };
 		B56D916AECD6045B8862B15A /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49D1DCC314387927A859285 /* HistoryStore.swift */; };
 		C20DC2F86F20DE1713A4AD1B /* MacUnclogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A19145A0633A63E68D93CE9 /* MacUnclogApp.swift */; };
 		C7B53DB0CF0802043E3BC1AA /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5C67B6F408F5748EB520F059 /* Localizable.xcstrings */; };
@@ -115,6 +116,7 @@
 		93982A805BD0233083F73E01 /* MacUnclogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacUnclogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F444EE763818D5F9E48250 /* Shell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
 		9B7E2F15FB21B4CF03810323 /* ProcessPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessPolicy.swift; sourceTree = "<group>"; };
+		9D66E22A5ADE6FC358524796 /* ProjectIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectIndex.swift; sourceTree = "<group>"; };
 		A14D0F594637675063D19638 /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
 		A2039CD7B8EB5EF747E81DF0 /* AgentLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentLoad.swift; sourceTree = "<group>"; };
 		A7D16450FAF135154918832D /* DemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoData.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				508FB92E17630237FD7A101D /* CleanupScanner.swift */,
 				4A095BF690C1CC70869C1966 /* ExternalReferences.swift */,
 				935FE90998031D9B6AF848BA /* InUseSnapshot.swift */,
+				9D66E22A5ADE6FC358524796 /* ProjectIndex.swift */,
 				F35CC2B6D85B22D85C1E85EB /* SafeDeleter.swift */,
 				97F444EE763818D5F9E48250 /* Shell.swift */,
 				4A31161F0B8119E307D905C2 /* SimulatorInventory.swift */,
@@ -410,6 +413,7 @@
 				0DD910B696AB7A96117427C2 /* ProcessController.swift in Sources */,
 				80684F79751C20DFEF9F5F39 /* ProcessPolicy.swift in Sources */,
 				8C2B5313364D02D25BF4C3C5 /* ProcessesView.swift in Sources */,
+				B51C7CD12FFBE356E50A06D9 /* ProjectIndex.swift in Sources */,
 				60C50317B34C25136EC41EA3 /* RunningApps.swift in Sources */,
 				DED0837EF6EA6EA328A51855 /* SafeDeleter.swift in Sources */,
 				ED199CDF8075AFF13929E55A /* Settings.swift in Sources */,

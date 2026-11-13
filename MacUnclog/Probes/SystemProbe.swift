@@ -49,21 +49,21 @@ enum SystemProbe {
     private static func sample(apps: [pid_t: RunningApps.Info], interval: Duration) async -> SystemSnapshot {
         let firstTicks = cpuTicks()
         let firstVM = vmStatistics()
-        let firstTimes = await processTimes()
+        let firstTimes = await processTimes(full: false).times
         let start = ContinuousClock.now
 
         try? await Task.sleep(for: interval)
 
         let secondTicks = cpuTicks()
         let secondVM = vmStatistics()
-        let secondTimes = await processTimes()
+        let (secondTimes, rows) = await processTimes(full: true)
         let elapsed = (ContinuousClock.now - start).seconds
 
         let memory = memorySnapshot(first: firstVM, second: secondVM, elapsed: elapsed)
         let cpu = cpuSnapshot(first: firstTicks, second: secondTicks)
         let processes = processSamples(first: firstTimes, second: secondTimes, elapsed: elapsed, apps: apps)
         let usage = Dictionary(processes.map { ($0.pid, (cpu: $0.cpuPercent, memory: $0.memoryBytes)) }, uniquingKeysWith: { first, _ in first })
-        let agents = await AgentProbe.capture(usage: usage)
+        let agents = await AgentProbe.capture(usage: usage, rows: rows)
 
         return SystemSnapshot(
             takenAt: .now,
@@ -176,33 +176,47 @@ enum SystemProbe {
 
     /// libproc for everything the user may read, then `ps` (setuid root) for the rest,
     /// so root daemons such as WindowServer and kernel_task are measured too.
-    private static func processTimes() async -> [pid_t: ProcessTime] {
-        var result = libprocTimes()
-        for (pid, time) in await psTimes() where result[pid] == nil {
-            result[pid] = time
+    ///
+    /// The first sample only needs CPU time, so it asks `ps` for two columns. The second
+    /// asks for everything, once, and its rows also feed the agent analysis.
+    private static func processTimes(full: Bool) async -> (times: [pid_t: ProcessTime], rows: [ProcessRow]) {
+        var result = libprocTimes(full: full)
+        if !full {
+            let output = await Shell.run("/bin/ps", ["-A", "-o", "pid=,time="], timeout: .seconds(10))
+            for line in output.stdout.split(separator: "\n") {
+                let fields = line.split(separator: " ", omittingEmptySubsequences: true)
+                guard fields.count == 2, let pid = pid_t(fields[0]), result[pid] == nil else { continue }
+                result[pid] = ProcessTime(cpuNanos: parseCPUTime(String(fields[1])), memory: 0, uid: 0, status: 0,
+                                          name: "", path: nil, fromPS: true)
+            }
+            return (result, [])
         }
-        return result
-    }
-
-    private static func psTimes() async -> [pid_t: ProcessTime] {
-        let output = await Shell.run("/bin/ps", ["-A", "-o", "pid=,uid=,rss=,time=,state=,comm="], timeout: .seconds(10))
-        var result: [pid_t: ProcessTime] = [:]
+        let now = Date.now
+        let output = await Shell.run("/bin/ps", ["-A", "-o", "pid=,ppid=,uid=,rss=,time=,state=,etime=,command="], timeout: .seconds(10))
+        var rows: [ProcessRow] = []
+        rows.reserveCapacity(result.count + 64)
         for line in output.stdout.split(separator: "\n") {
-            let fields = line.split(separator: " ", maxSplits: 5, omittingEmptySubsequences: true)
-            guard fields.count == 6, let pid = pid_t(fields[0]), let uid = uid_t(fields[1]), let rss = UInt64(fields[2]) else { continue }
-            let path = String(fields[5])
+            let fields = line.split(separator: " ", maxSplits: 7, omittingEmptySubsequences: true)
+            guard fields.count == 8, let pid = pid_t(fields[0]), let ppid = pid_t(fields[1]),
+                  let uid = uid_t(fields[2]), let rss = UInt64(fields[3]) else { continue }
+            let row = ProcessRow(pid: pid, ppid: ppid, startedAt: now.addingTimeInterval(-AgentProbe.parseElapsed(String(fields[6]))),
+                                 command: String(fields[7]))
+            rows.append(row)
+            guard result[pid] == nil else { continue }
             result[pid] = ProcessTime(
-                cpuNanos: parseCPUTime(String(fields[3])),
+                cpuNanos: parseCPUTime(String(fields[4])),
                 memory: rss * 1024,
                 uid: uid,
-                status: fields[4].hasPrefix("T") ? UInt32(SSTOP) : fields[4].hasPrefix("Z") ? UInt32(SZOMB) : 0,
-                name: URL(fileURLWithPath: path).lastPathComponent,
-                path: path.hasPrefix("/") ? path : nil,
+                status: fields[5].hasPrefix("T") ? UInt32(SSTOP) : fields[5].hasPrefix("Z") ? UInt32(SZOMB) : 0,
+                name: row.name,
+                path: row.executable.hasPrefix("/") ? row.executable : nil,
                 fromPS: true
             )
         }
-        return result
+        return (result, rows)
     }
+
+
 
     /// Parses `ps` CPU time: "[[dd-]hh:]mm:ss.cc".
     static func parseCPUTime(_ text: String) -> UInt64 {
@@ -216,7 +230,8 @@ enum SystemProbe {
         return UInt64(seconds * 1_000_000_000)
     }
 
-    private static func libprocTimes() -> [pid_t: ProcessTime] {
+    /// `full: false` reads only CPU time, which is all the first sample needs.
+    private static func libprocTimes(full: Bool) -> [pid_t: ProcessTime] {
         let capacity = Int(proc_listallpids(nil, 0)) + 64
         var pids = [pid_t](repeating: 0, count: capacity)
         let count = Int(proc_listallpids(&pids, Int32(capacity * MemoryLayout<pid_t>.size)))
@@ -226,6 +241,12 @@ enum SystemProbe {
             var task = proc_taskinfo()
             let taskSize = Int32(MemoryLayout<proc_taskinfo>.size)
             guard proc_pidinfo(pid, PROC_PIDTASKINFO, 0, &task, taskSize) == taskSize else { continue }
+            let ticks = task.pti_total_user + task.pti_total_system
+            guard full else {
+                result[pid] = ProcessTime(cpuNanos: ticks * timebase.numer / timebase.denom, memory: 0, uid: 0, status: 0,
+                                          name: "", path: nil)
+                continue
+            }
             var bsd = proc_bsdinfo()
             let bsdSize = Int32(MemoryLayout<proc_bsdinfo>.size)
             let hasBSD = proc_pidinfo(pid, PROC_PIDTBSDINFO, 0, &bsd, bsdSize) == bsdSize
@@ -237,13 +258,12 @@ enum SystemProbe {
             }
             if ok == 0 { memory = usage.ri_phys_footprint }
 
-            let ticks = task.pti_total_user + task.pti_total_system
             result[pid] = ProcessTime(
                 cpuNanos: ticks * timebase.numer / timebase.denom,
                 memory: memory,
                 uid: hasBSD ? bsd.pbi_uid : 0,
                 status: hasBSD ? bsd.pbi_status : 0,
-                name: hasBSD ? processName(pid: pid, bsd: bsd) : "pid \(pid)",
+                name: hasBSD ? processName(bsd) : "pid \(pid)",
                 path: nil,
                 startSeconds: hasBSD ? bsd.pbi_start_tvsec : 0
             )
@@ -251,11 +271,11 @@ enum SystemProbe {
         return result
     }
 
-    private static func processName(pid: pid_t, bsd: proc_bsdinfo) -> String {
-        var buffer = [CChar](repeating: 0, count: 256)
-        if proc_name(pid, &buffer, UInt32(buffer.count)) > 0 {
-            return String(decoding: buffer.prefix { $0 != 0 }.map { UInt8(bitPattern: $0) }, as: UTF8.self)
-        }
+    /// pbi_name is what proc_name returns, without another system call per process.
+    private static func processName(_ bsd: proc_bsdinfo) -> String {
+        var name = bsd.pbi_name
+        let fromName = withUnsafeBytes(of: &name) { String(decoding: $0.prefix { $0 != 0 }, as: UTF8.self) }
+        if !fromName.isEmpty { return fromName }
         var comm = bsd.pbi_comm
         return withUnsafeBytes(of: &comm) { String(decoding: $0.prefix { $0 != 0 }, as: UTF8.self) }
     }
@@ -298,6 +318,29 @@ enum SystemProbe {
         return result
     }
 
+    /// A process never changes its executable, so the path is looked up once per process.
+    private static let pathCache = PathCache()
+
+    private final class PathCache: @unchecked Sendable {
+        private var paths: [pid_t: (start: UInt64, path: String?)] = [:]
+        private let lock = NSLock()
+
+        func path(pid: pid_t, start: UInt64, lookup: () -> String?) -> String? {
+            if let hit = lock.withLock({ paths[pid] }), hit.start == start { return hit.path }
+            let path = lookup()
+            lock.withLock {
+                if paths.count > 4000 { paths.removeAll(keepingCapacity: true) }
+                paths[pid] = (start, path)
+            }
+            return path
+        }
+    }
+
+    private static func cachedExecutablePath(pid: pid_t, start: UInt64) -> String? {
+        guard start != 0 else { return executablePath(pid: pid) }
+        return pathCache.path(pid: pid, start: start) { executablePath(pid: pid) }
+    }
+
     private static func executablePath(pid: pid_t) -> String? {
         var buffer = [CChar](repeating: 0, count: 4 * Int(MAXPATHLEN))
         guard proc_pidpath(pid, &buffer, UInt32(buffer.count)) > 0 else { return nil }
@@ -318,7 +361,7 @@ enum SystemProbe {
             let delta = now.cpuNanos > before ? now.cpuNanos - before : 0
             let cpu = elapsed > 0 && now.status != UInt32(SZOMB) ? Double(delta) / (elapsed * 1_000_000_000) * 100 : 0
             let app = apps[pid]
-            let path = now.path ?? executablePath(pid: pid)
+            let path = now.path ?? cachedExecutablePath(pid: pid, start: now.startSeconds)
             let state: ProcessSample.RunState = switch now.status {
             case UInt32(SSTOP): .stopped
             case UInt32(SZOMB): .zombie

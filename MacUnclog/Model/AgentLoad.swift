@@ -216,6 +216,8 @@ enum ToolSignature {
 
     static func index(matching command: String) -> Int? {
         if systemPrefixes.contains(where: command.hasPrefix) { return nil }
+        // GUI apps and their helpers never run dev tools; Xcode's xcodebuild is under Developer/.
+        if command.containsBytes(".app/Contents/MacOS/") || command.containsBytes(".app/Contents/Frameworks/") { return nil }
         return table.firstIndex { entry in entry.needles.contains { command.containsBytes($0) } }
     }
 

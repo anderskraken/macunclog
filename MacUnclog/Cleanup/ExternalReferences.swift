@@ -29,7 +29,9 @@ struct ExternalReferences: Sendable {
         return reference.unreadable ? .configUnreadable(reference.source) : .usedFromOutside(reference.source)
     }
 
-    static func capture(projectRoots: [URL]) async -> ExternalReferences {
+    /// `projectConfigs` are the `.mcp.json` files the shared project walk found, or nil if
+    /// that walk didn't finish.
+    static func capture(projectConfigs: [String]?) -> ExternalReferences {
         let home = NSHomeDirectory()
         var result = ExternalReferences()
 
@@ -68,7 +70,7 @@ struct ExternalReferences: Sendable {
             }
             paths.forEach { add($0, from: file) }
         }
-        if let projectConfigs = await projectMCPConfigs(under: projectRoots) {
+        if let projectConfigs {
             for file in projectConfigs where !isDanglingLink(file) {
                 guard let paths = pathsInMCPServers(jsonAt: file) else {
                     let project = (file as NSString).deletingLastPathComponent
@@ -113,21 +115,7 @@ struct ExternalReferences: Sendable {
         return true
     }
 
-    /// `.mcp.json` files that projects check in for Claude Code, or nil if the search failed.
-    private static func projectMCPConfigs(under roots: [URL]) async -> [String]? {
-        var files: [String] = []
-        for root in CleanupScanner.distinctRoots(roots).map({ $0.resolvingSymlinksInPath() }) {
-            let output = await Shell.run("/usr/bin/find", [
-                root.path, "-xdev", "-maxdepth", "6",
-                "(", "-name", "node_modules", "-o", "-name", ".git", ")", "-prune",
-                // A shared .mcp.json is often a symlink; a broken one is skipped below.
-                "-o", "-name", ".mcp.json", "(", "-type", "f", "-o", "-type", "l", ")", "-print",
-            ], timeout: .seconds(120))
-            guard !output.timedOut else { return nil }
-            files += output.stdout.split(separator: "\n").map(String.init)
-        }
-        return files
-    }
+
 
     /// Symlinks in a folder (and in its @scope folders), resolved.
     private static func linkTargets(in folder: String) -> [String] {

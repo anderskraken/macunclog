@@ -3,8 +3,7 @@ import Foundation
 /// Reads the process tree, working directories, listening ports and simulator names, and
 /// hands them to AgentLoadBuilder. About half a second on a busy Mac.
 enum AgentProbe {
-    static func capture(usage: [pid_t: (cpu: Double, memory: UInt64)], now: Date = .now) async -> AgentLoad {
-        let rows = await processRows(now: now)
+    static func capture(usage: [pid_t: (cpu: Double, memory: UInt64)], rows: [ProcessRow], now: Date = .now) async -> AgentLoad {
         guard !rows.isEmpty else { return .empty }
 
         let interesting = rows.filter { $0.agentKind != nil || $0.tool != nil }
@@ -18,13 +17,16 @@ enum AgentProbe {
             }
         }
 
-        async let directories = workingDirectories(of: treePIDs)
-        async let ports = listeningPorts(of: treePIDs)
+        let commands = Dictionary(rows.map { ($0.pid, $0.command) }, uniquingKeysWith: { first, _ in first })
+        async let directories = cache.workingDirectories(of: treePIDs, commands: commands, lookup: workingDirectories(of:))
+        async let ports = cache.ports(of: treePIDs, lookup: listeningPorts(of:))
         let udids = rows.filter { $0.name == "launchd_sim" }.compactMap { AgentLoadBuilder.udid(in: $0.command) }
 
         var launches: [pid_t: AgentLaunch] = [:]
         for row in interesting where row.tool != nil {
-            if let launch = AgentLaunch.parse(environment: environment(of: row.pid)) { launches[row.pid] = launch }
+            if let launch = cache.launch(pid: row.pid, command: row.command, lookup: { AgentLaunch.parse(environment: environment(of: row.pid)) }) {
+                launches[row.pid] = launch
+            }
         }
 
         var inputs = await AgentLoadBuilder.Inputs(
@@ -65,15 +67,7 @@ enum AgentProbe {
         return environment
     }
 
-    static func processRows(now: Date) async -> [ProcessRow] {
-        let output = await Shell.run("/bin/ps", ["-A", "-o", "pid=,ppid=,etime=,command="], timeout: .seconds(10))
-        return output.stdout.split(separator: "\n").compactMap { line in
-            let fields = line.split(separator: " ", maxSplits: 3, omittingEmptySubsequences: true)
-            guard fields.count == 4, let pid = pid_t(fields[0]), let ppid = pid_t(fields[1]) else { return nil }
-            return ProcessRow(pid: pid, ppid: ppid, startedAt: now.addingTimeInterval(-parseElapsed(String(fields[2]))),
-                              command: String(fields[3]))
-        }
-    }
+
 
     /// Parses `ps` elapsed time: "[[dd-]hh:]mm:ss".
     static func parseElapsed(_ text: String) -> TimeInterval {
@@ -133,5 +127,50 @@ enum AgentProbe {
         guard let platform = parts.first else { return identifier }
         let numbers = parts.dropFirst().prefix { Int($0) != nil }
         return numbers.isEmpty ? String(platform) : "\(platform) \(numbers.joined(separator: "."))"
+    }
+
+    /// Working folders, environments and ports only change when a process changes, so
+    /// they are kept between measurements; `lsof` then runs only for new processes, and
+    /// ports are read again at most every 30 seconds.
+    private static let cache = Cache()
+
+    private final class Cache: @unchecked Sendable {
+        private var folders: [pid_t: (command: String, folder: String?)] = [:]
+        private var launches: [pid_t: (command: String, launch: AgentLaunch?)] = [:]
+        private var portList: [pid_t: [Int]] = [:]
+        private var portsReadAt = ContinuousClock.now - .seconds(3600)
+        private let lock = NSLock()
+
+        func workingDirectories(of pids: Set<pid_t>, commands: [pid_t: String],
+                                lookup: (Set<pid_t>) async -> [pid_t: String]) async -> [pid_t: String] {
+            let missing = lock.withLock { pids.filter { folders[$0]?.command != commands[$0] } }
+            let found = missing.isEmpty ? [:] : await lookup(Set(missing))
+            return lock.withLock {
+                for pid in missing { folders[pid] = (commands[pid] ?? "", found[pid]) }
+                folders = folders.filter { pids.contains($0.key) }
+                return folders.compactMapValues(\.folder)
+            }
+        }
+
+        func ports(of pids: Set<pid_t>, lookup: (Set<pid_t>) async -> [pid_t: [Int]]) async -> [pid_t: [Int]] {
+            let stale = lock.withLock { ContinuousClock.now - portsReadAt > .seconds(30) }
+            guard stale else { return lock.withLock { portList } }
+            let found = await lookup(pids)
+            return lock.withLock {
+                portList = found
+                portsReadAt = .now
+                return found
+            }
+        }
+
+        func launch(pid: pid_t, command: String, lookup: () -> AgentLaunch?) -> AgentLaunch? {
+            if let hit = lock.withLock({ launches[pid] }), hit.command == command { return hit.launch }
+            let launch = lookup()
+            lock.withLock {
+                if launches.count > 2000 { launches.removeAll(keepingCapacity: true) }
+                launches[pid] = (command, launch)
+            }
+            return launch
+        }
     }
 }

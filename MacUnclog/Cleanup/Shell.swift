@@ -1,8 +1,11 @@
 import Foundation
+import OSLog
 
 /// Runs command-line tools with a timeout and a PATH that finds Homebrew and the
 /// usual package managers, since a launchd agent starts with a bare environment.
 enum Shell {
+    private static let log = Logger(subsystem: "io.github.anderskraken.macunclog", category: "shell")
+
     struct Output: Sendable {
         let status: Int32
         let stdout: String
@@ -52,7 +55,9 @@ enum Shell {
         // Each run holds up to four threads (the waiter, two pipe readers, the termination
         // handler). A full scan would start dozens of du runs at once and starve the pool,
         // so at most eight tools run at a time.
+        let queued = ContinuousClock.now
         await ProcessGate.shared.acquire()
+        let started = ContinuousClock.now
         // Off Swift's cooperative pool: these calls block a thread for as long as the tool runs.
         let output = await withCheckedContinuation { continuation in
             DispatchQueue.global(qos: .utility).async {
@@ -60,6 +65,7 @@ enum Shell {
             }
         }
         await ProcessGate.shared.release()
+        log.debug("\(URL(fileURLWithPath: path).lastPathComponent, privacy: .public) \(arguments.prefix(16).joined(separator: " "), privacy: .private) waited \((started - queued).seconds, format: .fixed(precision: 2)) s, ran \((ContinuousClock.now - started).seconds, format: .fixed(precision: 2)) s")
         return output
     }
 
