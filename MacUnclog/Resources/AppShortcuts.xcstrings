@@ -1,0 +1,29 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Check my Mac with ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "Check my Mac with ${applicationName}",
+              "Ask ${applicationName} why my Mac is slow"
+            ]
+          }
+        },
+        "nb" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Sjekk Macen med ${applicationName}",
+              "Spør ${applicationName} hvorfor Macen er treg"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

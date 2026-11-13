@@ -1,0 +1,4208 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "% CPU" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "% CPU"
+          }
+        }
+      }
+    },
+    "%@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "%@  %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@  %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@  %2$@"
+          }
+        }
+      }
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ (pid %d) has a file open here" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ (pid %2$d) has a file open here"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (pid %2$d) har en fil åpen her"
+          }
+        }
+      }
+    },
+    "%@ (pid %d) is working in this folder" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ (pid %2$d) is working in this folder"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (pid %2$d) jobber i mappa"
+          }
+        }
+      }
+    },
+    "%@ (unavailable)" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ (utilgjengelig)"
+          }
+        }
+      }
+    },
+    "%@ CPU" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ CPU"
+          }
+        }
+      }
+    },
+    "%@ CPU · %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ CPU · %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ CPU · %2$@"
+          }
+        }
+      }
+    },
+    "%@ Cleaned up %@. %@ is now free." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ Cleaned up %2$@. %3$@ is now free."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ Ryddet %2$@. Nå er %3$@ ledig."
+          }
+        }
+      }
+    },
+    "%@ Everything it could clean up was in use or recently changed." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Alt som kunne ryddes, var i bruk eller endret nylig."
+          }
+        }
+      }
+    },
+    "%@ cores" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ kjerner"
+          }
+        }
+      }
+    },
+    "%@ free" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ledig"
+          }
+        }
+      }
+    },
+    "%@ has already quit." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ har allerede avsluttet."
+          }
+        }
+      }
+    },
+    "%@ has stopped responding" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ har hengt seg"
+          }
+        }
+      }
+    },
+    "%@ has stopped responding. Force quitting closes the app without saving." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ har sluttet å svare. Tvungen avslutning lukker appen uten å lagre."
+          }
+        }
+      }
+    },
+    "%@ is in swap" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ligger i swap"
+          }
+        }
+      }
+    },
+    "%@ is in swap and macOS is swapping right now. This makes switching between apps slow." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ligger i swap og macOS bytter sider akkurat nå. Det gjør det tregt å bytte mellom apper."
+          }
+        }
+      }
+    },
+    "%@ is in use now and wasn’t shut down." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ er i bruk nå og ble ikke slått av."
+          }
+        }
+      }
+    },
+    "%@ is keeping %@ busy" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ is keeping %2$@ busy"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ holder %2$@ opptatt"
+          }
+        }
+      }
+    },
+    "%@ is keeping %@ busy.%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ is keeping %2$@ busy.%3$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ holder %2$@ opptatt.%3$@"
+          }
+        }
+      }
+    },
+    "%@ is not responding" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ svarer ikke"
+          }
+        }
+      }
+    },
+    "%@ is paused" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ står på pause"
+          }
+        }
+      }
+    },
+    "%@ is stopped and won’t do anything until it resumes." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ er stoppet og gjør ingenting før den fortsetter."
+          }
+        }
+      }
+    },
+    "%@ is using %@ CPU" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ is using %2$@ CPU"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ bruker %2$@ CPU"
+          }
+        }
+      }
+    },
+    "%@ is using %@ of memory" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ is using %2$@ of memory"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ bruker %2$@ minne"
+          }
+        }
+      }
+    },
+    "%@ is using %@ of memory." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ is using %2$@ of memory."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ bruker %2$@ av minnet."
+          }
+        }
+      }
+    },
+    "%@ not found" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ finnes ikke"
+          }
+        }
+      }
+    },
+    "%@ now has an owner or has already exited, so it wasn’t stopped." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ har fått en eier eller er allerede borte, og ble ikke stoppet."
+          }
+        }
+      }
+    },
+    "%@ of %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ of %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ av %2$@"
+          }
+        }
+      }
+    },
+    "%@ of the CPU is in use, spread across many processes." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ av prosessoren er i bruk, fordelt på mange prosesser."
+          }
+        }
+      }
+    },
+    "%@ session in %@ · started %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ session in %2$@ · started %3$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@-økt i %2$@ · startet %3$@"
+          }
+        }
+      }
+    },
+    "%@ session · started %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ session · started %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@-økt · startet %2$@"
+          }
+        }
+      }
+    },
+    "%@ used, %@ can be cleaned up, %@ free" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ used, %2$@ can be cleaned up, %3$@ free"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ brukt, %2$@ kan ryddes, %3$@ ledig"
+          }
+        }
+      }
+    },
+    "%@ uses this folder through a symlink" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ bruker mappa via en symlenke"
+          }
+        }
+      }
+    },
+    "%@ · %lld idle" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · %2$lld idle"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$lld står ubrukt"
+          }
+        }
+      }
+    },
+    "%@ · %lld of %lld cleaned up · free %@ → %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · %2$lld of %3$lld cleaned up · free %4$@ → %5$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$lld av %3$lld ryddet · ledig %4$@ → %5$@"
+          }
+        }
+      }
+    },
+    "%@ · freed up %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · freed up %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · frigjorde %2$@"
+          }
+        }
+      }
+    },
+    "%@ · swap %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · swap %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · swap %2$@"
+          }
+        }
+      }
+    },
+    "%@, with %lld helper processes, is using %@ of memory." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, with %2$lld helper processes, is using %3$@ of memory."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ med %2$lld hjelpeprosesser bruker %3$@ av minnet."
+          }
+        }
+      }
+    },
+    "%@, with 1 helper process, is using %@ of memory." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, with 1 helper process, is using %2$@ of memory."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ med 1 hjelpeprosess bruker %2$@ av minnet."
+          }
+        }
+      }
+    },
+    "%@. %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@. %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@. %2$@"
+          }
+        }
+      }
+    },
+    "%@. %@. %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@. %2$@. %3$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@. %2$@. %3$@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
+    },
+    "%lld GB" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld GB"
+          }
+        }
+      }
+    },
+    "%lld agent sessions" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld agentøkter"
+          }
+        }
+      }
+    },
+    "%lld agent sessions and their tools are keeping %@ busy" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld agent sessions and their tools are keeping %2$@ busy"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld agentøkter og verktøyene deres holder %2$@ opptatt"
+          }
+        }
+      }
+    },
+    "%lld agent sessions are using %@ of the CPU" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld agent sessions are using %2$@ of the CPU"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld agentøkter står for %2$@ av CPU-en"
+          }
+        }
+      }
+    },
+    "%lld can be cleaned up" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld kan ryddes"
+          }
+        }
+      }
+    },
+    "%lld days" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld dager"
+          }
+        }
+      }
+    },
+    "%lld in use or protected" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld i bruk eller beskyttet"
+          }
+        }
+      }
+    },
+    "%lld left running" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld kjører videre"
+          }
+        }
+      }
+    },
+    "%lld of them are idle." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld av dem står ubrukt."
+          }
+        }
+      }
+    },
+    "%lld processes" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld prosesser"
+          }
+        }
+      }
+    },
+    "%lld simulators" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld simulatorer"
+          }
+        }
+      }
+    },
+    "%lld simulators are running at once" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld simulatorer kjører samtidig"
+          }
+        }
+      }
+    },
+    "%lld simulators use this runtime" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld simulatorer bruker denne runtimen"
+          }
+        }
+      }
+    },
+    "%lld skipped" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld ble hoppet over"
+          }
+        }
+      }
+    },
+    "%lld tools" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld verktøy"
+          }
+        }
+      }
+    },
+    "%lld tools were left running" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld verktøy kjører videre etter at øktene er over"
+          }
+        }
+      }
+    },
+    "%lld%%" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld %%"
+          }
+        }
+      }
+    },
+    "1 agent session" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 agentøkt"
+          }
+        }
+      }
+    },
+    "1 day" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 dag"
+          }
+        }
+      }
+    },
+    "1 process" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 prosess"
+          }
+        }
+      }
+    },
+    "1 simulator" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 simulator"
+          }
+        }
+      }
+    },
+    "1 tool" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 verktøy"
+          }
+        }
+      }
+    },
+    "1 tool was left running" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 verktøy kjører videre etter at økta er over"
+          }
+        }
+      }
+    },
+    "A Java program, such as Gradle or the Firebase emulators." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Et Java-program, for eksempel Gradle eller Firebase-emulatorene."
+          }
+        }
+      }
+    },
+    "A Node.js program, often a dev server, Metro or a build tool." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Et Node.js-program, ofte en dev-server, Metro eller et byggeverktøy."
+          }
+        }
+      }
+    },
+    "A restart clears swap and temporary files, and ends processes that have leaked memory." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En omstart tømmer swap, rydder midlertidige filer og avslutter prosesser som har lekket minne."
+          }
+        }
+      }
+    },
+    "A simulator counts as idle when it has been on for 15 minutes with no load and no process refers to it." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En simulator regnes som ubrukt når den har stått på i et kvarter uten last og ingen prosess viser til den."
+          }
+        }
+      }
+    },
+    "A simulator is running" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En simulator kjører"
+          }
+        }
+      }
+    },
+    "A tab or extension in Chrome." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En fane eller utvidelse i Chrome."
+          }
+        }
+      }
+    },
+    "A virtual machine, often Docker or another VM." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En virtuell maskin, ofte Docker eller en annen VM."
+          }
+        }
+      }
+    },
+    "Active" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktiv"
+          }
+        }
+      }
+    },
+    "Activity window" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktivitetsvindu"
+          }
+        }
+      }
+    },
+    "Add" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til"
+          }
+        }
+      }
+    },
+    "Add folder…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til mappe …"
+          }
+        }
+      }
+    },
+    "Agent sessions" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agentøkter"
+          }
+        }
+      }
+    },
+    "Agents" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agenter"
+          }
+        }
+      }
+    },
+    "Agents and simulators…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agenter og simulatorer …"
+          }
+        }
+      }
+    },
+    "All have an owner" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle har en eier"
+          }
+        }
+      }
+    },
+    "All of them seem to be in use." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle ser ut til å være i bruk."
+          }
+        }
+      }
+    },
+    "An iOS simulator is running." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En iOS-simulator kjører."
+          }
+        }
+      }
+    },
+    "Android emulator" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Android-emulator"
+          }
+        }
+      }
+    },
+    "Another clean-up is already running. Try again when it’s done." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En annen rydding pågår allerede. Prøv igjen når den er ferdig."
+          }
+        }
+      }
+    },
+    "App update leftovers" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rester etter app-oppdateringer"
+          }
+        }
+      }
+    },
+    "Ask the process to quit" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Be prosessen avslutte seg selv"
+          }
+        }
+      }
+    },
+    "Automatic clean-up" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatisk rydding"
+          }
+        }
+      }
+    },
+    "Background agent" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bakgrunnsagent"
+          }
+        }
+      }
+    },
+    "Battery settings" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batteriinnstillinger"
+          }
+        }
+      }
+    },
+    "Booted simulators" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Påslåtte simulatorer"
+          }
+        }
+      }
+    },
+    "Build" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bygg"
+          }
+        }
+      }
+    },
+    "Build cache" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byggcache"
+          }
+        }
+      }
+    },
+    "Build files in inactive projects" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byggrester i inaktive prosjekter"
+          }
+        }
+      }
+    },
+    "Build folders in a project are deleted only when no file in the project has changed within the window, no process is working in the project, no file in it is open and the folder is gitignored." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byggmapper i et prosjekt slettes bare når ingen fil i prosjektet er endret innenfor vinduet, ingen prosess jobber i prosjektet, ingen fil der er åpen, og mappa er gitignored."
+          }
+        }
+      }
+    },
+    "CPU" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prosessor"
+          }
+        }
+      }
+    },
+    "CPU throttled" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prosessoren strupes"
+          }
+        }
+      }
+    },
+    "Cargo downloads" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cargo-nedlastinger"
+          }
+        }
+      }
+    },
+    "Cargo is building a Rust project." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cargo bygger et Rust-prosjekt."
+          }
+        }
+      }
+    },
+    "Changed %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Endret %@"
+          }
+        }
+      }
+    },
+    "Change…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Endre …"
+          }
+        }
+      }
+    },
+    "Checking that nothing is in use…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sjekker at ingenting er i bruk …"
+          }
+        }
+      }
+    },
+    "Clean up" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rydd"
+          }
+        }
+      }
+    },
+    "Clean up %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rydd %@"
+          }
+        }
+      }
+    },
+    "Clean up on a schedule" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rydd etter tidsplan"
+          }
+        }
+      }
+    },
+    "Clean up when free space runs low" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rydd når ledig plass blir lav"
+          }
+        }
+      }
+    },
+    "Cleaned up automatically" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dette ryddes automatisk"
+          }
+        }
+      }
+    },
+    "Cleaning up…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rydder …"
+          }
+        }
+      }
+    },
+    "Cleans up %@." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rydder %@."
+          }
+        }
+      }
+    },
+    "Cleans up when free space falls below %lld GB, and %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Cleans up when free space falls below %1$lld GB, and %2$@."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rydder når ledig plass faller under %1$lld GB og %2$@."
+          }
+        }
+      }
+    },
+    "Cleans up when free space falls below %lld GB." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rydder når ledig plass faller under %lld GB."
+          }
+        }
+      }
+    },
+    "Copy UDID" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopier UDID"
+          }
+        }
+      }
+    },
+    "CoreSimulator cache" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CoreSimulator-cache"
+          }
+        }
+      }
+    },
+    "Couldn’t check which files are open" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke sjekke hvilke filer som er åpne"
+          }
+        }
+      }
+    },
+    "Couldn’t read %@, so MacUnclog can’t tell what uses this" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke lese %@, så MacUnclog kan ikke se hva som bruker dette"
+          }
+        }
+      }
+    },
+    "Couldn’t read the whole project to see whether it’s in use" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke lese hele prosjektet for å se om det er i bruk"
+          }
+        }
+      }
+    },
+    "Couldn’t register the background agent: %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke registrere bakgrunnsagenten: %@"
+          }
+        }
+      }
+    },
+    "Couldn’t send a signal to %@: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Couldn’t send a signal to %1$@: %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke sende signal til %1$@: %2$@"
+          }
+        }
+      }
+    },
+    "Couldn’t shut down %@: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Couldn’t shut down %1$@: %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke slå av %1$@: %2$@"
+          }
+        }
+      }
+    },
+    "Critical" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kritisk"
+          }
+        }
+      }
+    },
+    "Critical pressure" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kritisk minnepress"
+          }
+        }
+      }
+    },
+    "Daemon" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daemon"
+          }
+        }
+      }
+    },
+    "Daily" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hver dag"
+          }
+        }
+      }
+    },
+    "Default" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard"
+          }
+        }
+      }
+    },
+    "Dev server" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dev-server"
+          }
+        }
+      }
+    },
+    "Dev servers, emulators and builds" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dev-servere, emulatorer og bygg"
+          }
+        }
+      }
+    },
+    "Disk" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disk"
+          }
+        }
+      }
+    },
+    "Disk space is low" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lite ledig diskplass"
+          }
+        }
+      }
+    },
+    "Docker cache" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Docker-cache"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ferdig"
+          }
+        }
+      }
+    },
+    "Download caches for npm, pnpm, Yarn, Bun, Gradle, CocoaPods, Playwright, Homebrew, SwiftPM, Go, pip, uv, Cargo, node-gyp and Electron. Everything is downloaded again when needed." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nedlastingscacher for npm, pnpm, Yarn, Bun, Gradle, CocoaPods, Playwright, Homebrew, SwiftPM, Go, pip, uv, Cargo, node-gyp og Electron. Alt lastes ned igjen ved behov."
+          }
+        }
+      }
+    },
+    "Draws everything on screen. Many windows, displays and animations mean a high load." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tegner alt på skjermen. Mange vinduer, skjermer og animasjoner gir høy last."
+          }
+        }
+      }
+    },
+    "Each session with everything it started. MacUnclog never ends a session." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hver økt med alt den har startet. MacUnclog avslutter aldri en økt."
+          }
+        }
+      }
+    },
+    "Electron downloads" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Electron-nedlastinger"
+          }
+        }
+      }
+    },
+    "Emulator" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emulator"
+          }
+        }
+      }
+    },
+    "Fans working harder" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viftene går mer"
+          }
+        }
+      }
+    },
+    "Find out what is taking up space" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finn ut hva som tar plass"
+          }
+        }
+      }
+    },
+    "Findings" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funn"
+          }
+        }
+      }
+    },
+    "Firebase emulator" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Firebase-emulator"
+          }
+        }
+      }
+    },
+    "Force quit" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tvungen avslutning"
+          }
+        }
+      }
+    },
+    "Force quit %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tvungen avslutning av %@"
+          }
+        }
+      }
+    },
+    "Force quit %@?" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tvungen avslutning av %@?"
+          }
+        }
+      }
+    },
+    "Force quit…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tvungen avslutning …"
+          }
+        }
+      }
+    },
+    "Free" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ledig"
+          }
+        }
+      }
+    },
+    "Free space fell below %lld GB." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ledig plass falt under %lld GB."
+          }
+        }
+      }
+    },
+    "Free space went from %@ to %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Free space went from %1$@ to %2$@."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ledig plass gikk fra %1$@ til %2$@."
+          }
+        }
+      }
+    },
+    "Free up disk space…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frigjør diskplass …"
+          }
+        }
+      }
+    },
+    "Free up space" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frigjør plass"
+          }
+        }
+      }
+    },
+    "Freed up %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frigjorde %@"
+          }
+        }
+      }
+    },
+    "Freeze the process until you click Resume" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frys prosessen til du trykker Fortsett"
+          }
+        }
+      }
+    },
+    "Frequency" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvor ofte"
+          }
+        }
+      }
+    },
+    "General" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generelt"
+          }
+        }
+      }
+    },
+    "Go build cache" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go-byggcache"
+          }
+        }
+      }
+    },
+    "Good" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bra"
+          }
+        }
+      }
+    },
+    "Gradle daemon" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gradle-daemon"
+          }
+        }
+      }
+    },
+    "Heat is throttling the CPU" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prosessoren strupes av varme"
+          }
+        }
+      }
+    },
+    "Heavily throttled" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kraftig struping"
+          }
+        }
+      }
+    },
+    "Hide details" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skjul detaljer"
+          }
+        }
+      }
+    },
+    "High pressure" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Høyt minnepress"
+          }
+        }
+      }
+    },
+    "History" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logg"
+          }
+        }
+      }
+    },
+    "Homebrew downloads" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Homebrew-nedlastinger"
+          }
+        }
+      }
+    },
+    "Idle. %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubrukt. %@"
+          }
+        }
+      }
+    },
+    "In use by %@ (PID %d)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "In use by %1$@ (PID %2$d)"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I bruk av %1$@ (PID %2$d)"
+          }
+        }
+      }
+    },
+    "In use, so MacUnclog leaves it alone" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I bruk, så MacUnclog lar den være"
+          }
+        }
+      }
+    },
+    "In use, started %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I bruk, startet %@"
+          }
+        }
+      }
+    },
+    "Kotlin daemon" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kotlin-daemon"
+          }
+        }
+      }
+    },
+    "Last checked" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sist sjekket"
+          }
+        }
+      }
+    },
+    "Left running after its session ended · started %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kjører videre etter at økta er over · startet %@"
+          }
+        }
+      }
+    },
+    "Load average, last minute: %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belastning siste minutt: %@"
+          }
+        }
+      }
+    },
+    "Locked" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Låst"
+          }
+        }
+      }
+    },
+    "Look for things to clean up (⇧⌘R)" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let etter ting å rydde (⇧⌘R)"
+          }
+        }
+      }
+    },
+    "Looking for agents, simulators and dev servers…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ser etter agenter, simulatorer og dev-servere …"
+          }
+        }
+      }
+    },
+    "Low Power Mode" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lavstrømsmodus"
+          }
+        }
+      }
+    },
+    "Low Power Mode is limiting performance" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "lavstrømsmodus demper ytelsen"
+          }
+        }
+      }
+    },
+    "Low Power Mode is on" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lavstrømsmodus er på"
+          }
+        }
+      }
+    },
+    "Low Power Mode saves battery by slowing down the CPU." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lavstrømsmodus sparer batteri ved å senke farten på prosessoren."
+          }
+        }
+      }
+    },
+    "Low disk space" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lite diskplass"
+          }
+        }
+      }
+    },
+    "MacUnclog" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog"
+          }
+        }
+      }
+    },
+    "MacUnclog checks free space every 15 minutes. If it falls below the threshold, the app cleans up and notifies you, at most once every 6 hours." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog sjekker ledig plass hvert kvarter. Faller den under grensen, rydder appen og varsler deg, men høyst én gang hver sjette time."
+          }
+        }
+      }
+    },
+    "MacUnclog doesn’t touch this process" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog rører ikke denne prosessen"
+          }
+        }
+      }
+    },
+    "MacUnclog found nothing safe to delete" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog fant ingenting trygt å slette"
+          }
+        }
+      }
+    },
+    "MacUnclog freed up %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog frigjorde %@"
+          }
+        }
+      }
+    },
+    "MacUnclog isn’t allowed to touch %@." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog har ikke lov til å røre %@."
+          }
+        }
+      }
+    },
+    "MacUnclog looks for caches and build files, and checks that nothing is in use before it deletes anything." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog leter etter cacher og byggrester og sjekker at ingenting er i bruk før noe slettes."
+          }
+        }
+      }
+    },
+    "MacUnclog never deletes anything in these folders, in addition to Documents, Desktop, Downloads, Pictures, Movies, Music and iCloud Drive." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog sletter aldri noe i disse mappene. Det samme gjelder Dokumenter, Skrivebord, Nedlastinger, Bilder, Filmer, Musikk og iCloud Drive."
+          }
+        }
+      }
+    },
+    "MacUnclog then sits in the menu bar and shows whether your Mac is doing fine." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Da ligger MacUnclog i menylinjen og viser om Macen har det bra."
+          }
+        }
+      }
+    },
+    "MacUnclog: Your Mac is slow" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog: Macen er treg"
+          }
+        }
+      }
+    },
+    "Manual clean-up" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manuell rydding"
+          }
+        }
+      }
+    },
+    "Manual clean-up." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manuell rydding."
+          }
+        }
+      }
+    },
+    "Measure again (⌘R)" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mål på nytt (⌘R)"
+          }
+        }
+      }
+    },
+    "Measured at %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Målt kl. %@"
+          }
+        }
+      }
+    },
+    "Measures memory, CPU, disk and temperature, and gives a verdict." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Måler minne, prosessor, disk og temperatur og gir en dom."
+          }
+        }
+      }
+    },
+    "Measuring memory, CPU and disk…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Måler minne, prosessor og disk …"
+          }
+        }
+      }
+    },
+    "Measuring…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Måler …"
+          }
+        }
+      }
+    },
+    "Memory" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minne"
+          }
+        }
+      }
+    },
+    "Memory is almost full" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minnet er nesten fullt"
+          }
+        }
+      }
+    },
+    "Memory is full" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minnet er fullt"
+          }
+        }
+      }
+    },
+    "Memory pressure is critical and %@ is in swap. Apps have to wait for the disk every time they need memory." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minnepresset er kritisk og %@ ligger i swap. Apper må vente på disken hver gang de trenger minne."
+          }
+        }
+      }
+    },
+    "Memory pressure is high and %@ is in swap. Quit apps you aren’t using." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minnepresset er høyt og %@ ligger i swap. Avslutt apper du ikke bruker."
+          }
+        }
+      }
+    },
+    "Memory pressure is normal now, but swap still holds data from an earlier peak. A restart clears it." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minnepresset er normalt nå, men tidligere toppbelastning ligger igjen i swap. En omstart tømmer den."
+          }
+        }
+      }
+    },
+    "Memory, CPU, disk and temperature look normal. Nothing here is slowing your Mac down right now." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minne, prosessor, disk og temperatur ser normale ut. Ingenting her gjør Macen treg akkurat nå."
+          }
+        }
+      }
+    },
+    "Menu bar" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menylinje"
+          }
+        }
+      }
+    },
+    "Name" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navn"
+          }
+        }
+      }
+    },
+    "Needs approval in System Settings" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Må godkjennes i Systeminnstillinger"
+          }
+        }
+      }
+    },
+    "Never" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aldri"
+          }
+        }
+      }
+    },
+    "No Claude or Codex sessions are running." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen Claude- eller Codex-økter kjører."
+          }
+        }
+      }
+    },
+    "No clean-ups yet" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen rydding ennå"
+          }
+        }
+      }
+    },
+    "No dev servers or builds are running." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen dev-servere eller bygg kjører."
+          }
+        }
+      }
+    },
+    "No longer exists" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finnes ikke lenger"
+          }
+        }
+      }
+    },
+    "No simulators are running." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen simulatorer kjører."
+          }
+        }
+      }
+    },
+    "No throttling" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen struping"
+          }
+        }
+      }
+    },
+    "Normal" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normal"
+          }
+        }
+      }
+    },
+    "Normal pressure" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalt minnepress"
+          }
+        }
+      }
+    },
+    "Not an absolute path: %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke en absolutt sti: %@"
+          }
+        }
+      }
+    },
+    "Not found in the app" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finnes ikke i appen"
+          }
+        }
+      }
+    },
+    "Not in a git repository, so MacUnclog can’t tell whether this is a build folder" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke i et git-repo, så MacUnclog kan ikke se om mappa er en byggmappe"
+          }
+        }
+      }
+    },
+    "Not registered" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke registrert"
+          }
+        }
+      }
+    },
+    "Not responding" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svarer ikke"
+          }
+        }
+      }
+    },
+    "Not restarted in %lld days" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke startet på nytt på %lld dager"
+          }
+        }
+      }
+    },
+    "Not scanned" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke skannet"
+          }
+        }
+      }
+    },
+    "Nothing" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingenting"
+          }
+        }
+      }
+    },
+    "Nothing found" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingenting funnet"
+          }
+        }
+      }
+    },
+    "Nothing is slowing your Mac down right now. %lld things are worth a look." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingenting gjør Macen treg nå, men %lld ting er verdt å se på."
+          }
+        }
+      }
+    },
+    "Nothing is slowing your Mac down right now. One thing is worth a look." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingenting gjør Macen treg nå, men én ting er verdt å se på."
+          }
+        }
+      }
+    },
+    "Nothing to report. Memory, CPU, disk and temperature are within normal range." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingenting å melde. Minne, prosessor, disk og temperatur er innenfor normalen."
+          }
+        }
+      }
+    },
+    "Notify me about what was done" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varsle meg om hva som ble gjort"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "Off" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Av"
+          }
+        }
+      }
+    },
+    "Off. MacUnclog only cleans up when you ask." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Av. MacUnclog rydder bare når du ber om det."
+          }
+        }
+      }
+    },
+    "Old device support files" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gamle filer for fysiske enheter"
+          }
+        }
+      }
+    },
+    "Old update packages from ShipIt (Electron apps) and Sparkle in ~/Library/Caches." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gamle oppdateringspakker fra ShipIt (Electron-apper) og Sparkle i ~/Library/Caches."
+          }
+        }
+      }
+    },
+    "On another disk or a network volume: %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligger på en annen disk eller nettverksdisk: %@"
+          }
+        }
+      }
+    },
+    "One of them is idle." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Én av dem står ubrukt."
+          }
+        }
+      }
+    },
+    "One simulator uses this runtime" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Én simulator bruker denne runtimen"
+          }
+        }
+      }
+    },
+    "Only %@ is free after the clean-up. Open MacUnclog to see what is taking up space." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bare %@ er ledig etter ryddingen. Åpne MacUnclog for å se hva som tar plass."
+          }
+        }
+      }
+    },
+    "Only %@ is free. When the disk is almost full, macOS has no room for swap and caches, and everything slows down." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bare %@ er ledig. Når disken er nesten full, får macOS ikke plass til swap og cacher, og alt går tregere."
+          }
+        }
+      }
+    },
+    "Open Login Items" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne Påloggingsobjekter"
+          }
+        }
+      }
+    },
+    "Open MacUnclog" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne MacUnclog"
+          }
+        }
+      }
+    },
+    "Open MacUnclog at login" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne MacUnclog ved pålogging"
+          }
+        }
+      }
+    },
+    "Open localhost:%lld" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne localhost:%lld"
+          }
+        }
+      }
+    },
+    "Open the folder with the log files" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne mappa med loggfilene"
+          }
+        }
+      }
+    },
+    "Outside the home folder: %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utenfor hjemmemappa: %@"
+          }
+        }
+      }
+    },
+    "Overview" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oversikt"
+          }
+        }
+      }
+    },
+    "Owner unknown · started %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukjent eier · startet %@"
+          }
+        }
+      }
+    },
+    "PID" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PID"
+          }
+        }
+      }
+    },
+    "Package caches" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pakkecacher"
+          }
+        }
+      }
+    },
+    "Pause" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sett på pause"
+          }
+        }
+      }
+    },
+    "Paused" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "På pause"
+          }
+        }
+      }
+    },
+    "Photos is analysing your library in the background." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bilder analyserer biblioteket i bakgrunnen."
+          }
+        }
+      }
+    },
+    "Playwright browsers" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Playwright-nettlesere"
+          }
+        }
+      }
+    },
+    "Processes" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prosesser"
+          }
+        }
+      }
+    },
+    "Project folders" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prosjektmapper"
+          }
+        }
+      }
+    },
+    "Protected folder" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beskyttet mappe"
+          }
+        }
+      }
+    },
+    "Protected folders" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beskyttede mapper"
+          }
+        }
+      }
+    },
+    "Protected: %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beskyttet: %@"
+          }
+        }
+      }
+    },
+    "Python server" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Python-server"
+          }
+        }
+      }
+    },
+    "Quit" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avslutt"
+          }
+        }
+      }
+    },
+    "Quit %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avslutt %@"
+          }
+        }
+      }
+    },
+    "Quit MacUnclog" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avslutt MacUnclog"
+          }
+        }
+      }
+    },
+    "Refresh" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oppdater"
+          }
+        }
+      }
+    },
+    "Refresh diagnosis" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oppdater diagnose"
+          }
+        }
+      }
+    },
+    "Remove" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fjern"
+          }
+        }
+      }
+    },
+    "Resume" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortsett"
+          }
+        }
+      }
+    },
+    "Resume %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortsett %@"
+          }
+        }
+      }
+    },
+    "Run automatic clean-up now" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kjør automatisk rydding nå"
+          }
+        }
+      }
+    },
+    "Scan again" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skann på nytt"
+          }
+        }
+      }
+    },
+    "Scan for things to clean up" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skann etter ting å rydde"
+          }
+        }
+      }
+    },
+    "Scan now" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skann nå"
+          }
+        }
+      }
+    },
+    "Scanned at %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skannet kl. %@"
+          }
+        }
+      }
+    },
+    "Scanning…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skanner …"
+          }
+        }
+      }
+    },
+    "Scheduled clean-up" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planlagt rydding"
+          }
+        }
+      }
+    },
+    "Scheduled clean-up (daily)." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planlagt rydding (hver dag)."
+          }
+        }
+      }
+    },
+    "Scheduled clean-up (weekly)." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planlagt rydding (hver uke)."
+          }
+        }
+      }
+    },
+    "Search processes" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Søk etter prosess"
+          }
+        }
+      }
+    },
+    "Select all in %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg alle i %@"
+          }
+        }
+      }
+    },
+    "Selected for clean-up: %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valgt for rydding: %@"
+          }
+        }
+      }
+    },
+    "Serious" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alvorlig"
+          }
+        }
+      }
+    },
+    "Settings…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Innstillinger …"
+          }
+        }
+      }
+    },
+    "Shared daemon in use · started %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delt daemon i bruk · startet %@"
+          }
+        }
+      }
+    },
+    "Show agents" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis agenter"
+          }
+        }
+      }
+    },
+    "Show details" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis detaljer"
+          }
+        }
+      }
+    },
+    "Show folder in Finder" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis mappa i Finder"
+          }
+        }
+      }
+    },
+    "Show in Finder" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis i Finder"
+          }
+        }
+      }
+    },
+    "Show processes owned by macOS and other users" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis prosesser som eies av macOS og andre brukere"
+          }
+        }
+      }
+    },
+    "Show system processes" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis systemprosesser"
+          }
+        }
+      }
+    },
+    "Shut down" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slå av"
+          }
+        }
+      }
+    },
+    "Shut down %lld idle simulators" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slå av %lld ubrukte simulatorer"
+          }
+        }
+      }
+    },
+    "Shut down the idle simulator" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slå av den ubrukte simulatoren"
+          }
+        }
+      }
+    },
+    "Shutting down %@…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slår av %@ …"
+          }
+        }
+      }
+    },
+    "Simulator leftovers" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simulatorrester"
+          }
+        }
+      }
+    },
+    "Simulator runtimes that no simulator uses, via xcrun simctl runtime delete. A runtime that a simulator needs is never deleted." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simulator-runtimes som ingen simulator bruker, via xcrun simctl runtime delete. En runtime som en simulator trenger, slettes aldri."
+          }
+        }
+      }
+    },
+    "Simulators" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simulatorer"
+          }
+        }
+      }
+    },
+    "Simulators that macOS has marked as unavailable, test clones in XCTestDevices and the CoreSimulator cache. The cache is skipped while a simulator is running." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simulatorer som macOS har merket som utilgjengelige, testkloner i XCTestDevices og CoreSimulator-cachen. Cachen hoppes over mens en simulator kjører."
+          }
+        }
+      }
+    },
+    "Simulators unused for 30 days" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simulatorer som ikke er brukt på 30 dager"
+          }
+        }
+      }
+    },
+    "Simulators, dev servers and builds that agents have started" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simulatorer, dev-servere og bygg som agentene har startet"
+          }
+        }
+      }
+    },
+    "Slowing your Mac down" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjør Macen treg"
+          }
+        }
+      }
+    },
+    "Spotlight is indexing your files. It will finish on its own." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spotlight indekserer filene dine. Det går over av seg selv."
+          }
+        }
+      }
+    },
+    "Spotlight is reading files to index them. It will finish on its own." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spotlight leser filer for å indeksere dem. Det går over av seg selv."
+          }
+        }
+      }
+    },
+    "Started %@ · %lld processes" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Started %1$@ · %2$lld processes"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startet %1$@ · %2$lld prosesser"
+          }
+        }
+      }
+    },
+    "Started %@ · 1 process" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startet %@ · 1 prosess"
+          }
+        }
+      }
+    },
+    "Started %@, with no users and no load" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startet %@, ingen bruker den og den står stille"
+          }
+        }
+      }
+    },
+    "Started from a terminal · %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startet fra en terminal · %@"
+          }
+        }
+      }
+    },
+    "Starting…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starter …"
+          }
+        }
+      }
+    },
+    "Still low on space" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortsatt lite ledig plass"
+          }
+        }
+      }
+    },
+    "Stop" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopp"
+          }
+        }
+      }
+    },
+    "Stop %lld tools" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopp %lld verktøy"
+          }
+        }
+      }
+    },
+    "Stop %lld tools left running" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopp %lld verktøy som kjører videre"
+          }
+        }
+      }
+    },
+    "Stop %lld tools?" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stoppe %lld verktøy?"
+          }
+        }
+      }
+    },
+    "Stop all" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopp alle"
+          }
+        }
+      }
+    },
+    "Stop the process immediately, without saving" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopp prosessen med en gang, uten å lagre"
+          }
+        }
+      }
+    },
+    "Stop the tool" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopp verktøyet"
+          }
+        }
+      }
+    },
+    "Stop the tool left running" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopp verktøyet som kjører videre"
+          }
+        }
+      }
+    },
+    "Stop this tool?" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stoppe dette verktøyet?"
+          }
+        }
+      }
+    },
+    "Stopping %@…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopper %@ …"
+          }
+        }
+      }
+    },
+    "Stops %lld processes" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avslutter %lld prosesser"
+          }
+        }
+      }
+    },
+    "Stops 1 process" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avslutter 1 prosess"
+          }
+        }
+      }
+    },
+    "Storage" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diskplass"
+          }
+        }
+      }
+    },
+    "Swift build" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swift-bygg"
+          }
+        }
+      }
+    },
+    "SwiftUI previews" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SwiftUI-forhåndsvisninger"
+          }
+        }
+      }
+    },
+    "Symbol files in the iOS, watchOS, tvOS and visionOS DeviceSupport folders for older OS versions. The newest version for each platform is kept." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Symbolfiler i DeviceSupport-mappene for iOS, watchOS, tvOS og visionOS for eldre OS-versjoner. Den nyeste versjonen per plattform beholdes."
+          }
+        }
+      }
+    },
+    "Temperature" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperatur"
+          }
+        }
+      }
+    },
+    "Test clones (XCTestDevices)" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testkloner (XCTestDevices)"
+          }
+        }
+      }
+    },
+    "That didn’t work" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gikk ikke"
+          }
+        }
+      }
+    },
+    "The CPU is fully loaded" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prosessoren er fullt belastet"
+          }
+        }
+      }
+    },
+    "The Claude and Codex sessions, with everything they started (builds, tests, servers), are using %@ and %@ of memory." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The Claude and Codex sessions, with everything they started (builds, tests, servers), are using %1$@ and %2$@ of memory."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claude- og Codex-øktene med alt de har startet (bygg, tester, servere) bruker %1$@ og %2$@ minne."
+          }
+        }
+      }
+    },
+    "The Rust compiler is building code." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rust-kompilatoren bygger kode."
+          }
+        }
+      }
+    },
+    "The Swift compiler is building code." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swift-kompilatoren bygger kode."
+          }
+        }
+      }
+    },
+    "The disk is almost full" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disken er nesten full"
+          }
+        }
+      }
+    },
+    "The folder isn’t gitignored" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mappa er ikke gitignored"
+          }
+        }
+      }
+    },
+    "The iOS Simulator app." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iOS-simulatoren."
+          }
+        }
+      }
+    },
+    "The session that started %@ has ended. It uses %@ of memory and %@ CPU." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The session that started %1$@ has ended. It uses %2$@ of memory and %3$@ CPU."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Økta som startet %1$@, er over. Verktøyet bruker %2$@ minne og %3$@ CPU."
+          }
+        }
+      }
+    },
+    "The sessions that started %@ have ended. They use %@ of memory and %@ CPU." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The sessions that started %1$@ have ended. They use %2$@ of memory and %3$@ CPU."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Øktene som startet %1$@, er over. Verktøyene bruker %2$@ minne og %3$@ CPU."
+          }
+        }
+      }
+    },
+    "The temperature is critical and performance is heavily throttled. Quit heavy processes and let your Mac cool down." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperaturen er kritisk og ytelsen er kraftig strupet. Avslutt tunge prosesser og la Macen kjøle seg ned."
+          }
+        }
+      }
+    },
+    "They are using %@ of memory, much of it in swap." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De bruker %@ minne, mye av det i swap."
+          }
+        }
+      }
+    },
+    "They are using %@ of memory." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De bruker %@ minne."
+          }
+        }
+      }
+    },
+    "This is where you’ll see what MacUnclog has deleted, whether you cleaned up yourself or it happened automatically." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Her ser du hva MacUnclog har slettet, både når du ryddet selv og når det skjedde automatisk."
+          }
+        }
+      }
+    },
+    "Threshold" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grense"
+          }
+        }
+      }
+    },
+    "Throttled" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strupet"
+          }
+        }
+      }
+    },
+    "Time" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidspunkt"
+          }
+        }
+      }
+    },
+    "Time Machine is backing up." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time Machine tar sikkerhetskopi."
+          }
+        }
+      }
+    },
+    "Timed out: %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidsavbrudd: %@"
+          }
+        }
+      }
+    },
+    "Too close to the root to delete: %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For nær roten til å slettes: %@"
+          }
+        }
+      }
+    },
+    "Tools" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verktøy"
+          }
+        }
+      }
+    },
+    "Unknown" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukjent"
+          }
+        }
+      }
+    },
+    "Unsaved changes will be lost." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Endringer som ikke er lagret, går tapt."
+          }
+        }
+      }
+    },
+    "Untagged images" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bilder uten navn"
+          }
+        }
+      }
+    },
+    "Unused simulator runtimes" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubrukte simulator-runtimes"
+          }
+        }
+      }
+    },
+    "Used" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brukt"
+          }
+        }
+      }
+    },
+    "Used by something in %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brukes av noe i %@"
+          }
+        }
+      }
+    },
+    "Using the most CPU" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bruker mest CPU"
+          }
+        }
+      }
+    },
+    "Warm" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varm"
+          }
+        }
+      }
+    },
+    "Watcher" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overvåker"
+          }
+        }
+      }
+    },
+    "Weekly" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hver uke"
+          }
+        }
+      }
+    },
+    "Whole simulators (with their apps and data) that are shut down and haven’t been started in 30 days, via xcrun simctl delete." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hele simulatorer (med apper og data) som er slått av og ikke startet på 30 dager, via xcrun simctl delete."
+          }
+        }
+      }
+    },
+    "Why is my Mac slow?" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvorfor er Macen treg?"
+          }
+        }
+      }
+    },
+    "Worth a look" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verdt å se på"
+          }
+        }
+      }
+    },
+    "Xcode build data" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xcode-byggdata"
+          }
+        }
+      }
+    },
+    "Xcode cache" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xcodes cache"
+          }
+        }
+      }
+    },
+    "Xcode is building a project." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xcode bygger et prosjekt."
+          }
+        }
+      }
+    },
+    "Xcode is indexing your code." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xcode indekserer koden."
+          }
+        }
+      }
+    },
+    "You can stop tools that were left running after their session ended." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du kan stoppe verktøy som kjører videre etter at økta deres er over."
+          }
+        }
+      }
+    },
+    "Your Mac is fine" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Macen har det bra"
+          }
+        }
+      }
+    },
+    "Your Mac is mostly fine" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Macen har det stort sett bra"
+          }
+        }
+      }
+    },
+    "Your Mac is moving memory to disk" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Macen flytter minne til disk"
+          }
+        }
+      }
+    },
+    "Your Mac is overheating" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Macen er overopphetet"
+          }
+        }
+      }
+    },
+    "Your Mac is slow because %@" : {
+      "comment" : "The argument is a Finding.reason clause.",
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Macen er treg fordi %@"
+          }
+        }
+      }
+    },
+    "Your Mac is slow because %@ and %@" : {
+      "comment" : "Both arguments are Finding.reason clauses.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Mac is slow because %1$@ and %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Macen er treg fordi %1$@ og %2$@"
+          }
+        }
+      }
+    },
+    "Your Mac is warm" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Macen er varm"
+          }
+        }
+      }
+    },
+    "Your Mac is warmer than usual. The fans are working harder, but performance isn’t throttled yet." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Macen er varmere enn vanlig. Viftene går mer, men ytelsen er ikke strupet ennå."
+          }
+        }
+      }
+    },
+    "a lot of memory is in swap" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mye minne ligger i swap"
+          }
+        }
+      }
+    },
+    "a tool was left running" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "et verktøy kjører videre etter at økta er over"
+          }
+        }
+      }
+    },
+    "daily at %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hver dag kl. %@"
+          }
+        }
+      }
+    },
+    "disk space is low" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "det er lite ledig diskplass"
+          }
+        }
+      }
+    },
+    "docker builder prune and docker image prune (untagged images only), on this Mac’s own Docker only. Stopped containers, volumes and tagged images are left alone, and MacUnclog never starts Docker." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "docker builder prune og docker image prune (bare bilder uten navn), og bare på Docker på denne Macen. Stoppede containere, volumer og navngitte bilder røres ikke, og MacUnclog starter aldri Docker."
+          }
+        }
+      }
+    },
+    "it hasn’t been restarted in a long time" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "den ikke er startet på nytt på lenge"
+          }
+        }
+      }
+    },
+    "it is overheating" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "den er overopphetet"
+          }
+        }
+      }
+    },
+    "it is running warm" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "den er varm"
+          }
+        }
+      }
+    },
+    "macOS is analysing photos and videos in the background." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS analyserer bilder og video i bakgrunnen."
+          }
+        }
+      }
+    },
+    "macOS is downloading or preparing an update." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS laster ned eller klargjør en oppdatering."
+          }
+        }
+      }
+    },
+    "macOS is holding back the CPU to cool your Mac down." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS holder igjen prosessoren for å kjøle ned Macen."
+          }
+        }
+      }
+    },
+    "macOS is slowing down the CPU to keep the temperature down. Give your Mac some air and quit heavy processes." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS senker farten på prosessoren for å holde temperaturen nede. Gi Macen luft og avslutt tunge prosesser."
+          }
+        }
+      }
+    },
+    "memory is almost full" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "minnet er nesten fullt"
+          }
+        }
+      }
+    },
+    "memory is full" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "minnet er fullt"
+          }
+        }
+      }
+    },
+    "node_modules, Rust target, .next, .turbo, .svelte-kit, .nuxt, .parcel-cache, .build, Gradle build and Xcode DerivedData (including .ios*/dd-*) inside project folders. Only when the folder is gitignored, nothing in the project changed recently, no process works in it or has a file open there, and nothing outside the project uses it. Not part of automatic clean-up unless you turn it on." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "node_modules, Rust-target, .next, .turbo, .svelte-kit, .nuxt, .parcel-cache, .build, Gradle-build og Xcode-DerivedData (også .ios*/dd-*) inne i prosjektmapper. Bare når mappa er gitignored, ingenting i prosjektet er endret nylig, ingen prosess jobber i det eller har en fil åpen der, og ingenting utenfor prosjektet bruker det. Er ikke med i automatisk rydding med mindre du slår det på."
+          }
+        }
+      }
+    },
+    "of %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "av %@"
+          }
+        }
+      }
+    },
+    "of %@ on the startup disk" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "av %@ på startdisken"
+          }
+        }
+      }
+    },
+    "of %lld cores" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "av %lld kjerner"
+          }
+        }
+      }
+    },
+    "one core" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "én kjerne"
+          }
+        }
+      }
+    },
+    "pnpm metadata" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pnpm-metadata"
+          }
+        }
+      }
+    },
+    "pnpm store" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pnpm-lager"
+          }
+        }
+      }
+    },
+    "the CPU is being throttled to cool down" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "prosessoren strupes for å kjøle ned"
+          }
+        }
+      }
+    },
+    "the CPU is fully loaded" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "prosessoren er fullt belastet"
+          }
+        }
+      }
+    },
+    "the disk is almost full" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "disken er nesten full"
+          }
+        }
+      }
+    },
+    "the search for .mcp.json files" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "søket etter .mcp.json-filer"
+          }
+        }
+      }
+    },
+    "there isn’t enough memory" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "minnet ikke strekker til"
+          }
+        }
+      }
+    },
+    "weekly at %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hver uke kl. %@"
+          }
+        }
+      }
+    },
+    "xcrun simctl shutdown %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "xcrun simctl shutdown %@"
+          }
+        }
+      }
+    },
+    "~/Library/Developer/Xcode/DerivedData, Xcode previews and Xcode’s own cache. Project folders that are in use or recently changed are skipped." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "~/Library/Developer/Xcode/DerivedData, Xcode-forhåndsvisninger og Xcodes egen cache. Prosjektmapper som er i bruk eller endret nylig, hoppes over."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -1,0 +1,9 @@
+// Signs to run locally by default, so anyone can build and test without an Apple team.
+// To sign with your own team, create Configs/Local.xcconfig (git-ignored) with, for example:
+//   DEVELOPMENT_TEAM = ABCDE12345
+//   CODE_SIGN_IDENTITY = Apple Development
+CODE_SIGN_STYLE = Manual
+CODE_SIGN_IDENTITY = -
+DEVELOPMENT_TEAM =
+
+#include? "Local.xcconfig"

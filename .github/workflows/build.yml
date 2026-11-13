@@ -1,0 +1,49 @@
+name: Build and test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: macos-26
+    timeout-minutes: 30
+    defaults:
+      run:
+        # Explicit bash adds -o pipefail, so `xcodebuild … | tee` fails when xcodebuild does.
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Check that the Xcode project matches project.yml
+        run: |
+          brew install xcodegen
+          xcodegen generate
+          git diff --exit-code -- MacUnclog.xcodeproj
+
+      - name: Build and test
+        run: |
+          xcodebuild -project MacUnclog.xcodeproj -scheme MacUnclog \
+            -destination 'platform=macOS' -derivedDataPath build/dd \
+            test | tee build.log
+
+      - name: Check that every string has a Norwegian translation
+        run: |
+          status=0
+          DERIVED_DATA=build/dd scripts/sync-strings.sh --no-build || status=1
+          git diff --exit-code -- MacUnclog/Resources/*.xcstrings || {
+            echo "::error::The string catalogs are out of date. Run scripts/sync-strings.sh and commit the result."
+            status=1
+          }
+          exit $status
+
+      - name: Fail on compiler warnings
+        run: |
+          if grep -E '^\S.*: warning:' build.log; then
+            echo "::error::The build has warnings"
+            exit 1
+          fi
