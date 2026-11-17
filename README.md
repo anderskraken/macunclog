@@ -25,6 +25,8 @@ It lives in a window and in the menu bar, and adds a "Why is my Mac slow?" actio
 
 ![Agents](docs/screenshots/agents.png)
 
+![Apps using memory, with Quit, Restart and Tabs](docs/screenshots/apps-light.png)
+
 <p align="center"><img src="docs/screenshots/menubar.png" width="300" alt="The menu bar panel"></p>
 
 ## What each cleanup removes
