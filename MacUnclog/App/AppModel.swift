@@ -60,6 +60,14 @@ final class AppModel {
     private(set) var isMovingFiles = false
     private(set) var lastBinMove: BinMove?
 
+    private(set) var repositories: [LocalRepo] = []
+    var selectedRepos: Set<String> = []
+    private(set) var isFindingRepos = false
+    private(set) var isMovingRepos = false
+    private(set) var lastRepoMove: [RepoRecord]?
+    /// Paths of History entries being cloned again right now.
+    private(set) var cloning: Set<String> = []
+
     var message: String?
 
     var settings = AutomationSettings.load() {
@@ -86,6 +94,7 @@ final class AppModel {
             history = DemoData.history()
             categories = DemoData.cleanup()
             personalFiles = DemoData.personalFiles()
+            repositories = DemoData.repositories()
             lastScan = .now
             selectedItems = Set(categories.values.flatMap(\.cleanable).map(\.id))
             return
@@ -356,7 +365,7 @@ final class AppModel {
 
     // MARK: Cleanup
 
-    var isScanning: Bool { isFindingFiles || categories.values.contains(where: \.isScanning) }
+    var isScanning: Bool { isFindingFiles || isFindingRepos || categories.values.contains(where: \.isScanning) }
     var isCleaning: Bool { cleaningProgress != nil }
 
     var reclaimableBytes: Int64 {
@@ -372,7 +381,7 @@ final class AppModel {
     }
 
     func scan() async {
-        guard !isScanning, !isCleaning, !isMovingFiles else { return }
+        guard !isScanning, !isCleaning, !isMovingFiles, !isMovingRepos else { return }
         #if DEBUG
         if DemoData.isEnabled { return }
         #endif
@@ -380,8 +389,10 @@ final class AppModel {
             categories[category, default: CategoryState()].isScanning = true
         }
         isFindingFiles = true
+        isFindingRepos = true
         let context = await ScanContext.capture(activityWindow: settings.activityWindow, projectRoots: settings.projectRoots)
         async let files = PersonalFiles.find(inUse: context.inUse)
+        async let repos = Repositories.find(in: context, idleWindow: settings.repoIdleWindow)
         await withTaskGroup(of: (CleanupCategory, [CleanupItem]).self) { group in
             for category in CleanupCategory.allCases {
                 group.addTask { (category, await CleanupScanner.discover(category, in: context)) }
@@ -398,6 +409,10 @@ final class AppModel {
         personalFiles = found
         selectedFiles.formIntersection(found.filter(\.canMove).map(\.id))
         isFindingFiles = false
+        let foundRepos = await repos
+        repositories = foundRepos
+        selectedRepos.formIntersection(foundRepos.filter(\.canMove).map(\.id))
+        isFindingRepos = false
         lastScan = .now
         disk = SystemProbe.disk()
     }
@@ -421,6 +436,37 @@ final class AppModel {
         personalFiles.removeAll { moved.contains($0.id) }
         selectedFiles.subtract(moved)
         lastBinMove = move
+    }
+
+    /// Moves the selected repositories to the Bin after checking each one again, and
+    /// records them in History so they can be cloned back.
+    func moveSelectedReposToBin() async {
+        guard !isMovingRepos, !isScanning, !isCleaning, actionAllowed() else { return }
+        let repos = repositories.filter { selectedRepos.contains($0.id) && $0.canMove }
+        guard !repos.isEmpty else { return }
+        isMovingRepos = true
+        defer { isMovingRepos = false }
+        guard let run = await Repositories.moveToBin(repos, idleWindow: settings.repoIdleWindow, projectRoots: settings.projectRoots) else {
+            message = String(localized: "Another clean-up is already running. Try again when it’s done.")
+            return
+        }
+        HistoryStore.save(run)
+        history = HistoryStore.load()
+        let records = run.repositories ?? []
+        let moved = Set(records.filter { $0.result == .removed }.map(\.id))
+        repositories.removeAll { moved.contains($0.id) }
+        selectedRepos.subtract(moved)
+        lastRepoMove = records
+    }
+
+    /// Clones a repository from History back to its old place.
+    func cloneAgain(_ record: RepoRecord) async {
+        guard !cloning.contains(record.id), actionAllowed() else { return }
+        cloning.insert(record.id)
+        defer { cloning.remove(record.id) }
+        if let problem = await Repositories.clone(record) {
+            message = String(localized: "Couldn’t clone \(record.name): \(problem)")
+        }
     }
 
     func clean() async {

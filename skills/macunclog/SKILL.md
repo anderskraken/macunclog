@@ -30,7 +30,7 @@ A single measurement can't tell a spike from a lasting load, so a `cpuHog` witho
 
 ## What you may do without asking
 
-- Run `--diagnose`, `--scan` and `--files`. They only read. `--scan` checks every project folder and can take half a minute; `--scan packageCaches xcode` limits it to those categories.
+- Run `--diagnose`, `--scan`, `--files` and `--repos`. They only read. `--scan` checks every project folder and can take half a minute; `--scan packageCaches xcode` limits it to those categories.
 - Shut down a simulator whose `idle` is `true`: run its `command` (`--act shutdown-simulator UDID`).
 - Stop a tool whose `stoppable` is `true`: run its `command` (`--act stop-tool PID`). Only these are left over from a session that has ended.
 
@@ -42,6 +42,7 @@ MacUnclog checks again before each action and refuses if anything changed.
 - Installing or removing the skill (`--skill install|remove`).
 - Any clean-up that deletes files. Show what `--scan --json` found (`cleanableBytes` per category, and `blocked` reasons) and let the user clean up in the app.
 - Large files and installers from `--files --json`. These are the user's own files; only the user moves them to the Bin, in the app's Storage tab.
+- Repositories from `--repos --json`. One without `blocked` is fully on GitHub, but it is still the user's: only the user moves it to the Bin, in the app's Storage tab. Never delete a repository yourself.
 
 ## Never
 

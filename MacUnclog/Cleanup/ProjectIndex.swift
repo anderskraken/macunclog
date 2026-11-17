@@ -1,7 +1,7 @@
 import Foundation
 
 /// One walk over the project folders per scan, shared by build-output cleanup, simulator
-/// runtimes (project device sets) and external references (`.mcp.json`). Walking a large
+/// runtimes (project device sets), external references (`.mcp.json`) and repositories. Walking a large
 /// ~/dev with find takes many seconds, so it must happen once, not once per question.
 struct ProjectIndex: Sendable {
     /// Folders named like build output, not yet checked against the build-folder rules.
@@ -11,6 +11,9 @@ struct ProjectIndex: Sendable {
     /// Folders that hold a device_set.plist.
     var deviceSets: [URL] = []
     var mcpConfigs: [String] = []
+    /// Folders with a `.git` folder of their own: the main checkout of a repository. Linked
+    /// worktrees and submodules have a `.git` file instead and aren't listed.
+    var gitRepos: [URL] = []
     /// False if a walk timed out: then nothing found here may be trusted to be complete.
     var complete = true
     /// False if find reported any error (often a folder it may not read). Device sets then
@@ -29,7 +32,7 @@ struct ProjectIndex: Sendable {
         // The real path, so find, git and symlink targets all spell a folder the same way.
         for root in CleanupScanner.distinctRoots(roots).map({ PathGuard.normalized($0.resolvingSymlinksInPath().path) }) {
             let expression = [root, "-xdev", "-maxdepth", "10",
-                              "(", "-name", ".git", ")", "-prune", "-o",
+                              "(", "-name", ".git", "-print", "-prune", ")", "-o",
                               "(", "-type", "d", "("] + names + [")", "-print", "-prune", ")", "-o",
                               "(", "-type", "l", "("] + names + [")", "-print", ")", "-o",
                               "(", "-name", "device_set.plist", "-print", ")", "-o",
@@ -42,6 +45,10 @@ struct ProjectIndex: Sendable {
                 switch url.lastPathComponent {
                 case "device_set.plist": result.deviceSets.append(url.deletingLastPathComponent())
                 case ".mcp.json": result.mcpConfigs.append(url.path)
+                case ".git":
+                    if (try? url.resourceValues(forKeys: [.isDirectoryKey]).isDirectory) == true {
+                        result.gitRepos.append(url.deletingLastPathComponent())
+                    }
                 default:
                     if (try? url.resourceValues(forKeys: [.isSymbolicLinkKey]).isSymbolicLink) == true {
                         result.buildLinks.append(url)

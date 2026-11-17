@@ -165,6 +165,8 @@ struct CleanupRun: Identifiable, Sendable, Codable, Hashable {
     let freeBefore: Int64
     let freeAfter: Int64
     let outcomes: [CleanupOutcome]
+    /// Set when the run moved repositories to the Bin instead of deleting clean-up items.
+    var repositories: [RepoRecord]? = nil
 
     var reclaimed: Int64 { outcomes.filter { $0.result == .removed }.reduce(0) { $0 + $1.bytes } }
     var removedCount: Int { outcomes.filter { $0.result == .removed }.count }

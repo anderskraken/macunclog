@@ -279,6 +279,36 @@ enum Report {
     }
 }
 
+extension Report {
+    struct ReposReport: Encodable {
+        struct Repo: Encodable {
+            let path: String
+            let remote: String?
+            let github: String?
+            let bytes: Int64?
+            let lastActivity: Date?
+            let blocked: Blocked?
+        }
+
+        struct Blocked: Encodable {
+            let reason: String
+            let description: String
+        }
+
+        var schema = Report.schema
+        let idleDays: Int
+        let repositories: [Repo]
+
+        init(_ repos: [LocalRepo], idleDays: Int) {
+            self.idleDays = idleDays
+            repositories = repos.map {
+                Repo(path: $0.path, remote: $0.remote?.url, github: $0.remote?.slug, bytes: $0.canMove ? $0.bytes : nil,
+                     lastActivity: $0.lastActivity, blocked: $0.blocked.map { Blocked(reason: $0.id, description: $0.description) })
+            }
+        }
+    }
+}
+
 extension Severity {
     var id: String {
         switch self {

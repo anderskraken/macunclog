@@ -48,7 +48,9 @@ enum Shell {
         await run(command.executable, command.arguments, timeout: timeout)
     }
 
-    static func run(_ tool: String, _ arguments: [String], timeout: Duration = .seconds(60)) async -> Output {
+    /// `environment` adds to or replaces variables in the tool's environment.
+    static func run(_ tool: String, _ arguments: [String], timeout: Duration = .seconds(60),
+                    environment: [String: String] = [:]) async -> Output {
         guard let path = which(tool) else {
             return Output(status: 127, stdout: "", stderr: String(localized: "\(tool) not found"))
         }
@@ -61,7 +63,7 @@ enum Shell {
         // Off Swift's cooperative pool: these calls block a thread for as long as the tool runs.
         let output = await withCheckedContinuation { continuation in
             DispatchQueue.global(qos: .utility).async {
-                continuation.resume(returning: runBlocking(path: path, arguments: arguments, timeout: timeout))
+                continuation.resume(returning: runBlocking(path: path, arguments: arguments, timeout: timeout, extra: environment))
             }
         }
         await ProcessGate.shared.release()
@@ -69,7 +71,7 @@ enum Shell {
         return output
     }
 
-    private static func runBlocking(path: String, arguments: [String], timeout: Duration) -> Output {
+    private static func runBlocking(path: String, arguments: [String], timeout: Duration, extra: [String: String]) -> Output {
         let process = Process()
         process.executableURL = URL(fileURLWithPath: path)
         process.arguments = arguments
@@ -78,6 +80,7 @@ enum Shell {
         environment["NO_COLOR"] = "1"
         // Without a UTF-8 locale lsof prints "ø" as "\\xc3\\xb8", and those paths would never match.
         environment["LC_ALL"] = "en_US.UTF-8"
+        environment.merge(extra) { _, new in new }
         process.environment = environment
 
         let stdout = Pipe(), stderr = Pipe()

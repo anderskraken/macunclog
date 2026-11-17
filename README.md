@@ -47,6 +47,17 @@ It never empties the Bin and never deletes Xcode archives, Docker volumes or con
 
 **Your files** lists disk images and installers (`.dmg`, `.pkg`, `.mpkg`, `.iso`, `.xip`) and files of 500 MB or more in your home folder. It finds them with Spotlight and also looks in Downloads, Desktop and the home folder itself. It skips `~/Library`, hidden folders, git projects, build folders, apps, Photos, Music, Final Cut Pro, iMovie and Lightroom libraries, files iCloud keeps only online, files with more than one hard link, open files and your protected folders. A copy that Finder duplicated shares its space with the original, so the space freed can be less than the size shown. Nothing is ticked until you tick it, and Move to Bin asks first.
 
+**Repositories fully on GitHub** lists git repositories in your project folders that you could delete and clone again without losing anything. A repository is offered only when all of these hold, checked with git itself:
+
+- No changed or untracked files and nothing in `git stash list`.
+- Every local branch tracks a remote branch and isn't ahead of it, and every tag is on the remote.
+- `git ls-remote` reaches the remote right now, the remote is on GitHub, and every local commit is on GitHub as it is now, not only as of your last fetch. When `gh` is installed and signed in, an archived or missing GitHub repository keeps it here.
+- Every worktree is clean and lives inside the repository's folder, and no submodule has commits or stashes of its own.
+- Nothing in it has changed for 60 days (set in Settings), no process works in it or has a file open there, and nothing outside it uses it.
+- Its gitignored files are only build output that MacUnclog already knows (such as `node_modules`, `target`, `.next` and `DerivedData`) or caches like `__pycache__`. Anything else, such as `.env` or a local database, keeps the repository here and is listed by name.
+
+Nothing is ticked until you tick it. Move to Bin asks first and runs every check again just before it moves anything. History records the remote and the path, with a Clone again button that runs `gh repo clone` (or `git clone`) back to the same place. Automatic clean-up never touches repositories.
+
 ![Storage](docs/screenshots/storage-light.png)
 
 ## Safety rules
@@ -54,7 +65,7 @@ It never empties the Bin and never deletes Xcode archives, Docker volumes or con
 1. **Check what's in use first.** One `lsof` pass reads the working folders, open files and running binaries of every process. If `lsof` fails, everything counts as in use.
 2. **Check again right before deleting.** MacUnclog scans the selected categories again and reads open files again (every 15 seconds during a long run). It skips anything that came into use.
 3. **Never delete a runtime a simulator needs.** Every device set MacUnclog can find counts. If the search fails, MacUnclog offers no runtimes.
-4. **Never touch your data.** Every deletion goes through `PathGuard`. It refuses anything outside your home folder, anything on another volume and anything under Documents, Desktop, Downloads, Pictures, Movies, Music, iCloud Drive, app containers, Mail, Messages, keychains, `~/.ssh` and agent history. `PathGuard` resolves symlinks before it checks. You can add your own protected folders in Settings. The one exception is a file you tick under Your files: MacUnclog moves it to the Bin, after checking again that it hasn't changed and isn't open.
+4. **Never touch your data.** Every deletion goes through `PathGuard`. It refuses anything outside your home folder, anything on another volume and anything under Documents, Desktop, Downloads, Pictures, Movies, Music, iCloud Drive, app containers, Mail, Messages, keychains, `~/.ssh` and agent history. `PathGuard` resolves symlinks before it checks. You can add your own protected folders in Settings. The exceptions are a file you tick under Your files and a repository you tick under Repositories fully on GitHub: MacUnclog moves it to the Bin, after checking again that it hasn't changed and isn't in use.
 5. **Only stop what an agent left behind.** A tool counts as left running only when its environment shows an agent started it and that session has ended. Claude Code sets `CLAUDECODE` and `CLAUDE_PID`, so MacUnclog checks that exact session. Codex sets no session ID, so a Codex tool only counts while no Codex session is running at all. Tools started from a terminal, an IDE or a service manager are left alone, and stopping several at once asks first.
 6. **One clean-up at a time.** The app, its timer and the background agent share a lock, and the agent cleans at most every six hours for low space and warns at most once a day that space is still low.
 
@@ -96,8 +107,9 @@ MacUnclog.app/Contents/MacOS/MacUnclog --help
 - `--diagnose` prints the verdict, the findings, agent sessions, simulators and tools. `--for 15` measures for 15 seconds, so a process that keeps the CPU busy counts as lasting and not as a spike.
 - `--scan [category …]` shows what would be cleaned. It deletes nothing.
 - `--files` lists installers and large files. It moves nothing.
+- `--repos` lists git repositories with the reason each one stays, or its size and GitHub name if all of it is on GitHub. It moves nothing.
 - `--skill [install|remove] [claude|codex]` shows, installs or removes the agent skill (see below).
-- Add `--json` to `--diagnose`, `--scan` or `--files` for output that scripts and agents can read. Kinds, severities and reasons are fixed identifiers; titles follow your Mac's language.
+- Add `--json` to `--diagnose`, `--scan`, `--files` or `--repos` for output that scripts and agents can read. Kinds, severities and reasons are fixed identifiers; titles follow your Mac's language.
 - `--agent --dry-run` shows what the background agent would clean now.
 - `--automation on|off` turns automatic cleanup and the background agent on or off.
 - `--benchmark [N]` measures N diagnoses and prints wall time, CPU time and memory.

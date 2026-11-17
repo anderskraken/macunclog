@@ -36,6 +36,7 @@ private struct RunRow: View {
         DisclosureGroup(isExpanded: $expanded) {
             VStack(alignment: .leading, spacing: 4) {
                 ForEach(run.outcomes) { OutcomeRow(outcome: $0) }
+                ForEach(run.repositories ?? []) { RepoRecordRow(record: $0) }
             }
             .padding(.vertical, 6)
         } label: {
@@ -44,10 +45,18 @@ private struct RunRow: View {
                     .foregroundStyle(.tint)
                     .frame(width: 22)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("\(trigger) · freed up \(Format.bytes(run.reclaimed))").font(.headline)
-                    Text("\(run.startedAt.formatted(date: .abbreviated, time: .shortened)) · \(run.removedCount) of \(run.outcomes.count) cleaned up · free \(Format.bytes(run.freeBefore)) → \(Format.bytes(run.freeAfter))")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                    if let repositories = run.repositories {
+                        let moved = repositories.filter { $0.result == .removed }
+                        Text("Repositories moved to the Bin · \(Format.bytes(moved.reduce(Int64(0)) { $0 + $1.bytes }))").font(.headline)
+                        Text("\(run.startedAt.formatted(date: .abbreviated, time: .shortened)) · \(moved.count) of \(repositories.count) moved")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    } else {
+                        Text("\(trigger) · freed up \(Format.bytes(run.reclaimed))").font(.headline)
+                        Text("\(run.startedAt.formatted(date: .abbreviated, time: .shortened)) · \(run.removedCount) of \(run.outcomes.count) cleaned up · free \(Format.bytes(run.freeBefore)) → \(Format.bytes(run.freeAfter))")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                 }
             }
         }
@@ -63,7 +72,8 @@ private struct RunRow: View {
     }
 
     private var symbol: String {
-        switch run.trigger {
+        if run.repositories != nil { return "arrow.triangle.branch" }
+        return switch run.trigger {
         case .manual: "hand.tap"
         case .schedule: "calendar"
         case .lowDisk: "internaldrive.fill"

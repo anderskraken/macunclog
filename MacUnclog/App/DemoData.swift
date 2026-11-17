@@ -163,6 +163,21 @@ enum DemoData {
         ]
     }
 
+    static func repositories() -> [LocalRepo] {
+        let day: TimeInterval = 86_400
+        func remote(_ name: String) -> RepoRemote {
+            RepoRemote(name: "origin", url: "git@github.com:demo-studio/\(name).git", slug: "demo-studio/\(name)")
+        }
+        return [
+            LocalRepo(path: "/Users/demo/dev/recipes-web", remote: remote("recipes-web"), bytes: 2_310_000_000, lastActivity: .now - 140 * day),
+            LocalRepo(path: "/Users/demo/dev/old-portfolio", remote: remote("old-portfolio"), bytes: 640_000_000, lastActivity: .now - 410 * day),
+            LocalRepo(path: "/Users/demo/dev/hackathon-bot", remote: remote("hackathon-bot"), bytes: 185_000_000, lastActivity: .now - 95 * day),
+            LocalRepo(path: "/Users/demo/dev/budget-cli", lastActivity: .now - 200 * day, blocked: .ignoredFiles([".env", "data/budget.sqlite"])),
+            LocalRepo(path: "/Users/demo/dev/kotlin-notes", lastActivity: .now - 120 * day, blocked: .ahead(branch: "offline-sync", commits: 3)),
+            LocalRepo(path: "/Users/demo/dev/weather-app", blocked: .notIdle(.recentlyModified(.now - 3600))),
+        ]
+    }
+
     static func history() -> [CleanupRun] {
         func run(daysAgo: Double, hours: Double, _ trigger: CleanupRun.Trigger, before: Double, _ outcomes: [CleanupOutcome]) -> CleanupRun {
             let start = now.addingTimeInterval(-(daysAgo * 86_400 + hours * 3600))
@@ -174,7 +189,13 @@ enum DemoData {
             CleanupOutcome(id: title, category: category, title: title, bytes: Int64(gigabytes * 1e9), result: .removed)
         }
         let busy = BlockReason.workingDirectory(ProcessRef(pid: 610, name: "node")).description
+        let reposMoved = now.addingTimeInterval(-1.2 * 3600)
         return [
+            CleanupRun(id: UUID(), startedAt: reposMoved, finishedAt: reposMoved.addingTimeInterval(12), trigger: .manual,
+                       freeBefore: 21_000_000_000, freeAfter: 21_000_000_000, outcomes: [], repositories: [
+                           RepoRecord(path: "/Users/demo/dev/landing-2024", remoteURL: "git@github.com:demo-studio/landing-2024.git",
+                                      slug: "demo-studio/landing-2024", bytes: 910_000_000, result: .removed),
+                       ]),
             run(daysAgo: 0, hours: 3.4, .manual, before: 24.6, [
                 removed(.packageCaches, "npm", 0.9),
                 removed(.xcode, "RecipesKit", 2.2),

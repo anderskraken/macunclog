@@ -150,6 +150,18 @@ private struct GeneralSettingsView: View {
             }
 
             Section {
+                LabeledContent("Repositories left alone for") {
+                    HStack(spacing: 8) {
+                        Text("\(model.settings.repoIdleDays) days").monospacedDigit()
+                        Stepper("Repositories left alone for", value: $model.settings.repoIdleDays, in: 7...365, step: 7).labelsHidden()
+                    }
+                }
+            } footer: {
+                Text("Storage offers a repository for the Bin only when nothing in it has changed for this long, and every commit, branch, tag and stash is on GitHub.")
+                    .foregroundStyle(.secondary)
+            }
+
+            Section {
                 if model.settings.appsNotSuggested.isEmpty {
                     Text("None").foregroundStyle(.secondary)
                 }

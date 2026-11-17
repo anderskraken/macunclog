@@ -147,6 +147,22 @@
         }
       }
     },
+    "%@ and %lld more" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ and %2$lld more"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ og %2$lld til"
+          }
+        }
+      }
+    },
     "%@ cores" : {
       "localizations" : {
         "nb" : {
@@ -291,6 +307,16 @@
         }
       }
     },
+    "%@ is archived on GitHub" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ er arkivert på GitHub"
+          }
+        }
+      }
+    },
     "%@ is in swap" : {
       "localizations" : {
         "nb" : {
@@ -427,6 +453,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ bruker %2$@ av minnet."
+          }
+        }
+      }
+    },
+    "%@ isn’t committed" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ er ikke committet"
           }
         }
       }
@@ -609,6 +645,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ · %2$lld av %3$lld ryddet · ledig %4$@ → %5$@"
+          }
+        }
+      }
+    },
+    "%@ · %lld of %lld moved" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · %2$lld of %3$lld moved"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$lld av %3$lld flyttet"
           }
         }
       }
@@ -823,6 +875,36 @@
         }
       }
     },
+    "%lld can go" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld kan fjernes"
+          }
+        }
+      }
+    },
+    "%lld commits aren’t on GitHub right now, or GitHub has changes this copy hasn’t fetched" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld commits er ikke på GitHub nå, eller GitHub har endringer som denne kopien ikke har hentet"
+          }
+        }
+      }
+    },
+    "%lld commits aren’t on any remote branch" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld commits er ikke på noen remote-gren"
+          }
+        }
+      }
+    },
     "%lld days" : {
       "localizations" : {
         "nb" : {
@@ -839,6 +921,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld filer"
+          }
+        }
+      }
+    },
+    "%lld files aren’t committed, such as %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld files aren’t committed, such as %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld filer er ikke committet, for eksempel %2$@"
           }
         }
       }
@@ -893,6 +991,16 @@
         }
       }
     },
+    "%lld repositories stay" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld repoer blir liggende"
+          }
+        }
+      }
+    },
     "%lld simulators" : {
       "localizations" : {
         "nb" : {
@@ -929,6 +1037,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld ble hoppet over"
+          }
+        }
+      }
+    },
+    "%lld stashes exist only here" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld stasher finnes bare her"
+          }
+        }
+      }
+    },
+    "%lld stay" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld blir liggende"
           }
         }
       }
@@ -993,6 +1121,36 @@
         }
       }
     },
+    "1 can go" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 kan fjernes"
+          }
+        }
+      }
+    },
+    "1 commit isn’t on GitHub right now, or GitHub has changes this copy hasn’t fetched" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 commit er ikke på GitHub nå, eller GitHub har endringer som denne kopien ikke har hentet"
+          }
+        }
+      }
+    },
+    "1 commit isn’t on any remote branch" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 commit er ikke på noen remote-gren"
+          }
+        }
+      }
+    },
     "1 day" : {
       "localizations" : {
         "nb" : {
@@ -1023,12 +1181,42 @@
         }
       }
     },
+    "1 repository stays" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 repo blir liggende"
+          }
+        }
+      }
+    },
     "1 simulator" : {
       "localizations" : {
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 simulator"
+          }
+        }
+      }
+    },
+    "1 stash exists only here" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 stash finnes bare her"
+          }
+        }
+      }
+    },
+    "1 stays" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 blir liggende"
           }
         }
       }
@@ -1373,6 +1561,42 @@
         }
       }
     },
+    "Branch %@ doesn’t track a branch on a remote" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grenen %@ følger ingen gren på en remote"
+          }
+        }
+      }
+    },
+    "Branch %@ has %lld commits that aren’t pushed" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Branch %1$@ has %2$lld commits that aren’t pushed"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grenen %1$@ har %2$lld commits som ikke er pushet"
+          }
+        }
+      }
+    },
+    "Branch %@ has 1 commit that isn’t pushed" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grenen %@ har 1 commit som ikke er pushet"
+          }
+        }
+      }
+    },
     "Build" : {
       "localizations" : {
         "nb" : {
@@ -1483,6 +1707,16 @@
         }
       }
     },
+    "Checking each repository against GitHub…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sjekker hvert repo mot GitHub …"
+          }
+        }
+      }
+    },
     "Checking that nothing is in use…" : {
       "localizations" : {
         "nb" : {
@@ -1589,6 +1823,16 @@
         }
       }
     },
+    "Clone again" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klon på nytt"
+          }
+        }
+      }
+    },
     "Close %lld tabs" : {
       "localizations" : {
         "nb" : {
@@ -1639,12 +1883,48 @@
         }
       }
     },
+    "Couldn’t check %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke sjekke %@"
+          }
+        }
+      }
+    },
     "Couldn’t check which files are open" : {
       "localizations" : {
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kunne ikke sjekke hvilke filer som er åpne"
+          }
+        }
+      }
+    },
+    "Couldn’t clone %@: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Couldn’t clone %1$@: %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke klone %1$@: %2$@"
+          }
+        }
+      }
+    },
+    "Couldn’t look up %@ on GitHub" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke slå opp %@ på GitHub"
           }
         }
       }
@@ -1661,6 +1941,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kunne ikke flytte %1$@: %2$@"
+          }
+        }
+      }
+    },
+    "Couldn’t reach the remote %@ just now" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fikk ikke kontakt med remoten %@ akkurat nå"
           }
         }
       }
@@ -2083,6 +2373,26 @@
         }
       }
     },
+    "Git isn’t installed, so MacUnclog can’t check this repository" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Git er ikke installert, så MacUnclog kan ikke sjekke dette repoet"
+          }
+        }
+      }
+    },
+    "GitHub can’t find %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub finner ikke %@"
+          }
+        }
+      }
+    },
     "Go build cache" : {
       "localizations" : {
         "nb" : {
@@ -2109,6 +2419,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gradle-daemon"
+          }
+        }
+      }
+    },
+    "Has a worktree outside its folder, at %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Har et worktree utenfor mappa si, i %@"
           }
         }
       }
@@ -2163,6 +2483,16 @@
         }
       }
     },
+    "History has no remote for this repository" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loggen har ingen remote for dette repoet"
+          }
+        }
+      }
+    },
     "Homebrew downloads" : {
       "localizations" : {
         "nb" : {
@@ -2179,6 +2509,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ubrukt. %@"
+          }
+        }
+      }
+    },
+    "Ignored by git and exist only here: %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorert av git og finnes bare her: %@"
+          }
+        }
+      }
+    },
+    "Ignored by git and exists only here: %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorert av git og finnes bare her: %@"
+          }
+        }
+      }
+    },
+    "In place" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "På plass"
           }
         }
       }
@@ -2259,12 +2619,38 @@
         }
       }
     },
+    "It takes up %@. MacUnclog checks it again first. You can put it back from the Bin, or clone it again from History." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det tar opp %@. MacUnclog sjekker det på nytt først. Du kan legge det tilbake fra papirkurven eller klone det på nytt fra Logg."
+          }
+        }
+      }
+    },
     "It takes up %@. You can put it back from the Bin until you empty it." : {
       "localizations" : {
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Den tar opp %@. Du kan legge den tilbake fra papirkurven til du tømmer den."
+          }
+        }
+      }
+    },
+    "Kept %@: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Kept %1$@: %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beholdt %1$@: %2$@"
           }
         }
       }
@@ -2295,6 +2681,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sist sjekket"
+          }
+        }
+      }
+    },
+    "Last commit" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siste commit"
           }
         }
       }
@@ -2729,12 +3125,32 @@
         }
       }
     },
+    "Move %lld repositories to the Bin?" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flytte %lld repoer til papirkurven?"
+          }
+        }
+      }
+    },
     "Move the selected files to the Bin" : {
       "localizations" : {
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Flytt de valgte filene til papirkurven"
+          }
+        }
+      }
+    },
+    "Move the selected repositories to the Bin" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flytt de valgte repoene til papirkurven"
           }
         }
       }
@@ -2785,12 +3201,38 @@
         }
       }
     },
+    "Moved %lld repositories to the Bin. Empty the Bin to free up to %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Moved %1$lld repositories to the Bin. Empty the Bin to free up to %2$@."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flyttet %1$lld repoer til papirkurven. Tøm papirkurven for å frigjøre opptil %2$@."
+          }
+        }
+      }
+    },
     "Moved 1 file to the Bin. Empty the Bin to free up to %@." : {
       "localizations" : {
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Flyttet 1 fil til papirkurven. Tøm papirkurven for å frigjøre opptil %@."
+          }
+        }
+      }
+    },
+    "Moved 1 repository to the Bin. Empty the Bin to free up to %@." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flyttet 1 repo til papirkurven. Tøm papirkurven for å frigjøre opptil %@."
           }
         }
       }
@@ -2845,6 +3287,16 @@
         }
       }
     },
+    "No branch here, so there’s nothing to compare with GitHub" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen gren her, så det er ingenting å sammenligne med GitHub"
+          }
+        }
+      }
+    },
     "No clean-ups yet" : {
       "localizations" : {
         "nb" : {
@@ -2871,6 +3323,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Finnes ikke lenger"
+          }
+        }
+      }
+    },
+    "No repositories found" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fant ingen repoer"
           }
         }
       }
@@ -3235,6 +3697,16 @@
         }
       }
     },
+    "Open on GitHub" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne på GitHub"
+          }
+        }
+      }
+    },
     "Open the folder with the log files" : {
       "localizations" : {
         "nb" : {
@@ -3495,6 +3967,46 @@
         }
       }
     },
+    "Repositories" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repoer"
+          }
+        }
+      }
+    },
+    "Repositories fully on GitHub" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repoer som ligger helt på GitHub"
+          }
+        }
+      }
+    },
+    "Repositories left alone for" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repoer urørt i"
+          }
+        }
+      }
+    },
+    "Repositories moved to the Bin · %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repoer flyttet til papirkurven · %@"
+          }
+        }
+      }
+    },
     "Restart" : {
       "localizations" : {
         "nb" : {
@@ -3531,6 +4043,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kjør automatisk rydding nå"
+          }
+        }
+      }
+    },
+    "Runs gh repo clone %@ at its old place" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kjører gh repo clone %@ på det gamle stedet"
+          }
+        }
+      }
+    },
+    "Runs git clone at its old place" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kjører git clone på det gamle stedet"
           }
         }
       }
@@ -3631,6 +4163,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Velg alle i %@"
+          }
+        }
+      }
+    },
+    "Select all repositories" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg alle repoer"
           }
         }
       }
@@ -3855,6 +4397,16 @@
         }
       }
     },
+    "Something is already at %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det ligger allerede noe i %@"
+          }
+        }
+      }
+    },
     "Spotlight is indexing your files. It will finish on its own." : {
       "localizations" : {
         "nb" : {
@@ -3927,6 +4479,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Starter …"
+          }
+        }
+      }
+    },
+    "Stays" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blir liggende"
           }
         }
       }
@@ -4071,6 +4633,26 @@
         }
       }
     },
+    "Storage offers a repository for the Bin only when nothing in it has changed for this long, and every commit, branch, tag and stash is on GitHub." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diskplass foreslår et repo for papirkurven bare når ingenting i det er endret på så lenge, og hver commit, gren, tag og stash er på GitHub."
+          }
+        }
+      }
+    },
+    "Submodule %@ has work that exists only here" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submodulen %@ har arbeid som bare finnes her"
+          }
+        }
+      }
+    },
     "Suggest %@ again" : {
       "localizations" : {
         "nb" : {
@@ -4137,6 +4719,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Faner …"
+          }
+        }
+      }
+    },
+    "Tag %@ isn’t on the remote" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taggen %@ er ikke på remoten"
           }
         }
       }
@@ -4237,6 +4829,16 @@
         }
       }
     },
+    "The clone took too long and was stopped" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kloningen tok for lang tid og ble stoppet"
+          }
+        }
+      }
+    },
     "The disk is almost full" : {
       "localizations" : {
         "nb" : {
@@ -4263,6 +4865,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iOS-simulatoren."
+          }
+        }
+      }
+    },
+    "The remote branch that %@ tracks is gone" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remote-grenen som %@ følger, er borte"
+          }
+        }
+      }
+    },
+    "The remote isn’t on GitHub: %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remoten er ikke på GitHub: %@"
           }
         }
       }
@@ -4335,6 +4957,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De bruker %@ minne."
+          }
+        }
+      }
+    },
+    "They take up %@. MacUnclog checks each one again first. You can put them back from the Bin, or clone them again from History." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De tar opp %@. MacUnclog sjekker hvert av dem på nytt først. Du kan legge dem tilbake fra papirkurven eller klone dem på nytt fra Logg."
           }
         }
       }
@@ -4817,6 +5449,26 @@
         }
       }
     },
+    "for uncommitted changes" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "etter endringer som ikke er committet"
+          }
+        }
+      }
+    },
+    "for unpushed commits" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "etter commits som ikke er pushet"
+          }
+        }
+      }
+    },
     "it hasn’t been restarted in a long time" : {
       "localizations" : {
         "nb" : {
@@ -5007,6 +5659,16 @@
         }
       }
     },
+    "the branches" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "grenene"
+          }
+        }
+      }
+    },
     "the disk is almost full" : {
       "localizations" : {
         "nb" : {
@@ -5017,12 +5679,62 @@
         }
       }
     },
+    "the ignored files" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "de ignorerte filene"
+          }
+        }
+      }
+    },
     "the search for .mcp.json files" : {
       "localizations" : {
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "søket etter .mcp.json-filer"
+          }
+        }
+      }
+    },
+    "the stash" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "stashen"
+          }
+        }
+      }
+    },
+    "the submodules" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "submodulene"
+          }
+        }
+      }
+    },
+    "the tags" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "taggene"
+          }
+        }
+      }
+    },
+    "the worktrees" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "worktreene"
           }
         }
       }
@@ -5043,6 +5755,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "hver uke kl. %@"
+          }
+        }
+      }
+    },
+    "which commits are on GitHub" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hvilke commits som er på GitHub"
           }
         }
       }

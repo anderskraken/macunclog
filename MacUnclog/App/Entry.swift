@@ -23,7 +23,7 @@ enum Entry {
 }
 
 enum CommandLineTool {
-    static let modes: Set<String> = ["--agent", "--diagnose", "--scan", "--files", "--skill", "--act", "--automation", "--protect", "--benchmark", "--help"]
+    static let modes: Set<String> = ["--agent", "--diagnose", "--scan", "--files", "--repos", "--skill", "--act", "--automation", "--protect", "--benchmark", "--help"]
 
     static func run(mode: String, arguments: [String]) async -> Int32 {
         switch mode {
@@ -180,6 +180,22 @@ enum CommandLineTool {
                 }
             }
             return 0
+        case "--repos":
+            let settings = AutomationSettings.load()
+            let context = await ScanContext.capture(activityWindow: settings.activityWindow, projectRoots: settings.projectRoots)
+            let repos = await Repositories.find(in: context, idleWindow: settings.repoIdleWindow)
+            if arguments.contains("--json") {
+                print(Report.json(Report.ReposReport(repos, idleDays: settings.repoIdleDays)))
+                return 0
+            }
+            let movable = repos.filter(\.canMove)
+            print("== \(movable.count) of \(repos.count) repositories are fully on GitHub and left alone for \(settings.repoIdleDays) days, \(Format.bytes(movable.reduce(Int64(0)) { $0 + $1.bytes }))")
+            for repo in repos {
+                let size = repo.canMove ? Format.bytes(repo.bytes) : "-"
+                let status = repo.blocked.map { "  [STAYS: \($0.description)]" } ?? "  \(repo.remote?.slug ?? "")"
+                print("  \(size.padding(toLength: 10, withPad: " ", startingAt: 0)) \(repo.path)\(status)")
+            }
+            return 0
         case "--scan":
             let settings = AutomationSettings.load()
             let categories = arguments.compactMap(CleanupCategory.init(rawValue:))
@@ -245,6 +261,7 @@ enum CommandLineTool {
               --scan [category …] [--json]
                                     show what can be cleaned up, without deleting anything
               --files [--json]      list installers and large files in your folders, without moving anything
+              --repos [--json]      list git repositories whose whole content is on GitHub, without moving anything
               --skill [install|remove] [claude|codex]
                                     show, install or remove the skill for Claude Code and Codex
               --agent [--dry-run]   run the background agent once (--now forces a clean-up)

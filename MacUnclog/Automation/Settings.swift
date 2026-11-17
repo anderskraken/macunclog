@@ -18,6 +18,8 @@ struct AutomationSettings: Codable, Sendable, Equatable {
     var hour = 3
     var includedCategories: Set<CleanupCategory> = Set(CleanupCategory.allCases.filter(\.includedInAutomaticByDefault))
     var activityWindowDays = 3
+    /// How long a repository must have been left alone before it's offered for the Bin.
+    var repoIdleDays = Repositories.defaultIdleDays
     var notify = true
     var extraProjectRoots: [String] = []
     var protectedFolders: [String] = []
@@ -38,6 +40,7 @@ struct AutomationSettings: Codable, Sendable, Equatable {
         let categories = try container.decodeIfPresent([String].self, forKey: .includedCategories)
         includedCategories = categories.map { Set($0.compactMap(CleanupCategory.init(rawValue:))) } ?? defaults.includedCategories
         activityWindowDays = try container.decodeIfPresent(Int.self, forKey: .activityWindowDays) ?? defaults.activityWindowDays
+        repoIdleDays = try container.decodeIfPresent(Int.self, forKey: .repoIdleDays) ?? defaults.repoIdleDays
         notify = try container.decodeIfPresent(Bool.self, forKey: .notify) ?? defaults.notify
         extraProjectRoots = try container.decodeIfPresent([String].self, forKey: .extraProjectRoots) ?? defaults.extraProjectRoots
         protectedFolders = try container.decodeIfPresent([String].self, forKey: .protectedFolders) ?? defaults.protectedFolders
@@ -46,6 +49,7 @@ struct AutomationSettings: Codable, Sendable, Equatable {
 
     var lowDiskThreshold: Int64 { Int64(lowDiskThresholdGB) * Format.gigabyte }
     var activityWindow: TimeInterval { TimeInterval(activityWindowDays) * 86_400 }
+    var repoIdleWindow: TimeInterval { TimeInterval(repoIdleDays) * 86_400 }
 
     var projectRoots: [URL] {
         var roots = CleanupScanner.defaultProjectRoots()
