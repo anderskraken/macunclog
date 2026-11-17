@@ -14,6 +14,9 @@ struct MainView: View {
                     .tag(item)
             }
             .navigationSplitViewColumnWidth(min: 180, ideal: 200, max: 260)
+            .safeAreaInset(edge: .bottom) {
+                if let release = model.updates.available { UpdateBanner(release: release) }
+            }
         } detail: {
             switch model.selection ?? .overview {
             case .overview: OverviewView()

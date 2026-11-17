@@ -137,6 +137,8 @@ private struct GeneralSettingsView: View {
                 Text("MacUnclog then sits in the menu bar and shows whether your Mac is doing fine.").foregroundStyle(.secondary)
             }
 
+            UpdateSettingsSection()
+
             Section {
                 LabeledContent("Activity window") {
                     HStack(spacing: 8) {
