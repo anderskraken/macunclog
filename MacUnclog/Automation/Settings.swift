@@ -21,6 +21,8 @@ struct AutomationSettings: Codable, Sendable, Equatable {
     var notify = true
     var extraProjectRoots: [String] = []
     var protectedFolders: [String] = []
+    /// Bundle IDs of apps the user keeps open, so MacUnclog never suggests quitting them.
+    var appsNotSuggested: [String] = []
 
     init() {}
 
@@ -39,6 +41,7 @@ struct AutomationSettings: Codable, Sendable, Equatable {
         notify = try container.decodeIfPresent(Bool.self, forKey: .notify) ?? defaults.notify
         extraProjectRoots = try container.decodeIfPresent([String].self, forKey: .extraProjectRoots) ?? defaults.extraProjectRoots
         protectedFolders = try container.decodeIfPresent([String].self, forKey: .protectedFolders) ?? defaults.protectedFolders
+        appsNotSuggested = try container.decodeIfPresent([String].self, forKey: .appsNotSuggested) ?? defaults.appsNotSuggested
     }
 
     var lowDiskThreshold: Int64 { Int64(lowDiskThresholdGB) * Format.gigabyte }

@@ -20,6 +20,8 @@ enum Remedy: Sendable, Hashable {
     case shutDownIdleSimulators(Int)
     case stopOrphanedTools(Int)
     case showAgents
+    /// Every app with its memory, to pick another one than the suggestion.
+    case showApps
 }
 
 struct Finding: Identifiable, Sendable, Hashable {

@@ -26,6 +26,10 @@ struct OverviewView: View {
         .navigationSubtitle(model.diagnosis.map { String(localized: "Measured at \($0.snapshot.takenAt.formatted(date: .omitted, time: .shortened))") } ?? "")
         .toolbar {
             ToolbarItem {
+                Button("Apps", systemImage: "square.stack.3d.up") { model.showingApps = true }
+                    .help("Apps using memory, to quit, restart or keep")
+            }
+            ToolbarItem {
                 Button("Refresh", systemImage: "arrow.clockwise") {
                     Task { await model.refreshDiagnosis() }
                 }

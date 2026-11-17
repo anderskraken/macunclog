@@ -7,6 +7,9 @@ struct AgentLoad: Sendable {
     var sessions: [AgentSession] = []
     var simulators: [BootedSimulator] = []
     var tools: [ToolProcess] = []
+    /// Every process an agent session runs under: its terminal, IDE or app. Quitting one of
+    /// these ends the session, whatever app it is.
+    var hostPIDs: Set<pid_t> = []
 
     static let empty = AgentLoad()
 
@@ -351,7 +354,9 @@ enum AgentLoadBuilder {
                                    bootedAt: bootedAt, cpuPercent: load, memoryBytes: memory(tree), users: users, idleReason: idle)
         }.sorted { $0.memoryBytes > $1.memoryBytes }
 
-        return AgentLoad(sessions: sessions, simulators: simulators, tools: tools.sorted { $0.cpuPercent > $1.cpuPercent })
+        let hosts = Set(sessionRows.flatMap { ancestors(of: $0.pid, in: byPID).map(\.pid) }).subtracting([1])
+        return AgentLoad(sessions: sessions, simulators: simulators, tools: tools.sorted { $0.cpuPercent > $1.cpuPercent },
+                         hostPIDs: hosts)
     }
 
     /// Parent first, up to (and including) launchd.

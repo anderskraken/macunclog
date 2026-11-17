@@ -170,19 +170,28 @@ final class AppModel {
         }
     }
 
+    /// Set when a refresh is asked for while one runs, for example after a settings change
+    /// the running one didn't see.
+    @ObservationIgnored private var diagnoseAgain = false
+
     func refreshDiagnosis() async {
-        guard !isDiagnosing else { return }
+        guard !isDiagnosing else {
+            diagnoseAgain = true
+            return
+        }
         isDiagnosing = true
         defer { isDiagnosing = false }
-        var thresholds = DiagnosisThresholds()
-        thresholds.lowDiskBytes = max(settings.lowDiskThreshold, thresholds.criticalDiskBytes)
-        #if DEBUG
-        let snapshot = DemoData.isEnabled ? DemoData.snapshot() : await SystemProbe.capture()
-        #else
-        let snapshot = await SystemProbe.capture()
-        #endif
-        diagnosis = VerdictEngine.diagnose(SharedCPUStreaks.record(snapshot, threshold: thresholds.cpuHogPercent), thresholds: thresholds)
-        disk = snapshot.disk
+        repeat {
+            diagnoseAgain = false
+            let thresholds = DiagnosisThresholds(settings: settings)
+            #if DEBUG
+            let snapshot = DemoData.isEnabled ? DemoData.snapshot() : await SystemProbe.capture()
+            #else
+            let snapshot = await SystemProbe.capture()
+            #endif
+            diagnosis = VerdictEngine.diagnose(SharedCPUStreaks.record(snapshot, threshold: thresholds.cpuHogPercent), thresholds: thresholds)
+            disk = snapshot.disk
+        } while diagnoseAgain
     }
 
     func process(_ pid: pid_t) -> ProcessSample? {
@@ -233,7 +242,71 @@ final class AppModel {
         case .shutDownIdleSimulators: Task { await shutDownIdleSimulators() }
         case .stopOrphanedTools: requestStopOrphanedTools()
         case .showAgents: selection = .agents
+        case .showApps: showingApps = true
         }
+    }
+
+    // MARK: Apps
+
+    /// The list behind "More apps…".
+    var showingApps = false
+
+    /// Every app the user may quit, with its helpers counted in, biggest first. Includes the
+    /// apps the user asked MacUnclog not to suggest.
+    var apps: [AppUsage] {
+        guard let snapshot = diagnosis?.snapshot else { return [] }
+        return AppUsage.quittable(snapshot.processes, hosts: snapshot.agents.hostPIDs)
+    }
+
+    /// Apps being restarted, so their Restart button can't be pressed twice.
+    private(set) var restarting: Set<pid_t> = []
+
+    func isSuggested(_ app: ProcessSample) -> Bool {
+        !settings.appsNotSuggested.contains(app.bundleIdentifier ?? "")
+    }
+
+    func setSuggested(_ app: ProcessSample, _ suggested: Bool) {
+        guard let bundleID = app.bundleIdentifier else { return }
+        setSuggested(bundleID: bundleID, suggested)
+    }
+
+    func setSuggested(bundleID: String, _ suggested: Bool) {
+        settings.appsNotSuggested.removeAll { $0 == bundleID }
+        if !suggested { settings.appsNotSuggested.append(bundleID) }
+        Task { await refreshDiagnosis() }
+    }
+
+    /// Quits the app and opens it again once it has quit. Apps like Slack grow over the day,
+    /// and a restart gives the memory back without losing anything.
+    func restart(_ app: ProcessSample) async {
+        guard actionAllowed(), !restarting.contains(app.pid) else { return }
+        guard let running = NSRunningApplication(processIdentifier: app.pid), !running.isTerminated, let url = running.bundleURL else {
+            message = String(localized: "\(app.name) has already quit.")
+            return
+        }
+        restarting.insert(app.pid)
+        defer { restarting.remove(app.pid) }
+        do {
+            try ProcessController.perform(.quit, on: app)
+        } catch {
+            message = error.description
+            return
+        }
+        for _ in 0..<60 where !running.isTerminated {
+            try? await Task.sleep(for: .milliseconds(250))
+        }
+        guard running.isTerminated else {
+            message = String(localized: "\(app.name) didn’t quit. It may be asking you to save something.")
+            return
+        }
+        let configuration = NSWorkspace.OpenConfiguration()
+        configuration.activates = false
+        do {
+            _ = try await NSWorkspace.shared.openApplication(at: url, configuration: configuration)
+        } catch {
+            message = String(localized: "\(app.name) quit, but didn’t open again: \(error.localizedDescription)")
+        }
+        await refreshDiagnosis()
     }
 
     // MARK: Agents

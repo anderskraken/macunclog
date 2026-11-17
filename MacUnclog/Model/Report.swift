@@ -83,6 +83,7 @@ enum Report {
             case .shutDownIdleSimulators(let n): (action, pid, name, count, command) = ("shutDownIdleSimulators", nil, nil, n, nil)
             case .stopOrphanedTools(let n): (action, pid, name, count, command) = ("stopOrphanedTools", nil, nil, n, nil)
             case .showAgents: (action, pid, name, count, command) = ("showAgents", nil, nil, nil, nil)
+            case .showApps: (action, pid, name, count, command) = ("showApps", nil, nil, nil, nil)
             }
         }
     }

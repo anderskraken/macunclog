@@ -149,6 +149,22 @@ private struct GeneralSettingsView: View {
                     .foregroundStyle(.secondary)
             }
 
+            Section {
+                if model.settings.appsNotSuggested.isEmpty {
+                    Text("None").foregroundStyle(.secondary)
+                }
+                ForEach(model.settings.appsNotSuggested, id: \.self) { bundleID in
+                    LabeledContent(Self.appName(bundleID)) {
+                        Button("Suggest again") { model.setSuggested(bundleID: bundleID, true) }
+                    }
+                }
+            } header: {
+                Text("Apps not suggested")
+            } footer: {
+                Text("MacUnclog never suggests quitting these apps. To add one, right-click a suggested Quit button, or use the … menu under Apps in Overview.")
+                    .foregroundStyle(.secondary)
+            }
+
             Section("Project folders") {
                 ForEach(CleanupScanner.defaultProjectRoots(), id: \.self) { url in
                     LabeledContent(url.path.replacingOccurrences(of: NSHomeDirectory(), with: "~"), value: String(localized: "Default"))
@@ -198,6 +214,14 @@ private struct GeneralSettingsView: View {
         panel.prompt = String(localized: "Add")
         guard panel.runModal() == .OK, let url = panel.url else { return nil }
         return url.path.replacingOccurrences(of: NSHomeDirectory(), with: "~")
+    }
+}
+
+extension GeneralSettingsView {
+    /// "Slack" for com.tinyspeck.slackmacgap, or the bundle ID when the app is gone.
+    static func appName(_ bundleID: String) -> String {
+        guard let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleID) else { return bundleID }
+        return (FileManager.default.displayName(atPath: url.path) as NSString).deletingPathExtension
     }
 }
 

@@ -7,7 +7,8 @@ struct DiagnoseMacIntent: AppIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult & ReturnsValue<String> & ProvidesDialog {
-        let diagnosis = VerdictEngine.diagnose(SharedCPUStreaks.record(await SystemProbe.capture()))
+        let diagnosis = VerdictEngine.diagnose(SharedCPUStreaks.record(await SystemProbe.capture()),
+                                               thresholds: DiagnosisThresholds(settings: .load()))
         let text = "\(diagnosis.verdict.headline). \(diagnosis.verdict.summary)"
         return .result(value: text, dialog: "\(text)")
     }

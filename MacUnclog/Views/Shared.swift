@@ -114,6 +114,11 @@ struct RemedyButtons: View {
             ForEach(Array(remedies.enumerated()), id: \.offset) { index, remedy in
                 let button = Button(title(remedy), systemImage: symbol(remedy)) { model.perform(remedy) }
                     .controlSize(controlSize)
+                    .contextMenu {
+                        if case .quit(let ref) = remedy, let app = model.process(ref.pid), app.bundleIdentifier != nil {
+                            Button("Don’t suggest \(ref.name)") { model.setSuggested(app, false) }
+                        }
+                    }
                 if index == 0 {
                     button.buttonStyle(.borderedProminent)
                 } else {
@@ -135,6 +140,7 @@ struct RemedyButtons: View {
         case .stopOrphanedTools(let count):
             count == 1 ? String(localized: "Stop the tool") : String(localized: "Stop \(count) tools")
         case .showAgents: String(localized: "Show agents")
+        case .showApps: String(localized: "More apps…")
         }
     }
 
@@ -148,6 +154,7 @@ struct RemedyButtons: View {
         case .shutDownIdleSimulators: "power"
         case .stopOrphanedTools: "stop.circle"
         case .showAgents: "person.2.wave.2"
+        case .showApps: "list.bullet"
         }
     }
 }

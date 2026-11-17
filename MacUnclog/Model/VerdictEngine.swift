@@ -6,6 +6,17 @@ struct DiagnosisThresholds: Sendable {
     var cpuHogPercent: Double = 80
     var memoryHogBytes: UInt64 = 2 * UInt64(Format.gigabyte)
     var longUptime: TimeInterval = 14 * 86_400
+    /// Bundle IDs of apps the user keeps open: never suggested for quitting.
+    var appsNotSuggested: Set<String> = []
+}
+
+extension DiagnosisThresholds {
+    /// The defaults with the user's low-space limit and the apps they keep open.
+    init(settings: AutomationSettings) {
+        self.init()
+        lowDiskBytes = max(settings.lowDiskThreshold, criticalDiskBytes)
+        appsNotSuggested = Set(settings.appsNotSuggested)
+    }
 }
 
 /// Turns a snapshot into ranked findings and one verdict. Each rule reads the snapshot
@@ -138,7 +149,8 @@ enum VerdictEngine {
     static let memory: Rule = { snapshot, thresholds in
         let memory = snapshot.memory
         let swap = Format.memory(memory.swapUsed)
-        let remedies = AppUsage.quittable(snapshot.processes).prefix(2).flatMap { quitRemedies($0.app).prefix(1) }
+        let remedies = AppUsage.quittable(snapshot.processes, excluding: thresholds.appsNotSuggested, hosts: snapshot.agents.hostPIDs).prefix(2)
+            .flatMap { quitRemedies($0.app).prefix(1) } + [.showApps]
 
         switch memory.pressure {
         case .critical:
@@ -229,7 +241,7 @@ enum VerdictEngine {
     static let memoryHogs: Rule = { snapshot, thresholds in
         let total = snapshot.memory.total
         let underPressure = snapshot.memory.pressure != .normal
-        return AppUsage.quittable(snapshot.processes)
+        return AppUsage.quittable(snapshot.processes, excluding: thresholds.appsNotSuggested, hosts: snapshot.agents.hostPIDs)
             .filter { $0.memory >= thresholds.memoryHogBytes }
             .filter { underPressure || Double($0.memory) >= Double(total) * 0.3 }
             .prefix(3)
@@ -248,7 +260,7 @@ enum VerdictEngine {
                     title: String(localized: "\(name) is using \(amount) of memory"),
                     reason: String(localized: "\(name) is using \(amount) of memory"),
                     detail: detail,
-                    symbol: "memorychip", remedies: quitRemedies(usage.app)
+                    symbol: "memorychip", remedies: quitRemedies(usage.app) + [.showApps]
                 )
             }
     }

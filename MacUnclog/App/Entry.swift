@@ -263,8 +263,7 @@ enum CommandLineTool {
     /// apart, so a CPU load that lasts can be told apart from a spike. Returns the diagnosis
     /// and the seconds actually covered.
     static func measure(for seconds: Int) async -> (Diagnosis, Int) {
-        var thresholds = DiagnosisThresholds()
-        thresholds.lowDiskBytes = max(AutomationSettings.load().lowDiskThreshold, thresholds.criticalDiskBytes)
+        let thresholds = DiagnosisThresholds(settings: .load())
         var streaks = CPUStreaks.empty
         var first: Date?
         while true {

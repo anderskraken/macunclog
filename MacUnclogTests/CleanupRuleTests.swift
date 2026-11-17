@@ -103,9 +103,24 @@ struct VerdictEngineTests {
                                    isNotResponding: false, state: .running, cpuPercent: 1, memoryBytes: 3 << 30)
         let diagnosis = VerdictEngine.diagnose(snapshot(pressure: .warning, processes: [claude, teams, helper]))
         let pressure = diagnosis.findings.first { $0.kind == .memoryPressure }
-        #expect(pressure?.remedies == [.quit(ProcessRef(pid: 20, name: "Teams"))])
+        #expect(pressure?.remedies == [.quit(ProcessRef(pid: 20, name: "Teams")), .showApps])
         #expect(diagnosis.findings.contains { $0.title == "Teams is using \(Format.memory(4 << 30)) of memory" })
         #expect(!diagnosis.findings.contains { $0.kind == .memoryHog(10) })
+    }
+
+    @Test func appsTheUserKeepsOpenAreNeverSuggested() {
+        let slack = ProcessSample(pid: 30, name: "Slack", executablePath: "/Applications/Slack.app/Contents/MacOS/Slack",
+                                  bundleIdentifier: "com.tinyspeck.slackmacgap", isRegularApp: true, isOwnedByUser: true,
+                                  isNotResponding: false, state: .running, cpuPercent: 1, memoryBytes: 5 << 30)
+        let notes = ProcessSample(pid: 31, name: "Notes", executablePath: "/System/Applications/Notes.app/Contents/MacOS/Notes",
+                                  bundleIdentifier: "com.apple.Notes", isRegularApp: true, isOwnedByUser: true,
+                                  isNotResponding: false, state: .running, cpuPercent: 1, memoryBytes: 1 << 30)
+        var thresholds = DiagnosisThresholds()
+        thresholds.appsNotSuggested = ["com.tinyspeck.slackmacgap"]
+        let diagnosis = VerdictEngine.diagnose(snapshot(pressure: .warning, processes: [slack, notes]), thresholds: thresholds)
+        let pressure = diagnosis.findings.first { $0.kind == .memoryPressure }
+        #expect(pressure?.remedies == [.quit(ProcessRef(pid: 31, name: "Notes")), .showApps])
+        #expect(!diagnosis.findings.contains { $0.kind == .memoryHog(30) })
     }
 
     @Test func lowDiskBelowThresholdOffersCleanup() {

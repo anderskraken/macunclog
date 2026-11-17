@@ -157,6 +157,26 @@
         }
       }
     },
+    "%@ didn’t answer. It may be busy. Try again in a moment." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ svarte ikke. Den er kanskje opptatt. Prøv igjen om litt."
+          }
+        }
+      }
+    },
+    "%@ didn’t quit. It may be asking you to save something." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ble ikke avsluttet. Den spør kanskje om å lagre noe."
+          }
+        }
+      }
+    },
     "%@ free" : {
       "localizations" : {
         "nb" : {
@@ -209,6 +229,16 @@
         }
       }
     },
+    "%@ has quit." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ er avsluttet."
+          }
+        }
+      }
+    },
     "%@ has stopped responding" : {
       "localizations" : {
         "nb" : {
@@ -241,6 +271,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ har brukt %2$@ CPU i %3$@"
+          }
+        }
+      }
+    },
+    "%@ in %lld windows" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ in %2$lld windows"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ i %2$lld vinduer"
           }
         }
       }
@@ -451,6 +497,32 @@
         }
       }
     },
+    "%@ quit, but didn’t open again: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ quit, but didn’t open again: %2$@"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ ble avsluttet, men åpnet seg ikke igjen: %2$@"
+          }
+        }
+      }
+    },
+    "%@ sent a tab list MacUnclog couldn’t read." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ sendte en faneliste MacUnclog ikke kunne lese."
+          }
+        }
+      }
+    },
     "%@ session in %@ · started %@" : {
       "localizations" : {
         "en" : {
@@ -537,6 +609,48 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ · %2$lld av %3$lld ryddet · ledig %4$@ → %5$@"
+          }
+        }
+      }
+    },
+    "%@ · %lld processes" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · %2$lld processes"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$lld prosesser"
+          }
+        }
+      }
+    },
+    "%@ · closed %lld tabs" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · closed %2$lld tabs"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · lukket %2$lld faner"
+          }
+        }
+      }
+    },
+    "%@ · closed 1 tab" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · lukket 1 fane"
           }
         }
       }
@@ -819,6 +933,26 @@
         }
       }
     },
+    "%lld tabs" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld faner"
+          }
+        }
+      }
+    },
+    "%lld tabs weren’t closed. They changed or moved after the list was made." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld faner ble ikke lukket. De ble endret eller flyttet etter at listen ble laget."
+          }
+        }
+      }
+    },
     "%lld tools" : {
       "localizations" : {
         "nb" : {
@@ -895,6 +1029,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 simulator"
+          }
+        }
+      }
+    },
+    "1 tab" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 fane"
+          }
+        }
+      }
+    },
+    "1 tab wasn’t closed. It changed or moved after the list was made." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 fane ble ikke lukket. Den ble endret eller flyttet etter at listen ble laget."
           }
         }
       }
@@ -1125,6 +1279,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rester etter app-oppdateringer"
+          }
+        }
+      }
+    },
+    "Apps" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apper"
+          }
+        }
+      }
+    },
+    "Apps not suggested" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apper som ikke foreslås"
+          }
+        }
+      }
+    },
+    "Apps using memory" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apper som bruker minne"
+          }
+        }
+      }
+    },
+    "Apps using memory, to quit, restart or keep" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apper som bruker minne, for å avslutte, starte på nytt eller beholde"
           }
         }
       }
@@ -1395,6 +1589,26 @@
         }
       }
     },
+    "Close %lld tabs" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lukk %lld faner"
+          }
+        }
+      }
+    },
+    "Close 1 tab" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lukk 1 fane"
+          }
+        }
+      }
+    },
     "Coding agents" : {
       "localizations" : {
         "nb" : {
@@ -1623,6 +1837,16 @@
         }
       }
     },
+    "Don’t suggest %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke foreslå %@"
+          }
+        }
+      }
+    },
     "Download caches for npm, pnpm, Yarn, Bun, Gradle, CocoaPods, Playwright, Homebrew, SwiftPM, Go, pip, uv, Cargo, node-gyp and Electron. Everything is downloaded again when needed." : {
       "localizations" : {
         "nb" : {
@@ -1639,6 +1863,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tegner alt på skjermen. Mange vinduer, skjermer og animasjoner gir høy last."
+          }
+        }
+      }
+    },
+    "Duplicate" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duplikat"
           }
         }
       }
@@ -2195,6 +2429,16 @@
         }
       }
     },
+    "MacUnclog couldn’t read the tabs in %@." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog kunne ikke lese fanene i %@."
+          }
+        }
+      }
+    },
     "MacUnclog doesn’t touch this process" : {
       "localizations" : {
         "nb" : {
@@ -2225,6 +2469,16 @@
         }
       }
     },
+    "MacUnclog isn’t allowed to control %@. You can allow it in System Settings > Privacy & Security > Automation." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog har ikke lov til å styre %@. Du kan tillate det i Systeminnstillinger > Personvern og sikkerhet > Automatisering."
+          }
+        }
+      }
+    },
     "MacUnclog isn’t allowed to touch %@." : {
       "localizations" : {
         "nb" : {
@@ -2251,6 +2505,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "MacUnclog sletter aldri noe i disse mappene. Det samme gjelder Dokumenter, Skrivebord, Nedlastinger, Bilder, Filmer, Musikk og iCloud Drive."
+          }
+        }
+      }
+    },
+    "MacUnclog never suggests quitting these apps. To add one, right-click a suggested Quit button, or use the … menu under Apps in Overview." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog foreslår aldri å avslutte disse appene. Du legger til en ved å høyreklikke en foreslått Avslutt-knapp, eller med …-menyen under Apper i Oversikt."
           }
         }
       }
@@ -2435,6 +2699,26 @@
         }
       }
     },
+    "More actions for %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flere handlinger for %@"
+          }
+        }
+      }
+    },
+    "More apps…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flere apper …"
+          }
+        }
+      }
+    },
     "Move %lld files to the Bin?" : {
       "localizations" : {
         "nb" : {
@@ -2611,6 +2895,16 @@
         }
       }
     },
+    "None" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen"
+          }
+        }
+      }
+    },
     "Normal" : {
       "localizations" : {
         "nb" : {
@@ -2707,6 +3001,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ikke skannet"
+          }
+        }
+      }
+    },
+    "Not suggested" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foreslås ikke"
           }
         }
       }
@@ -2867,6 +3171,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bare %@ er ledig. Når disken er nesten full, får macOS ikke plass til swap og cacher, og alt går tregere."
+          }
+        }
+      }
+    },
+    "Open Automation settings" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Åpne innstillinger for automatisering"
           }
         }
       }
@@ -3101,6 +3415,16 @@
         }
       }
     },
+    "Quit %@ and open it again. Apps that grow during the day give the memory back." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avslutt %@ og åpne den igjen. Apper som vokser i løpet av dagen, gir da fra seg minnet."
+          }
+        }
+      }
+    },
     "Quit MacUnclog" : {
       "localizations" : {
         "nb" : {
@@ -3167,6 +3491,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Erstatte den endrede skillen?"
+          }
+        }
+      }
+    },
+    "Restart" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start på nytt"
           }
         }
       }
@@ -3297,6 +3631,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Velg alle i %@"
+          }
+        }
+      }
+    },
+    "Select duplicates" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velg duplikater"
           }
         }
       }
@@ -3727,6 +4071,26 @@
         }
       }
     },
+    "Suggest %@ again" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foreslå %@ igjen"
+          }
+        }
+      }
+    },
+    "Suggest again" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foreslå igjen"
+          }
+        }
+      }
+    },
     "Swift build" : {
       "localizations" : {
         "nb" : {
@@ -3753,6 +4117,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symbolfiler i DeviceSupport-mappene for iOS, watchOS, tvOS og visionOS for eldre OS-versjoner. Den nyeste versjonen per plattform beholdes."
+          }
+        }
+      }
+    },
+    "Tabs in %@" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faner i %@"
+          }
+        }
+      }
+    },
+    "Tabs…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faner …"
           }
         }
       }
@@ -4065,6 +4449,16 @@
         }
       }
     },
+    "Try again" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prøv igjen"
+          }
+        }
+      }
+    },
     "Unknown" : {
       "localizations" : {
         "nb" : {
@@ -4191,6 +4585,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hvorfor er Macen treg?"
+          }
+        }
+      }
+    },
+    "Window %lld" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vindu %lld"
           }
         }
       }

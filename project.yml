@@ -45,6 +45,8 @@ targets:
         PRODUCT_NAME: MacUnclog
         INFOPLIST_KEY_CFBundleDisplayName: MacUnclog
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
+        INFOPLIST_KEY_NSAppleEventsUsageDescription: "MacUnclog lists a browser’s tabs and closes the ones you choose. It only does this when you open Tabs for that browser."
+        CODE_SIGN_ENTITLEMENTS: MacUnclog/Resources/MacUnclog.entitlements
         INFOPLIST_KEY_NSHumanReadableCopyright: "© 2026 Anders Kråkenes"
         GENERATE_INFOPLIST_FILE: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon

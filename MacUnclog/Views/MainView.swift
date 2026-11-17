@@ -31,6 +31,7 @@ struct MainView: View {
             switch UserDefaults.standard.string(forKey: "MUOpen") {
             case "settings": openSettings()
             case "menubar": openWindow(id: "menubar-preview")
+            case "apps": model.showingApps = true
             default: break
             }
         }
@@ -47,6 +48,7 @@ struct MainView: View {
                 [tool.label, tool.place?.title, "PID \(tool.pid)"].compactMap { $0 }.joined(separator: " · ")
             }.joined(separator: "\n"))
         }
+        .sheet(isPresented: $model.showingApps) { AppsSheet() }
         .alert("That didn’t work", isPresented: Binding(get: { model.message != nil }, set: { if !$0 { model.message = nil } })) {
             Button("OK", role: .cancel) {}
         } message: {
