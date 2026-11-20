@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		05652577020E28A3A8756C83 /* AgentSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073516A7521FD023D7153DC4 /* AgentSkill.swift */; };
 		0CDB078E6FBE0A41F03D6D4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2518A8EC9A7FDB87A635C0CB /* Assets.xcassets */; };
+		0D97201EC53EC5C76B041800 /* SimSlim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8A3FFD6E5B12109F8352EF /* SimSlim.swift */; };
 		0DD910B696AB7A96117427C2 /* ProcessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BF2B8E63C51F1D680A11EE /* ProcessController.swift */; };
 		0E561F04F605726CF5E9D1AF /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850A082994AB414682AF9DB /* Entry.swift */; };
 		11E8615A65694E7FD9CDB681 /* SystemSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544936AEBB0E34F4017F66E /* SystemSnapshot.swift */; };
@@ -41,6 +42,7 @@
 		9B97804F888729B332A6C8AA /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCAE43D2B83A23BE21141E4 /* MenuBarView.swift */; };
 		9BD1B96955B5BD0A32AA4510 /* PersonalFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B730AF270FFFCAE03CEF4F /* PersonalFiles.swift */; };
 		9C0D40041EDB0240AA9AEFDF /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560BAF927B90B2115EAA6CB8 /* AppModel.swift */; };
+		9CAB452887BC9146822CEA8E /* SimSlimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A236E85BB2ADFB031089EA68 /* SimSlimTests.swift */; };
 		9F9C6936D1A80FA5F2AB2E54 /* BackgroundAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8652EE6368850C4BA2C7CFAA /* BackgroundAgent.swift */; };
 		A17DB73092EF9D3F485DFEF2 /* SystemProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721F190C4C4BA46D3CD39CE4 /* SystemProbe.swift */; };
 		A496EDCF0E1DD65BEF22ACDE /* AgentLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2039CD7B8EB5EF747E81DF0 /* AgentLoad.swift */; };
@@ -148,9 +150,11 @@
 		97F444EE763818D5F9E48250 /* Shell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
 		9B7E2F15FB21B4CF03810323 /* ProcessPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessPolicy.swift; sourceTree = "<group>"; };
 		9D66E22A5ADE6FC358524796 /* ProjectIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectIndex.swift; sourceTree = "<group>"; };
+		9F8A3FFD6E5B12109F8352EF /* SimSlim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimSlim.swift; sourceTree = "<group>"; };
 		A14D0F594637675063D19638 /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
 		A175561492BD5D9F50287DF0 /* PersonalFilesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalFilesTests.swift; sourceTree = "<group>"; };
 		A2039CD7B8EB5EF747E81DF0 /* AgentLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentLoad.swift; sourceTree = "<group>"; };
+		A236E85BB2ADFB031089EA68 /* SimSlimTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimSlimTests.swift; sourceTree = "<group>"; };
 		A7D16450FAF135154918832D /* DemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoData.swift; sourceTree = "<group>"; };
 		AF459DC48037080DD1DEAC67 /* CleanupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanupModel.swift; sourceTree = "<group>"; };
 		AF987D04B5BE2A87455929BE /* io.github.anderskraken.macunclog.agent.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = io.github.anderskraken.macunclog.agent.plist; sourceTree = "<group>"; };
@@ -181,6 +185,7 @@
 				730A49D19693244E4F4D554C /* ProcessActionTests.swift */,
 				428E61274BE9691673DD1573 /* ProjectBuildTests.swift */,
 				CA72F3DAB3D2348D15787B40 /* RepositoryTests.swift */,
+				A236E85BB2ADFB031089EA68 /* SimSlimTests.swift */,
 				7A3F9759CC6E14AB380F436A /* SustainedCPUTests.swift */,
 				8F3D8CBC3BD5C6B4180EA0A3 /* UpdateCheckerTests.swift */,
 			);
@@ -312,6 +317,7 @@
 				26B44FAF4C26708D67F66842 /* BrowserTabs.swift */,
 				E7BF2B8E63C51F1D680A11EE /* ProcessController.swift */,
 				492D8917109059FF65C98187 /* RunningApps.swift */,
+				9F8A3FFD6E5B12109F8352EF /* SimSlim.swift */,
 				721F190C4C4BA46D3CD39CE4 /* SystemProbe.swift */,
 				6F65B696514AE15DD0EE47CE /* ToolStopper.swift */,
 			);
@@ -491,6 +497,7 @@
 				861273085A93F3AF9022035F /* SettingsView.swift in Sources */,
 				EFBBDE0381A90AD8DE144258 /* Shared.swift in Sources */,
 				21AF41206B42AB638904FE2B /* Shell.swift in Sources */,
+				0D97201EC53EC5C76B041800 /* SimSlim.swift in Sources */,
 				4D717E96C5B4FB07A159B90A /* SimulatorInventory.swift in Sources */,
 				A17DB73092EF9D3F485DFEF2 /* SystemProbe.swift in Sources */,
 				11E8615A65694E7FD9CDB681 /* SystemSnapshot.swift in Sources */,
@@ -513,6 +520,7 @@
 				EA23C51D1FD60B4CCEE360F5 /* ProcessActionTests.swift in Sources */,
 				B1302301AACDC350BDCC6B38 /* ProjectBuildTests.swift in Sources */,
 				BBE6DB11D19AAEF106904B5E /* RepositoryTests.swift in Sources */,
+				9CAB452887BC9146822CEA8E /* SimSlimTests.swift in Sources */,
 				56084F837B13988009FC59E7 /* SustainedCPUTests.swift in Sources */,
 				810B17A48C1F68BC1716539E /* UpdateCheckerTests.swift in Sources */,
 			);

@@ -16,6 +16,7 @@ MacUnclog tells you why your Mac is slow and fixes it in one click. It is built 
 - **Diagnoses in seconds.** Memory pressure, swap, processes that keep the CPU busy (a short spike doesn't count), apps that have stopped responding, low disk space, thermal throttling and Low Power Mode. You get one verdict, such as "Your Mac is slow because 7 simulators are running at once", with buttons to fix it.
 - **Shows what agents are running.** Each Claude and Codex session with its project or worktree, the simulators that are booted, and the dev servers, emulators and builds each session started.
 - **Lets you choose what to quit.** Apps, in the Overview toolbar or under a memory finding, lists every app by memory. Apps like Slack can be restarted to give memory back, a browser's tabs can be listed and closed (Safari, Chrome, Dia, Arc, Brave, Edge and Vivaldi; duplicates are marked), and apps you keep open can be left out of the suggestions.
+- **Slims simulators with [simslim](https://github.com/MobAI-App/simslim).** When simslim is installed, Agents shows which simulators are slim and slims the others with one click, without restarting them. A slim simulator uses about a quarter of the memory. Settings > Coding agents can slim every simulator a minute after it boots.
 - **Stops what nobody uses.** Shuts down idle simulators and stops dev servers and tools that an agent left running after its session ended. It never touches a session, anything a running session owns, or anything it can't trace to an agent.
 - **Frees disk space safely.** Removes caches and build output, but only from projects that are idle and only after checking that nothing has the files open.
 - **Finds big files and old installers.** Disk images, installer packages and files over 500 MB in your own folders, which you can move to the Bin. It never moves them on its own and never empties the Bin.
@@ -121,7 +122,7 @@ MacUnclog.app/Contents/MacOS/MacUnclog --help
 - `--agent --dry-run` shows what the background agent would clean now.
 - `--automation on|off` turns automatic cleanup and the background agent on or off.
 - `--benchmark [N]` measures N diagnoses and prints wall time, CPU time and memory.
-- `--act quit|forceQuit|pause|resume PID`, `--act stop-tool PID` and `--act shutdown-simulator UDID` do what the buttons do, with the same checks.
+- `--act quit|forceQuit|pause|resume PID`, `--act stop-tool PID`, `--act shutdown-simulator UDID` and `--act slim-simulator UDID` do what the buttons do, with the same checks.
 
 ### Use it from Claude Code or Codex
 

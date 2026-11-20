@@ -33,6 +33,7 @@ enum AgentProbe {
             rows: rows, usage: usage, workingDirectories: directories, ports: ports,
             simulatorNames: simulatorNames(udids), now: now)
         inputs.launches = launches
+        inputs.slimUDIDs = SimSlim.slimUDIDs(udids)
         return AgentLoadBuilder.build(inputs)
     }
 

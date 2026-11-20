@@ -119,6 +119,9 @@ private struct SimulatorSection: View {
             GroupedRows(empty: "No simulators are running.", items: simulators) { simulator in
                 SimulatorRow(simulator: simulator)
             }
+            if !simulators.isEmpty && simulators.allSatisfy({ $0.slim == nil }) {
+                SimSlimHint()
+            }
         }
     }
 }
@@ -140,6 +143,17 @@ private struct SimulatorRow: View {
             }
             Spacer()
             Metrics(cpu: simulator.cpuPercent, memory: simulator.memoryBytes)
+            switch simulator.slim {
+            case true?:
+                Text("Slim").font(.caption).foregroundStyle(.secondary)
+                    .help("simslim has turned off the background services this simulator doesn’t need")
+            case false?:
+                Button("Slim") { Task { await model.slim(simulator) } }
+                    .disabled(model.agentActionInProgress != nil)
+                    .help("Turn off background services with simslim, without a reboot. simslim on \(simulator.udid) --no-reboot")
+            case nil:
+                EmptyView()
+            }
             Button("Shut down") { Task { await model.shutDown(simulator) } }
                 .disabled(simulator.idleReason == nil || model.agentActionInProgress != nil)
                 .help(simulator.idleReason == nil ? "In use, so MacUnclog leaves it alone" : "xcrun simctl shutdown \(simulator.udid)")
@@ -322,5 +336,27 @@ private struct GroupedRows<Item: Identifiable, Row: View>: View {
         }
         .background(.background.secondary, in: .rect(cornerRadius: 12, style: .continuous))
         .animation(.smooth, value: items.map(\.id))
+    }
+}
+
+/// Shown only while simslim isn't installed and simulators are running.
+private struct SimSlimHint: View {
+    var body: some View {
+        HStack(spacing: 10) {
+            Image(systemName: "leaf").foregroundStyle(.secondary).accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("With simslim, each simulator uses about a quarter of the memory.")
+                Text(SimSlim.installCommand).font(.caption.monospaced()).foregroundStyle(.secondary).textSelection(.enabled)
+            }
+            Spacer()
+            Button("Copy command") {
+                NSPasteboard.general.clearContents()
+                NSPasteboard.general.setString(SimSlim.installCommand, forType: .string)
+            }
+            Link("About simslim", destination: SimSlim.project)
+        }
+        .font(.callout)
+        .padding(12)
+        .background(.background.secondary, in: .rect(cornerRadius: 10, style: .continuous))
     }
 }

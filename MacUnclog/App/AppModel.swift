@@ -208,6 +208,7 @@ final class AppModel {
             diagnosis = VerdictEngine.diagnose(SharedCPUStreaks.record(snapshot, threshold: thresholds.cpuHogPercent), thresholds: thresholds)
             disk = snapshot.disk
         } while diagnoseAgain
+        slimNewSimulators()
     }
 
     func process(_ pid: pid_t) -> ProcessSample? {
@@ -259,6 +260,7 @@ final class AppModel {
         case .stopOrphanedTools: requestStopOrphanedTools()
         case .showAgents: selection = .agents
         case .showApps: showingApps = true
+        case .slimSimulators: Task { await slimStockSimulators() }
         }
     }
 
@@ -333,6 +335,37 @@ final class AppModel {
     func shutDown(_ simulator: BootedSimulator) async {
         guard actionAllowed() else { return }
         await runAgentAction(String(localized: "Shutting down \(simulator.name)…")) { await AgentActions.shutDown(simulator) }
+    }
+
+    /// Slims a booted simulator with simslim, without a reboot.
+    func slim(_ simulator: BootedSimulator) async {
+        guard actionAllowed() else { return }
+        await runAgentAction(String(localized: "Slimming \(simulator.name)…")) { await SimSlim.slim(udid: simulator.udid) }
+    }
+
+    func slimStockSimulators() async {
+        guard actionAllowed() else { return }
+        for simulator in diagnosis?.snapshot.agents.stockSimulators ?? [] { await slim(simulator) }
+    }
+
+    /// Simulator boots already slimmed (or tried) automatically, so a failure isn't retried
+    /// every refresh. A simulator that boots again gets a new key.
+    @ObservationIgnored private var autoSlimmed: Set<String> = []
+
+    /// With "Slim simulators when they boot" on, slims each stock simulator once per boot,
+    /// one at a time, after it has been up for a minute so its first launch isn't slowed.
+    private func slimNewSimulators() {
+        guard settings.slimSimulatorsOnBoot, !actionsDisabled, agentActionInProgress == nil,
+              let simulator = diagnosis?.snapshot.agents.stockSimulators.first(where: {
+                  Date.now.timeIntervalSince($0.bootedAt) > 60 && !autoSlimmed.contains(Self.bootKey($0))
+              })
+        else { return }
+        autoSlimmed.insert(Self.bootKey(simulator))
+        Task { await slim(simulator) }
+    }
+
+    private static func bootKey(_ simulator: BootedSimulator) -> String {
+        "\(simulator.udid)@\(Int(simulator.bootedAt.timeIntervalSince1970))"
     }
 
     func shutDownIdleSimulators() async {

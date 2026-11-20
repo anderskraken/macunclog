@@ -223,6 +223,20 @@ enum CommandLineTool {
                 }
             }
             return 0
+        case "--act" where arguments.first == "slim-simulator":
+            guard arguments.count == 2 else { return 64 }
+            let agents = await SystemProbe.capture(sampleInterval: .milliseconds(300)).agents
+            guard let simulator = agents.simulators.first(where: { $0.udid == arguments[1] }) else {
+                print("No booted simulator with UDID \(arguments[1])")
+                return 1
+            }
+            guard simulator.slim == false else {
+                print(simulator.slim == true ? "\(simulator.name) is already slim" : "simslim isn’t installed: \(SimSlim.installCommand)")
+                return simulator.slim == true ? 0 : 1
+            }
+            let problem = await SimSlim.slim(udid: simulator.udid)
+            print(problem ?? "Slimmed \(simulator.name)")
+            return problem == nil ? 0 : 1
         case "--act" where arguments.first == "stop-tool" || arguments.first == "shutdown-simulator":
             guard arguments.count == 2 else { return 64 }
             let agents = await SystemProbe.capture(sampleInterval: .milliseconds(300)).agents
@@ -268,6 +282,7 @@ enum CommandLineTool {
               --act ACTION PID      quit, forceQuit, pause or resume, with the same rules as the app
               --act stop-tool PID   stop a tool that no session owns any more
               --act shutdown-simulator UDID   shut down an unused simulator
+              --act slim-simulator UDID       turn off a booted simulator's background services with simslim
               --automation [on|off] show or change automatic clean-up and the background agent
               --protect PATH …      never delete anything in these folders (also in Settings)
             Categories: \(CleanupCategory.allCases.map(\.rawValue).joined(separator: " "))

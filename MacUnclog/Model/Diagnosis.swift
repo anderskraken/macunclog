@@ -22,6 +22,8 @@ enum Remedy: Sendable, Hashable {
     case showAgents
     /// Every app with its memory, to pick another one than the suggestion.
     case showApps
+    /// Booted simulators simslim can slim without a reboot.
+    case slimSimulators(Int)
 }
 
 struct Finding: Identifiable, Sendable, Hashable {

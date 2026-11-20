@@ -1,6 +1,26 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    " simslim can cut the memory of the %lld that aren’t slim to about a quarter each." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " simslim kan kutte minnet til de %lld som ikke er slanket, til omtrent en firedel hver."
+          }
+        }
+      }
+    },
+    " simslim can cut the memory of the one that isn’t slim to about a quarter." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " simslim kan kutte minnet til den som ikke er slanket, til omtrent en firedel."
+          }
+        }
+      }
+    },
     "% CPU" : {
       "localizations" : {
         "nb" : {
@@ -1341,6 +1361,16 @@
         }
       }
     },
+    "About simslim" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Om simslim"
+          }
+        }
+      }
+    },
     "Active" : {
       "localizations" : {
         "nb" : {
@@ -1899,6 +1929,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kopier UDID"
+          }
+        }
+      }
+    },
+    "Copy command" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopier kommando"
           }
         }
       }
@@ -4507,6 +4547,56 @@
         }
       }
     },
+    "Slim" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slank"
+          }
+        }
+      }
+    },
+    "Slim %lld simulators" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slank %lld simulatorer"
+          }
+        }
+      }
+    },
+    "Slim simulators when they boot" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slank simulatorer når de starter"
+          }
+        }
+      }
+    },
+    "Slim the simulator" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slank simulatoren"
+          }
+        }
+      }
+    },
+    "Slimming %@…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slanker %@ …"
+          }
+        }
+      }
+    },
     "Slowing your Mac down" : {
       "localizations" : {
         "nb" : {
@@ -5211,6 +5301,16 @@
         }
       }
     },
+    "Turn off background services with simslim, without a reboot. simslim on %@ --no-reboot" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slå av bakgrunnstjenester med simslim, uten omstart. simslim on %@ --no-reboot"
+          }
+        }
+      }
+    },
     "Unknown" : {
       "localizations" : {
         "nb" : {
@@ -5367,6 +5467,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vindu %lld"
+          }
+        }
+      }
+    },
+    "With simslim, each simulator uses about a quarter of the memory." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Med simslim bruker hver simulator omtrent en firedel av minnet."
           }
         }
       }
@@ -5775,6 +5885,66 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "pnpm-lager"
+          }
+        }
+      }
+    },
+    "simslim couldn’t slim the simulator." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "simslim kunne ikke slanke simulatoren."
+          }
+        }
+      }
+    },
+    "simslim has turned off the background services this simulator doesn’t need" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "simslim har slått av bakgrunnstjenestene denne simulatoren ikke trenger"
+          }
+        }
+      }
+    },
+    "simslim isn’t installed" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "simslim er ikke installert"
+          }
+        }
+      }
+    },
+    "simslim isn’t installed." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "simslim er ikke installert."
+          }
+        }
+      }
+    },
+    "simslim took more than 10 minutes and was stopped." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "simslim brukte mer enn 10 minutter og ble stoppet."
+          }
+        }
+      }
+    },
+    "simslim turns off the background services a simulator doesn’t need for development, such as Siri, Spotlight, widgets and iCloud, so it uses about a quarter of the memory. MacUnclog slims each simulator a minute after it boots, without restarting it, while MacUnclog is open. To turn a service back on, run simslim enable in Terminal." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "simslim slår av bakgrunnstjenestene en simulator ikke trenger under utvikling, som Siri, Spotlight, widgeter og iCloud, så den bruker omtrent en firedel av minnet. Mens MacUnclog er åpen, slanker den hver simulator et minutt etter at den har startet, uten å starte den på nytt. Kjør simslim enable i Terminal for å slå en tjeneste på igjen."
           }
         }
       }

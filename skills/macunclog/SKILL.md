@@ -32,6 +32,7 @@ A single measurement can't tell a spike from a lasting load, so a `cpuHog` witho
 
 - Run `--diagnose`, `--scan`, `--files` and `--repos`. They only read. `--scan` checks every project folder and can take half a minute; `--scan packageCaches xcode` limits it to those categories.
 - Shut down a simulator whose `idle` is `true`: run its `command` (`--act shutdown-simulator UDID`).
+- Slim a simulator your own session booted, when its `slimCommand` is set (`--act slim-simulator UDID`). It turns off the simulator's background services with simslim, without a reboot. Ask first for a simulator another session or the user is using, and don't slim one your tests need push, iCloud, StoreKit or Spotlight on.
 - Stop a tool whose `stoppable` is `true`: run its `command` (`--act stop-tool PID`). Only these are left over from a session that has ended.
 
 MacUnclog checks again before each action and refuses if anything changed.

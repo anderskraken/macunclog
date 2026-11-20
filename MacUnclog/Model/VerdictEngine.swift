@@ -100,15 +100,21 @@ enum VerdictEngine {
         default: String(localized: "\(idle) of them are idle.")
         }
         let amount = Format.memory(agents.simulatorMemory)
+        let stock = agents.stockSimulators.count
+        let slimText = switch stock {
+        case 0: ""
+        case 1: String(localized: " simslim can cut the memory of the one that isn’t slim to about a quarter.")
+        default: String(localized: " simslim can cut the memory of the \(stock) that aren’t slim to about a quarter each.")
+        }
         let usage = snapshot.memory.swapUsed > 4 << 30
             ? String(localized: "They are using \(amount) of memory, much of it in swap.")
             : String(localized: "They are using \(amount) of memory.")
         return [Finding(
             kind: .simulators, severity: severity, title: String(localized: "\(count) simulators are running at once"),
             reason: String(localized: "\(count) simulators are running at once"),
-            detail: String(localized: "\(usage) \(idleText)"),
+            detail: String(localized: "\(usage) \(idleText)") + slimText,
             symbol: "iphone.gen3.radiowaves.left.and.right",
-            remedies: idle > 0 ? [.shutDownIdleSimulators(idle), .showAgents] : [.showAgents])]
+            remedies: (idle > 0 ? [.shutDownIdleSimulators(idle)] : []) + (stock > 0 ? [.slimSimulators(stock)] : []) + [.showAgents])]
     }
 
     static let orphanedTools: Rule = { snapshot, _ in

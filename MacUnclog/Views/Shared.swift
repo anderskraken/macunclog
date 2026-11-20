@@ -141,6 +141,8 @@ struct RemedyButtons: View {
             count == 1 ? String(localized: "Stop the tool") : String(localized: "Stop \(count) tools")
         case .showAgents: String(localized: "Show agents")
         case .showApps: String(localized: "More apps…")
+        case .slimSimulators(let count):
+            count == 1 ? String(localized: "Slim the simulator") : String(localized: "Slim \(count) simulators")
         }
     }
 
@@ -155,6 +157,7 @@ struct RemedyButtons: View {
         case .stopOrphanedTools: "stop.circle"
         case .showAgents: "person.2.wave.2"
         case .showApps: "list.bullet"
+        case .slimSimulators: "leaf"
         }
     }
 }

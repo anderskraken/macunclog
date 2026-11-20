@@ -84,6 +84,7 @@ enum Report {
             case .stopOrphanedTools(let n): (action, pid, name, count, command) = ("stopOrphanedTools", nil, nil, n, nil)
             case .showAgents: (action, pid, name, count, command) = ("showAgents", nil, nil, nil, nil)
             case .showApps: (action, pid, name, count, command) = ("showApps", nil, nil, nil, nil)
+            case .slimSimulators(let n): (action, pid, name, count, command) = ("slimSimulators", nil, nil, n, nil)
             }
         }
     }
@@ -165,6 +166,9 @@ enum Report {
             let idle: Bool
             let idleReason: String?
             let command: String?
+            /// Whether simslim has slimmed it; absent when simslim isn't installed.
+            let slim: Bool?
+            let slimCommand: String?
         }
 
         struct Tool: Encodable {
@@ -192,7 +196,8 @@ enum Report {
             simulators = load.simulators.map {
                 Simulator(udid: $0.udid, name: $0.name, runtime: $0.runtime, cpuPercent: $0.cpuPercent.rounded(),
                           memoryBytes: $0.memoryBytes, usedBy: $0.users.map(\.name), idle: $0.idleReason != nil,
-                          idleReason: $0.idleReason, command: $0.idleReason == nil ? nil : "--act shutdown-simulator \($0.udid)")
+                          idleReason: $0.idleReason, command: $0.idleReason == nil ? nil : "--act shutdown-simulator \($0.udid)",
+                          slim: $0.slim, slimCommand: $0.slim == false ? "--act slim-simulator \($0.udid)" : nil)
             }
             tools = load.tools.map { tool in
                 let (owner, ownerPID): (String, pid_t?) = switch tool.owner {

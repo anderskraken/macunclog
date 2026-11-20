@@ -15,6 +15,8 @@ struct AgentLoad: Sendable {
 
     var stoppableTools: [ToolProcess] { tools.filter(\.isStoppable) }
     var idleSimulators: [BootedSimulator] { simulators.filter { $0.idleReason != nil } }
+    /// Booted simulators simslim could slim. Empty when simslim isn't installed.
+    var stockSimulators: [BootedSimulator] { simulators.filter { $0.slim == false } }
     var simulatorMemory: UInt64 { simulators.reduce(0) { $0 + $1.memoryBytes } }
 }
 
@@ -48,6 +50,8 @@ struct BootedSimulator: Identifiable, Sendable, Hashable {
     let users: [ProcessRef]
     /// Set when nothing seems to use the simulator: booted a while ago, quiet, unreferenced.
     let idleReason: String?
+    /// Whether simslim has turned off its background services, or nil without simslim.
+    var slim: Bool? = nil
 
     var id: String { udid }
 }
@@ -259,6 +263,8 @@ enum AgentLoadBuilder {
         var launches: [pid_t: AgentLaunch] = [:]
         /// MacUnclog itself, whose own command line may name a UDID (`--act shutdown-simulator`).
         var selfPID: pid_t = getpid()
+        /// Simulators simslim has slimmed, or nil when simslim isn't installed.
+        var slimUDIDs: Set<String>? = nil
     }
 
     static let simulatorIdleAfter: TimeInterval = 15 * 60
@@ -351,7 +357,8 @@ enum AgentLoadBuilder {
             }
             let info = inputs.simulatorNames[udid]
             return BootedSimulator(udid: udid, name: info?.name ?? "Simulator", runtime: info?.runtime ?? "",
-                                   bootedAt: bootedAt, cpuPercent: load, memoryBytes: memory(tree), users: users, idleReason: idle)
+                                   bootedAt: bootedAt, cpuPercent: load, memoryBytes: memory(tree), users: users, idleReason: idle,
+                                   slim: inputs.slimUDIDs.map { $0.contains(udid) })
         }.sorted { $0.memoryBytes > $1.memoryBytes }
 
         let hosts = Set(sessionRows.flatMap { ancestors(of: $0.pid, in: byPID).map(\.pid) }).subtracting([1])

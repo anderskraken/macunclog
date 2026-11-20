@@ -240,13 +240,30 @@ extension GeneralSettingsView {
 }
 
 private struct AgentSkillSettingsView: View {
+    @Environment(AppModel.self) private var model
     @State private var statuses: [AgentSkill.Agent: AgentSkill.Status] = [:]
     @State private var failure: String?
     /// An edited skill is overwritten or removed only after asking.
     @State private var replacing: (agent: AgentSkill.Agent, remove: Bool)?
 
     var body: some View {
+        @Bindable var model = model
         Form {
+            Section {
+                if SimSlim.executable != nil {
+                    Toggle("Slim simulators when they boot", isOn: $model.settings.slimSimulatorsOnBoot)
+                } else {
+                    LabeledContent("simslim isn’t installed") {
+                        Link("About simslim", destination: SimSlim.project)
+                    }
+                }
+            } header: {
+                Text("Simulators")
+            } footer: {
+                Text("simslim turns off the background services a simulator doesn’t need for development, such as Siri, Spotlight, widgets and iCloud, so it uses about a quarter of the memory. MacUnclog slims each simulator a minute after it boots, without restarting it, while MacUnclog is open. To turn a service back on, run simslim enable in Terminal.")
+                    .foregroundStyle(.secondary)
+            }
+
             Section {
                 ForEach(AgentSkill.Agent.allCases) { agent in
                     let status = statuses[agent] ?? .notInstalled
