@@ -71,6 +71,14 @@ Nothing is ticked until you tick it. Move to Bin asks first and runs every check
 
 MacUnclog deletes files and stops processes. Tests cover the rules above, but it comes with no warranty (see the licence). Run `--scan` first to see what it would delete on your Mac.
 
+## Updates
+
+Once a day, MacUnclog asks GitHub for the newest release. When there is a newer one, the sidebar and Settings > General show it with a Download button that opens the release page. To check right away, choose MacUnclog > Check for Updates…. To stop the daily check, turn off "Automatically check for updates" in Settings > General.
+
+MacUnclog doesn't install updates itself, because it isn't signed with a Developer ID yet. Unzip the download and replace the app in Applications. The first time you open it, macOS blocks it; allow it under System Settings > Privacy & Security > Open Anyway.
+
+To publish a release, set `MARKETING_VERSION` in `project.yml` and push a tag with the same version, for example `v1.1`. The Release workflow builds the app, zips it and attaches the zip to a new GitHub release. It stops if the tag and the version differ.
+
 ## Build and run
 
 You need macOS 26 or later and Xcode 26 or later.

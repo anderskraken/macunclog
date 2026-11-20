@@ -1531,6 +1531,16 @@
         }
       }
     },
+    "Automatically check for updates" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se etter oppdateringer automatisk"
+          }
+        }
+      }
+    },
     "Background agent" : {
       "localizations" : {
         "nb" : {
@@ -1703,6 +1713,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Endre …"
+          }
+        }
+      }
+    },
+    "Check for Updates…" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se etter oppdateringer …"
+          }
+        }
+      }
+    },
+    "Check now" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sjekk nå"
           }
         }
       }
@@ -1883,12 +1913,32 @@
         }
       }
     },
+    "Couldn’t check" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke sjekke"
+          }
+        }
+      }
+    },
     "Couldn’t check %@" : {
       "localizations" : {
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kunne ikke sjekke %@"
+          }
+        }
+      }
+    },
+    "Couldn’t check for updates" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke se etter oppdateringer"
           }
         }
       }
@@ -2133,6 +2183,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ikke foreslå %@"
+          }
+        }
+      }
+    },
+    "Download" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last ned"
           }
         }
       }
@@ -2383,12 +2443,32 @@
         }
       }
     },
+    "GitHub answered with status %lld." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub svarte med status %lld."
+          }
+        }
+      }
+    },
     "GitHub can’t find %@" : {
       "localizations" : {
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "GitHub finner ikke %@"
+          }
+        }
+      }
+    },
+    "GitHub sent a release MacUnclog can’t read." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub sendte en utgivelse MacUnclog ikke kan lese."
           }
         }
       }
@@ -2695,6 +2775,16 @@
         }
       }
     },
+    "Later" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senere"
+          }
+        }
+      }
+    },
     "Left running after its session ended · started %@" : {
       "localizations" : {
         "nb" : {
@@ -2815,6 +2905,26 @@
         }
       }
     },
+    "MacUnclog %@ is available" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog %@ er tilgjengelig"
+          }
+        }
+      }
+    },
+    "MacUnclog asks GitHub once a day for the newest version. It never downloads or installs anything by itself." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog spør GitHub om nyeste versjon én gang om dagen. Appen laster aldri ned eller installerer noe på egen hånd."
+          }
+        }
+      }
+    },
     "MacUnclog checks free space every 15 minutes. If it falls below the threshold, the app cleans up and notifies you, at most once every 6 hours." : {
       "localizations" : {
         "nb" : {
@@ -2861,6 +2971,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "MacUnclog frigjorde %@"
+          }
+        }
+      }
+    },
+    "MacUnclog is up to date" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacUnclog er oppdatert"
           }
         }
       }
@@ -5141,6 +5261,16 @@
         }
       }
     },
+    "Updates" : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oppdateringer"
+          }
+        }
+      }
+    },
     "Used" : {
       "localizations" : {
         "nb" : {
@@ -5167,6 +5297,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bruker mest CPU"
+          }
+        }
+      }
+    },
+    "Version %@ is the newest." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versjon %@ er den nyeste."
           }
         }
       }
@@ -5297,6 +5437,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Du kan stoppe verktøy som kjører videre etter at økta deres er over."
+          }
+        }
+      }
+    },
+    "You have version %@. Download the new version from GitHub and replace the app in Applications." : {
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har versjon %@. Last ned den nye versjonen fra GitHub og erstatt appen i Programmer."
           }
         }
       }

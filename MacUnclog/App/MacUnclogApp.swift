@@ -15,6 +15,10 @@ struct MacUnclogApp: App {
         .defaultSize(width: 960, height: 680)
         .windowToolbarStyle(.unified)
         .commands {
+            CommandGroup(after: .appInfo) {
+                Button("Check for Updates…") { Task { UpdateAlert.show(await model.updates.check()) } }
+                    .disabled(model.updates.isChecking)
+            }
             CommandGroup(after: .toolbar) {
                 Button("Refresh diagnosis") { Task { await model.refreshDiagnosis() } }
                     .keyboardShortcut("r")

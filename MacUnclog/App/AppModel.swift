@@ -78,6 +78,7 @@ final class AppModel {
         }
     }
     private(set) var agentStatus: SMAppService.Status = .notRegistered
+    let updates = UpdateChecker()
 
     private var refreshTask: Task<Void, Never>?
 
@@ -150,6 +151,12 @@ final class AppModel {
 
     func startAutoRefresh() {
         startAgentFallback()
+        #if DEBUG
+        let checksForUpdates = !DemoData.isEnabled
+        #else
+        let checksForUpdates = true
+        #endif
+        if checksForUpdates { updates.start { [weak self] in self?.settings.checkForUpdates ?? false } }
         guard refreshTask == nil else { return }
         refreshTask = Task { [weak self] in
             while !Task.isCancelled, let self {

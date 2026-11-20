@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-26
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the Release configuration
+        run: |
+          xcodebuild -project MacUnclog.xcodeproj -scheme MacUnclog -configuration Release \
+            -destination 'generic/platform=macOS' -derivedDataPath build/dd build
+
+      # The app compares the tag with its own version, so a mismatch would offer the update forever.
+      - name: Check that the tag matches the app version
+        run: |
+          app=build/dd/Build/Products/Release/MacUnclog.app
+          version=$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' "$app/Contents/Info.plist")
+          if [[ "${GITHUB_REF_NAME#v}" != "$version" ]]; then
+            echo "::error::Tag $GITHUB_REF_NAME doesn't match MARKETING_VERSION $version in project.yml"
+            exit 1
+          fi
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+
+      - name: Zip the app
+        run: ditto -c -k --keepParent build/dd/Build/Products/Release/MacUnclog.app "MacUnclog-$VERSION.zip"
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "MacUnclog-$VERSION.zip" \
+            --title "MacUnclog $VERSION" --generate-notes --verify-tag
